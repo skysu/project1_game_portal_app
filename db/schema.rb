@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160108203427) do
+ActiveRecord::Schema.define(version: 20160108205244) do
+
+  create_table "ttt_games", force: :cascade do |t|
+    t.integer  "player1_id"
+    t.string   "player1_symbol"
+    t.integer  "player2_id"
+    t.string   "player2_symbol"
+    t.integer  "current_player_id"
+    t.string   "current_player_symbol"
+    t.string   "players_symbols"
+    t.string   "board",                 default: "---\n- \n- \n- \n- \n- \n- \n- \n- \n- \n"
+    t.integer  "winner_id"
+    t.boolean  "is_draw",               default: false
+    t.string   "state"
+    t.string   "message"
+    t.datetime "created_at",                                                                  null: false
+    t.datetime "updated_at",                                                                  null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
