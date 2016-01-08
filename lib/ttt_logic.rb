@@ -20,45 +20,44 @@ class TttLogic
 
   ################ METHODS ################
 
-  def place_piece(move)
+  def place_piece?(move)
     if out_of_range?(move.square)
       # Can I do this?
       @game.update(state: :error, message: "Space #{move.square} not valid.")
       return false
     end
-    if space_filled?(square)
+    if space_filled?(move.square)
       @game.update(state: :error, message: "Space #{move.square} already filled.")
       return false
     end
+    return true
   end
 
   def update_board(move)
-    @board[move.square] = move.symbol
+    @board[move.square] = move.player[:symbol]
     @game.board = @board
   end
 
   def check_for_win(move)
-    if @win_checker.has_won?(move.symbol, @board)
-      winning_player = User.where(id: move.player_id)
-      @game.update(state: :finished, winner_id: move.player_id, message: "#{winning_player.name} Wins!")
+    if @win_checker.has_won?(move.player[:symbol], @board)
+      winning_player = User.where(id: move.player[:id])
+      @game.update(state: :finished, winner_id: move.player[:id], message: "#{winning_player.name} Wins!")
       # reset()
     elsif board_full?
       @game.update(state: :finished, is_draw: true, message: "Game is a draw")
     else
-      update_current_player_id_and_symbol
+      update_current_player
       @game.update(state: :next, message: nil)
     end
   end
 
-  def update_current_player_id_and_symbol
-    @game.current_player_id = case @game.current_player_id
-                                when @game.player1_id then @game.player2_id
-                                when @game.player2_id then @game.player1_id
-                              end
-    @game.current_player_symbol = case @game.current_player_id
-                                    when @game.player1_id then @game.player1_symbol
-                                    when @game.player2_id then @game.player2_symbol
-                                  end
+  def update_current_player
+    @game.current_player = case @game.current_player
+                             when @game.player1 then @game.player2
+                             when @game.player2 then @game.player1
+                           end
+    # @game.current_player = [@game.player1, @game.player2].reject { |player| player == @game.current_player }.first
+
     @game.save
   end
 

@@ -14,29 +14,24 @@
 ActiveRecord::Schema.define(version: 20160108220131) do
 
   create_table "ttt_games", force: :cascade do |t|
-    t.integer  "player1_id"
-    t.string   "player1_symbol"
-    t.integer  "player2_id"
-    t.string   "player2_symbol"
-    t.integer  "current_player_id"
-    t.string   "current_player_symbol"
-    t.string   "players_symbols"
-    t.string   "board",                 default: "---\n- \n- \n- \n- \n- \n- \n- \n- \n- \n"
+    t.string   "player1",        default: "---\n:id: \n:symbol: \n"
+    t.string   "player2",        default: "---\n:id: \n:symbol: \n"
+    t.string   "current_player", default: "---\n:id: \n:symbol: \n"
+    t.string   "board",          default: "---\n- \n- \n- \n- \n- \n- \n- \n- \n- \n"
     t.integer  "winner_id"
-    t.boolean  "is_draw",               default: false
+    t.boolean  "is_draw",        default: false
     t.string   "state"
     t.string   "message"
-    t.datetime "created_at",                                                                  null: false
-    t.datetime "updated_at",                                                                  null: false
+    t.datetime "created_at",                                                           null: false
+    t.datetime "updated_at",                                                           null: false
   end
 
   create_table "ttt_moves", force: :cascade do |t|
     t.integer  "ttt_game_id"
-    t.integer  "player_id"
-    t.string   "square"
-    t.string   "symbol"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "player",      default: "---\n:id: \n:symbol: \n"
+    t.integer  "square"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
   add_index "ttt_moves", ["ttt_game_id"], name: "index_ttt_moves_on_ttt_game_id"
