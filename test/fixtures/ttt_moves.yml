@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ttt_game_id: 
+  player_id: 1
+  square: MyString
+  symbol: MyString
+
+two:
+  ttt_game_id: 
+  player_id: 1
+  square: MyString
+  symbol: MyString
