@@ -1,5 +1,4 @@
-# Needed here?
-require 'TttLogic.rb'
+require 'ttt_logic'
 
 class TttGamesController < ApplicationController
 
@@ -7,13 +6,17 @@ class TttGamesController < ApplicationController
 
   def new
     @ttt_game = TttGame.new
+    @users = User.all
   end
 
   def create
-    @ttt_game = TttGame.create(ttt_game_params)
-    @ttt_game.set_player1_id
-             .set_players_symbols
-             .set_first_player
+    @ttt_game = TttGame.new
+    # pry.byebug
+    @ttt_game.player2[:id] = ttt_game_params[:player2].to_i
+    @ttt_game.save
+    # @ttt_game.set_player1_id
+    @ttt_game.set_players_symbols
+    @ttt_game.set_first_player
     # @ttt_game.set_up
     # redirect to games page?
     redirect_to ttt_game_path(@ttt_game)
@@ -56,7 +59,7 @@ class TttGamesController < ApplicationController
 
   private
   def ttt_game_params
-    params.require(:ttt_game).permit(:player2_id)
+    params.require(:ttt_game).permit(:player2)
   end
 
   def load_ttt_game
@@ -70,4 +73,4 @@ class TttGamesController < ApplicationController
 end
 
 
-<%= link_to image_tag("#{@symbol}-red.png"), {controller: 'ttt_games', action: 'update', square: 0}, method: :put %>
+# <%= link_to image_tag("#{@symbol}-red.png"), {controller: 'ttt_games', action: 'update', square: 0}, method: :put %>
