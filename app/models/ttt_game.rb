@@ -30,6 +30,17 @@ class TttGame < ActiveRecord::Base
     self.users.find(self.player2[:id])
   end
 
+  # def player2_user
+  #   case self.mode
+  #     when user
+  #       self.users.find(self.player2[:id])
+  #     when ai
+  #       self.users.find(self.player2[:id])
+  #     when friend
+  #       self.users.find(self.player2[:id])
+  #     end
+  # end
+
   def current_player_user
     self.users.find(self.current_player[:id])
   end

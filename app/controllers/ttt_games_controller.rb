@@ -17,16 +17,27 @@ class TttGamesController < ApplicationController
     @ttt_game = TttGame.new
     # @ttt_game.set_player1_id
     @ttt_game.player1[:id] = 1
+    # @ttt_game.player1[:id] = current_user.id
     @ttt_game.player2[:id] = ttt_game_params[:player2].to_i
     @ttt_game.save
 
     @ttt_game.users << User.find(@ttt_game.player1[:id])
+
+    # case @ttt_game.mode
+    #   when 'user'
+    #   when 'ai'
+    #   when 'friend'
     @ttt_game.users << User.find(@ttt_game.player2[:id])
 
     @ttt_game.set_players_symbols
     @ttt_game.set_first_player
     # redirect to games page?
-    redirect_to ttt_game_path(@ttt_game)
+
+    if user_is_current_player?
+      redirect_to edit_ttt_game_path(@ttt_game) and return
+    else
+      redirect_to ttt_game_path(@ttt_game) and return
+    end
   end
 
   def show
@@ -39,27 +50,21 @@ class TttGamesController < ApplicationController
   def update
     @ttt_logic = TttLogic.new(@ttt_game, TttWinChecker.new)
     @ttt_move = @ttt_game.ttt_moves.create(player: @ttt_game.current_player,
-                                       square: params[:square])
+                                           square: params[:square])
     @ttt_game = @ttt_logic.turn(@ttt_move)
     # pry.byebug
 
 
 
     case @ttt_game.state
-      when 'error'
-        redirect_to edit_ttt_game_path(@ttt_game)
-        return
-      when 'next'
-        redirect_to edit_ttt_game_path(@ttt_game)
-        # if @ttt_game.current_player[:id] = current_user.id
-        #   redirect_to edit_ttt_game_path(@ttt_game)
-        #   return
-        # else
-        #   redirect_to ttt_game_path(@ttt_game)
-        #   return
-        # end
+      when 'error', 'next'
+        if user_is_current_player?
+          redirect_to edit_ttt_game_path(@ttt_game) and return
+        else
+          redirect_to ttt_game_path(@ttt_game) and return
+        end
       when 'finished'
-        redirect_to ttt_game_path(@ttt_game)
+        redirect_to ttt_game_path(@ttt_game) and return
     end
   end
 
@@ -72,8 +77,13 @@ class TttGamesController < ApplicationController
     @ttt_game = TttGame.find(params[:id])
   end
 
-  def accept_ttt_game
-    @ttt_game.is_accepted = true
+  # def accept_ttt_game
+  #   @ttt_game.is_accepted = true
+  # end
+
+  def user_is_current_player?
+    true
+    # @ttt_game.current_player[:id] == current_user.id
   end
 
 end
