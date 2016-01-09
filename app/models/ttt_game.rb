@@ -2,7 +2,7 @@ require 'ttt_logic'
 require 'ttt_win_checker'
 
 class TttGame < ActiveRecord::Base
-  has_many :ttt_moves
+  has_many :ttt_moves, dependent: :destroy
 
   serialize :board, Array
   serialize :player1, Hash

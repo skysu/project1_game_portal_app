@@ -32,10 +32,12 @@ class TttLogic
     if out_of_range?(move.square)
       # Can I do this?
       @game.update(state: :error, message: "Space #{move.square} not valid.")
+      @game.ttt_moves.destroy(move)
       return false
     end
     if space_filled?(move.square)
       @game.update(state: :error, message: "Space #{move.square} already filled.")
+      @game.ttt_moves.destroy(move)
       return false
     end
     return true
