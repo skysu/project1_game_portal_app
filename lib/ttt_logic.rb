@@ -1,3 +1,5 @@
+require 'user'
+
 class TttLogic
   
   DEFAULT_BOARD = [nil, nil, nil, nil, nil, nil, nil, nil, nil]
@@ -11,14 +13,20 @@ class TttLogic
   ################ FROM TTTGAME ################
 
   def turn(move)
-    if place_piece?(move)
-      update_board(move)
-      check_for_win(move)
+    unless game_finished?
+      if place_piece?(move)
+        update_board(move)
+        check_for_win(move)
+      end
     end
     return @game
   end
 
   ################ METHODS ################
+
+  def game_finished?
+    @game.state == "finished"
+  end
 
   def place_piece?(move)
     if out_of_range?(move.square)
@@ -40,7 +48,7 @@ class TttLogic
 
   def check_for_win(move)
     if @win_checker.has_won?(move.player[:symbol], @board)
-      winning_player = User.where(id: move.player[:id])
+      winning_player = User.find(move.player[:id])
       @game.update(state: :finished, winner_id: move.player[:id], message: "#{winning_player.name} Wins!")
       # reset()
     elsif board_full?
