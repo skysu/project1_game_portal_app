@@ -22,7 +22,7 @@ class TttGame < ActiveRecord::Base
   #   set_current_player_id_and_symbol
   # end
 
-  STATES = %w(error next finished)
+  STATES = %w(in_progress finished)
 
   STATES.each do |state|
     define_method("#{state}?") do

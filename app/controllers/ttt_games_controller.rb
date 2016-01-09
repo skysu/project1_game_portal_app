@@ -49,14 +49,17 @@ class TttGamesController < ApplicationController
   end
 
   def edit
-    if user_is_current_player?
-      redirect_to edit_ttt_game_path(@ttt_game) and return
-    else
-      redirect_to ttt_game_path(@ttt_game) and return
-    end
+    # if user_is_current_player?
+    #   redirect_to edit_ttt_game_path(@ttt_game) and return
+    # else
+    #   redirect_to ttt_game_path(@ttt_game) and return
+    # end
   end
 
   def update
+    unless user_is_current_player?
+      redirect_to edit_ttt_game_path(@ttt_game) and return
+    end
     @ttt_logic = TttLogic.new(@ttt_game, TttWinChecker.new)
     @ttt_move = @ttt_game.ttt_moves.create(player: @ttt_game.current_player,
                                            square: params[:square])
@@ -66,7 +69,7 @@ class TttGamesController < ApplicationController
 
 
     case @ttt_game.state
-      when 'error', 'next'
+      when 'in_progress'
         if user_is_current_player?
           redirect_to edit_ttt_game_path(@ttt_game) and return
         else
@@ -74,6 +77,8 @@ class TttGamesController < ApplicationController
         end
       when 'finished'
         redirect_to ttt_game_path(@ttt_game) and return
+      else
+        redirect_to edit_ttt_game_path(@ttt_game) and return
     end
   end
 

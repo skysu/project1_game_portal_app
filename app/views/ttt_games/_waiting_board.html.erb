@@ -7,8 +7,6 @@
           <div class="ttt-square">
             <% if @ttt_game.board[i] %>
               <%= @ttt_game.board[i] %>
-            <% else %>
-              <%= link_to @ttt_game.current_player[:symbol], { controller: 'ttt_games', action: 'update', square: i }, method: :put %>
             <% end %>
           </div>
         </td>

@@ -31,12 +31,12 @@ class TttLogic
   def place_piece?(move)
     if out_of_range?(move.square)
       # Can I do this?
-      @game.update(state: :error, message: "Space #{move.square} not valid.")
+      @game.update(state: 'in_progress', message: "Move not valid. Pick again.")
       @game.ttt_moves.destroy(move)
       return false
     end
     if space_filled?(move.square)
-      @game.update(state: :error, message: "Space #{move.square} already filled.")
+      @game.update(state: 'in_progress', message: "Space #{move.square} already filled. Pick again")
       @game.ttt_moves.destroy(move)
       return false
     end
@@ -50,14 +50,14 @@ class TttLogic
 
   def check_for_win(move)
     if @win_checker.has_won?(move.player[:symbol], @board)
-      winning_player = User.find(move.player[:id])
-      @game.update(state: :finished, winner_id: move.player[:id], message: "#{winning_player.name} Wins!")
+      @game.update(winner_id: @game.current_player[:id])
+      @game.update(state: 'finished', winner_id: move.player[:id], message: "#{@game.winning_user.name} Wins!")
       # reset()
     elsif board_full?
-      @game.update(state: :finished, is_draw: true, message: "Game is a draw")
+      @game.update(state: 'finished', is_draw: true, message: "Game is a draw")
     else
       update_current_player
-      @game.update(state: :next, message: nil)
+      @game.update(state: 'in_progress', message: nil)
     end
   end
 

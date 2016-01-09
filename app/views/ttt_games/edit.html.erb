@@ -5,6 +5,10 @@
 <p>Current Player: <%= @ttt_game.current_player_user.name %> <%= @ttt_game.current_player[:symbol] %></p>
 <p>State: <%= @ttt_game.state %></p>
 
-
+<%# if user_is_current_player? %>
+  <%# render "board" %>
+<%# else %>
+  <%# render "waiting_board" %>
+<%# end %>
 
 <%= render "board" %>
