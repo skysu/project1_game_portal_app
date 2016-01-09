@@ -1,7 +1,7 @@
 <h2>TttGame#New</h2>
 
 <%= form_for @ttt_game do |f| %>
-  <%= f.label :player2 %>
+  <%= f.label :player2, "Select Opponent" %>
   <%= f.collection_select(:player2, @users, :id, :name, include_blank: 'Select Player 2') %>
   <%= f.submit %>
 <% end %>

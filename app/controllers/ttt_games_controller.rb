@@ -68,6 +68,11 @@ class TttGamesController < ApplicationController
     end
   end
 
+  def delete
+    @ttt_game.destroy
+    redirect_to ttt_games_path
+  end
+
   private
   def ttt_game_params
     params.require(:ttt_game).permit(:player2)
