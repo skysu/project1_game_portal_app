@@ -22,13 +22,13 @@ class TttGame < ActiveRecord::Base
   #   set_current_player_id_and_symbol
   # end
 
-  # def player1_user
-  #   self.users.find(self.player1[:id])
-  # end
+  def player1_user
+    self.users.find(self.player1[:id])
+  end
 
-  # def player2_user
-  #   self.users.find(self.player2[:id])
-  # end
+  def player2_user
+    self.users.find(self.player2[:id])
+  end
 
   def set_player1_id
     self.player1[:id] = current_user.id

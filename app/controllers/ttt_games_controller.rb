@@ -25,7 +25,6 @@ class TttGamesController < ApplicationController
 
     @ttt_game.set_players_symbols
     @ttt_game.set_first_player
-    # @ttt_game.set_up
     # redirect to games page?
     redirect_to ttt_game_path(@ttt_game)
   end
