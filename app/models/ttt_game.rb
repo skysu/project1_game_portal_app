@@ -15,9 +15,10 @@ class TttGame < ActiveRecord::Base
   #   set_current_player_id_and_symbol
   # end
 
-  # def set_player1_id
-  #   self.update(player1_id: current_user.id)
-  # end
+  def set_player1_id
+    self.player1[:id] = current_user.id
+    self.save
+  end
 
   def set_players_symbols
     # symbols = [:o, :x].shuffle!
