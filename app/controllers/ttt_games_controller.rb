@@ -4,6 +4,10 @@ class TttGamesController < ApplicationController
 
   before_action :load_ttt_game, only: [:show, :edit, :update, :delete]
 
+  def index
+    @ttt_games = TttGame.all
+  end
+
   def new
     @ttt_game = TttGame.new
     @users = User.all

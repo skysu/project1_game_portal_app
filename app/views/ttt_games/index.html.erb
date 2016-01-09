@@ -1,0 +1,12 @@
+<h2>TttGame#Index</h2>
+
+<ol>
+  <% @ttt_games.each do |ttt_game| %>
+    <li>
+      <%= link_to ttt_game.id, ttt_game_path(ttt_game) %>
+      <%= ttt_game.state %>
+      <p><%= ttt_game.player1[:id] %> vs <%= ttt_game.player2[:id] %></p>
+      <%= link_to "Delete", ttt_game_path(ttt_game), method: :delete %>
+    </li>
+  <% end %>
+</ol>

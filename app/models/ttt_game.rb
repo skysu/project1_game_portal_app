@@ -9,10 +9,24 @@ class TttGame < ActiveRecord::Base
   serialize :player2, Hash
   serialize :current_player, Hash
 
+  # validate :limit_users, on: :create
+
+  # def limit_users
+  #   if self.users.count >= 2
+  # end
+
   # def set_up
   #   set_player1_id
   #   set_players_symbols
   #   set_current_player_id_and_symbol
+  # end
+
+  # def player1_user
+  #   self.users.find(self.player1[:id])
+  # end
+
+  # def player2_user
+  #   self.users.find(self.player2[:id])
   # end
 
   def set_player1_id
