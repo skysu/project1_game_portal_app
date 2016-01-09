@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160108220131) do
+ActiveRecord::Schema.define(version: 20160109150302) do
 
   create_table "ttt_games", force: :cascade do |t|
     t.string   "player1",        default: "---\n:id: \n:symbol: \n"
@@ -24,6 +24,11 @@ ActiveRecord::Schema.define(version: 20160108220131) do
     t.string   "message"
     t.datetime "created_at",                                                           null: false
     t.datetime "updated_at",                                                           null: false
+  end
+
+  create_table "ttt_games_users", id: false, force: :cascade do |t|
+    t.integer "user_id",     null: false
+    t.integer "ttt_game_id", null: false
   end
 
   create_table "ttt_moves", force: :cascade do |t|

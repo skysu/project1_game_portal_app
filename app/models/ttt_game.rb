@@ -3,6 +3,7 @@ require 'ttt_win_checker'
 
 class TttGame < ActiveRecord::Base
   has_many :ttt_moves, dependent: :destroy
+  has_and_belongs_to_many :users
 
   serialize :board, Array
   serialize :player1, Hash

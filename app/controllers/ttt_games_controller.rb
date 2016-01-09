@@ -15,10 +15,14 @@ class TttGamesController < ApplicationController
 
   def create
     @ttt_game = TttGame.new
-    # pry.byebug
+    # @ttt_game.set_player1_id
+    @ttt_game.player1[:id] = 1
     @ttt_game.player2[:id] = ttt_game_params[:player2].to_i
     @ttt_game.save
-    # @ttt_game.set_player1_id
+
+    @ttt_game.users << User.find(@ttt_game.player1[:id])
+    @ttt_game.users << User.find(@ttt_game.player2[:id])
+
     @ttt_game.set_players_symbols
     @ttt_game.set_first_player
     # @ttt_game.set_up
