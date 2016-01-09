@@ -1,3 +1,10 @@
 <h2>TttGame#Edit</h2>
 
+<p><%= @ttt_game.player1_user.name %> <%= @ttt_game.player1[:symbol] %></p>
+<p><%= @ttt_game.player2_user.name %> <%= @ttt_game.player2[:symbol] %></p>
+<p>Current Player: <%= @ttt_game.current_player_user.name %> <%= @ttt_game.current_player[:symbol] %></p>
+<p>State: <%= @ttt_game.state %></p>
+
+
+
 <%= render "board" %>

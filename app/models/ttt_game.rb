@@ -30,6 +30,10 @@ class TttGame < ActiveRecord::Base
     self.users.find(self.player2[:id])
   end
 
+  def current_player_user
+    self.users.find(self.current_player[:id])
+  end
+
   def winner_user
     self.users.find(self.winner_id) if self.winner_id
   end

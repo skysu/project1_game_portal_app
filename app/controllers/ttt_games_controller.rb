@@ -38,28 +38,27 @@ class TttGamesController < ApplicationController
 
   def update
     @ttt_logic = TttLogic.new(@ttt_game, TttWinChecker.new)
-    @current_symbol = case @ttt_game.current_player_id
-                        when @ttt_game.player1_id then @ttt_game.player1_symbol
-                        when @ttt_game.player2_id then @ttt_game.player2_symbol
-                      end
-    @ttt_move = @ttt_game.moves.create(player_id: @ttt_game.current_player_id,
-                                          square: params[:square],
-                                          symbol: @current_symbol)
+    @ttt_move = @ttt_game.ttt_moves.create(player: @ttt_game.current_player,
+                                       square: params[:square])
     @ttt_game = @ttt_logic.turn(@ttt_move)
+    # pry.byebug
+
+
 
     case @ttt_game.state
-      when :error
+      when 'error'
         redirect_to edit_ttt_game_path(@ttt_game)
         return
-      when :next
-        if @ttt_game.current_player_id = current_user.id
-          redirect_to edit_ttt_game_path(@ttt_game)
-          return
-        else
-          redirect_to ttt_game_path(@ttt_game)
-          return
-        end
-      when :finished
+      when 'next'
+        redirect_to edit_ttt_game_path(@ttt_game)
+        # if @ttt_game.current_player[:id] = current_user.id
+        #   redirect_to edit_ttt_game_path(@ttt_game)
+        #   return
+        # else
+        #   redirect_to ttt_game_path(@ttt_game)
+        #   return
+        # end
+      when 'finished'
         redirect_to ttt_game_path(@ttt_game)
     end
   end

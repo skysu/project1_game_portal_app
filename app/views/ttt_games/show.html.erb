@@ -13,5 +13,13 @@
     <li>Winner: <%= @ttt_game.winner_user.name %></li>
   <% end %>
 
+  <% if @ttt_game.is_draw %>
+    <li>Draw</li>
+  <% end %>
+
+  <% if @ttt_game.message %>
+    <li><%= @ttt_game.message %></li>
+  <% end %>
+
   <li>Last played: <%= distance_of_time_in_words_to_now(@ttt_game.updated_at) %></li>
 </ul>
