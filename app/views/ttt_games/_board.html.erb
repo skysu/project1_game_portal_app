@@ -1,0 +1,21 @@
+<% @ttt_game %>
+
+<table class="ttt-board">
+  <% 9.times do |i| %>
+    <% if (i) % 3 == 0%>
+      <tr>
+    <% end %>
+        <td>
+          <div class="ttt-square">
+            <% if @ttt_game.board[i] %>
+              <%= @ttt_game.board[i] %>
+            <% else %>
+              <%= link_to @ttt_game.current_player[:symbol], { controller: 'ttt_games', action: 'update', square: i }, method: :put %>
+            <% end %>
+          </div>
+        </td>
+    <% if (i+1) % 3 == 0 %>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
