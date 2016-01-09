@@ -5,7 +5,7 @@
     <li>
       <%= link_to ttt_game.id, ttt_game_path(ttt_game) %>
       <%= ttt_game.state %>
-      <p><%= ttt_game.player1[:id] %> vs <%= ttt_game.player2[:id] %></p>
+      <p><%= ttt_game.player1_user.name %> vs <%= ttt_game.player2_user.name %></p>
       <%= link_to "Delete", ttt_game_path(ttt_game), method: :delete %>
     </li>
   <% end %>

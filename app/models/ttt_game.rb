@@ -30,6 +30,10 @@ class TttGame < ActiveRecord::Base
     self.users.find(self.player2[:id])
   end
 
+  def winner_user
+    self.users.find(self.winner_id) if self.winner_id
+  end
+
   def set_player1_id
     self.player1[:id] = current_user.id
     self.save

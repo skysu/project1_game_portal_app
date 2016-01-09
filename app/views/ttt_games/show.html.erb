@@ -1,1 +1,15 @@
 <h2>TttGame#show</h2>
+
+<ul>
+  <li><%= @ttt_game.player1_user.name %> vs <%= @ttt_game.player2_user.name %></li>
+
+  <% if @ttt_game.state %>
+    <li>State: <%= @ttt_game.state %></li>
+  <% else %>
+    <li>State: Ready</li>
+  <% end %>
+
+  <% if @ttt_game.winner_id %>
+    <li>Winner: <%= @ttt_game.winner_user.name %></li>
+  <% end %>
+</ul>
