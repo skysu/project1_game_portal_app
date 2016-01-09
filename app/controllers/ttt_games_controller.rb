@@ -41,10 +41,19 @@ class TttGamesController < ApplicationController
   end
 
   def show
-    # include logic in show.html.erb to determine which partial to load
+    unless @ttt_game.finished?
+      if user_is_current_player?
+        redirect_to edit_ttt_game_path(@ttt_game) and return
+      end
+    end
   end
 
   def edit
+    if user_is_current_player?
+      redirect_to edit_ttt_game_path(@ttt_game) and return
+    else
+      redirect_to ttt_game_path(@ttt_game) and return
+    end
   end
 
   def update

@@ -22,6 +22,18 @@ class TttGame < ActiveRecord::Base
   #   set_current_player_id_and_symbol
   # end
 
+  STATES = %w(error next finished)
+
+  STATES.each do |state|
+    define_method("#{state}?") do
+      self.state == state
+    end
+
+    # define_method("#{state}!") do
+    #   self.update_attribute(state: state)
+    # end
+  end
+
   def player1_user
     self.users.find(self.player1[:id])
   end
