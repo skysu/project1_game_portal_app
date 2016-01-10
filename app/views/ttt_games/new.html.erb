@@ -19,8 +19,6 @@
 <%= form_for @ttt_game do |f| %>
   <div class="form-group">
     <%= f.hidden_field :player2, value: 1 %>
-    <%# f.hidden_field :player2, current_user.id %>
-
     <%= f.hidden_field :opponent, value: 'friend' %>
   </div>
   <div class="form-action">
@@ -32,8 +30,6 @@
 <%= form_for @ttt_game do |f| %>
   <div class="form-group">
     <%= f.hidden_field :player2, value: 3 %>
-    <%# f.hidden_field :player2, current_user.id %>
-
     <%= f.hidden_field :opponent, value: 'ai' %>
   </div>
   <div class="form-action">
