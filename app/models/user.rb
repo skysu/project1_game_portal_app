@@ -5,4 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_and_belongs_to_many :ttt_games
+
+  scope :players, -> { where(role: 'player') }
+  scope :rubot, -> { find_by(name: 'RUBOT', role: 'ai') }
+  scope :player2, -> { find_by(name: 'Player 2', role: 'default_player') }
+  
 end

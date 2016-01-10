@@ -53,6 +53,9 @@ class TttLogic
           @game.update(state: 'finished', message: "#{@game.winner_user.name} Wins!")
         when 'friend'
           @game.update(state: 'finished', message: "#{@game.current_player[:symbol].to_s} Wins!")
+        # else
+          # @game.update(winner_id: @game.current_player[:id])
+          # @game.update(state: 'finished', message: "#{@game.winner_user.name} Wins!")
       end
     elsif board_full?
       @game.update(state: 'finished', is_draw: true, message: "Game is a draw")

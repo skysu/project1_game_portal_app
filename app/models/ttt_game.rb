@@ -52,7 +52,14 @@ class TttGame < ActiveRecord::Base
   end
 
   def player2_user
-    self.users.find(self.player2[:id])
+    if self.users.count < 2
+      User.player2
+      # self.users.find_or_create_by(self.players[:id]) do |user|
+      #   user.name = "Player2"
+      # end
+    else
+      self.users.find(self.player2[:id])
+    end
   end
 
   # def player2_user

@@ -16,7 +16,7 @@ class TttGamesController < ApplicationController
   def create
     @ttt_game = TttGame.new
     # @ttt_game.set_player1_id
-    @ttt_game.player1[:id] = 1
+    @ttt_game.player1[:id] = User.find_by_name('Sky')
     # @ttt_game.player1[:id] = current_user.id
     @ttt_game.player2[:id] = ttt_game_params[:player2].to_i
     @ttt_game.opponent = ttt_game_params[:opponent]
