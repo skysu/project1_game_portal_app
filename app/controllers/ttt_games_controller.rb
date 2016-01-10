@@ -19,6 +19,7 @@ class TttGamesController < ApplicationController
     @ttt_game.player1[:id] = 1
     # @ttt_game.player1[:id] = current_user.id
     @ttt_game.player2[:id] = ttt_game_params[:player2].to_i
+    @ttt_game.opponent = ttt_game_params[:opponent]
     @ttt_game.save
 
     @ttt_game.users << User.find(@ttt_game.player1[:id])
@@ -49,10 +50,10 @@ class TttGamesController < ApplicationController
   end
 
   def edit
-    # if user_is_current_player?
-    #   redirect_to edit_ttt_game_path(@ttt_game) and return
-    # else
-    #   redirect_to ttt_game_path(@ttt_game) and return
+    # if @ttt_game.finished?
+    #   unless user_is_current_player?
+    #     redirect_to ttt_game_path(@ttt_game) and return
+    #   end
     # end
   end
 
@@ -89,7 +90,7 @@ class TttGamesController < ApplicationController
 
   private
   def ttt_game_params
-    params.require(:ttt_game).permit(:player2)
+    params.require(:ttt_game).permit(:player2, :opponent)
   end
 
   def load_ttt_game
