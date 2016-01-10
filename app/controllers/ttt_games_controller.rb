@@ -2,7 +2,7 @@ require 'ttt_logic'
 
 class TttGamesController < ApplicationController
 
-  before_action :load_ttt_game, only: [:show, :edit, :update, :delete]
+  before_action :load_ttt_game, only: [:show, :edit, :update, :destroy]
 
   def index
     @ttt_games = TttGame.all
@@ -82,7 +82,7 @@ class TttGamesController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @ttt_game.destroy
     redirect_to ttt_games_path
   end

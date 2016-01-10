@@ -1,5 +1,3 @@
-require 'user'
-
 class TttLogic
   
   DEFAULT_BOARD = [nil, nil, nil, nil, nil, nil, nil, nil, nil]
@@ -30,7 +28,6 @@ class TttLogic
 
   def place_piece?(move)
     if out_of_range?(move.square)
-      # Can I do this?
       @game.update(state: 'in_progress', message: "Move not valid. Pick again.")
       @game.ttt_moves.destroy(move)
       return false
@@ -51,7 +48,7 @@ class TttLogic
   def check_for_win(move)
     if @win_checker.has_won?(move.player[:symbol], @board)
       @game.update(winner_id: @game.current_player[:id])
-      @game.update(state: 'finished', winner_id: move.player[:id], message: "#{@game.winning_user.name} Wins!")
+      @game.update(state: 'finished', message: "#{@game.winner_user.name} Wins!")
       # reset()
     elsif board_full?
       @game.update(state: 'finished', is_draw: true, message: "Game is a draw")

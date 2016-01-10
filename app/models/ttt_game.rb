@@ -10,6 +10,8 @@ class TttGame < ActiveRecord::Base
   serialize :player2, Hash
   serialize :current_player, Hash
 
+  after_initialize :set_state
+
   # validate :limit_users, on: :create
 
   # def limit_users
@@ -59,6 +61,10 @@ class TttGame < ActiveRecord::Base
 
   def winner_user
     self.users.find(self.winner_id) if self.winner_id
+  end
+
+  def set_state
+    self.state ||= 'in_progress'
   end
 
   def set_player1_id
