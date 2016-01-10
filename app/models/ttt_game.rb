@@ -25,6 +25,7 @@ class TttGame < ActiveRecord::Base
   # end
 
   STATES = %w(in_progress finished)
+  OPPONENTS = %w(user friend ai)
 
   STATES.each do |state|
     define_method("#{state}?") do
@@ -33,6 +34,16 @@ class TttGame < ActiveRecord::Base
 
     # define_method("#{state}!") do
     #   self.update_attribute(state: state)
+    # end
+  end
+
+  OPPONENTS.each do |opponent|
+    define_method("#{opponent}?") do
+      self.opponent == opponent
+    end
+
+    # define_method("#{opponent}!") do
+    #   self.update_attribute(opponent: opponent)
     # end
   end
 
