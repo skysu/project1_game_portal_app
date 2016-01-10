@@ -47,9 +47,13 @@ class TttLogic
 
   def check_for_win(move)
     if @win_checker.has_won?(move.player[:symbol], @board)
-      @game.update(winner_id: @game.current_player[:id])
-      @game.update(state: 'finished', message: "#{@game.winner_user.name} Wins!")
-      # reset()
+      case @game.opponent
+        when 'user', 'ai'
+          @game.update(winner_id: @game.current_player[:id])
+          @game.update(state: 'finished', message: "#{@game.winner_user.name} Wins!")
+        when 'friend'
+          @game.update(state: 'finished', message: "#{@game.current_player[:symbol].to_s} Wins!")
+      end
     elsif board_full?
       @game.update(state: 'finished', is_draw: true, message: "Game is a draw")
     else
