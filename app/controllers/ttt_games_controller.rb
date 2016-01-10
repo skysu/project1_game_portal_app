@@ -50,11 +50,9 @@ class TttGamesController < ApplicationController
   end
 
   def edit
-    # if @ttt_game.finished?
-    #   unless user_is_current_player?
-    #     redirect_to ttt_game_path(@ttt_game) and return
-    #   end
-    # end
+    if @ttt_game.finished? || !user_is_current_player?
+        redirect_to ttt_game_path(@ttt_game) and return
+    end
   end
 
   def update
