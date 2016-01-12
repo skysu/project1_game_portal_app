@@ -41,12 +41,20 @@ class TttGamesController < ApplicationController
 
   def show
     unless @ttt_game.finished?
+      # if @ttt_game.ai_playing?
+      #   @ttt_logic = TttLogic.new(@ttt_game, TttWinChecker.new)
+      #   wc = TttWinChecker.new
+      #   ai = TttMinMax.new(@ttt_game.player2[:symbol], wc)
+      #   board = @ttt_game.board
+      #   square = ai.move(board)
+      #   @ttt_move = @ttt_game.ttt_moves.create(player: @ttt_game.current_player,
+      #                                            square: square)
+
+      #   @ttt_game = @ttt_logic.turn(@ttt_move)
+      # end
       if @ttt_game.ai_playing?
         @ttt_logic = TttLogic.new(@ttt_game, TttWinChecker.new)
-        wc = TttWinChecker.new
-        ai = TttMinMax.new(@ttt_game.player2[:symbol], wc)
-        board = @ttt_game.board
-        square = ai.move(board)
+        square = rand(9)
         @ttt_move = @ttt_game.ttt_moves.create(player: @ttt_game.current_player,
                                                  square: square)
 

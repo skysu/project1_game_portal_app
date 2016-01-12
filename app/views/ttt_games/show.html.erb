@@ -1,8 +1,19 @@
 <h2>TttGame#show</h2>
 
 <p><%= @ttt_game.player1_user.username %> <%= @ttt_game.player1[:symbol] %></p>
-<p><%= @ttt_game.player2_user.username %> <%= @ttt_game.player2[:symbol] %></p>
-<p>Current Player: <%= @ttt_game.current_player_user.username %> <%= @ttt_game.current_player[:symbol] %></p>
+<p><% if @ttt_game.friend_playing? %>
+    Friend
+  <% else %>
+    <%= @ttt_game.player2_user.username %>
+  <% end %>
+<%= @ttt_game.player2[:symbol] %></p>
+<p>Current Player: 
+  <% if @ttt_game.friend_playing? && @ttt_game.current_player_is_friend? %>
+    Friend
+  <% else %>
+    <%= @ttt_game.current_player_user.username %>
+  <% end %>
+  <%= @ttt_game.current_player[:symbol] %></p>
 <p>State: <%= @ttt_game.state %></p>
 
 <p><%= @ttt_game.message %></p>

@@ -54,6 +54,10 @@ class TttGame < ActiveRecord::Base
     # end
   end
 
+  def current_player_is_friend?
+    self.current_player[:id] == self.player2[:id]
+  end
+
   def first_player
     self.ttt_moves.first.player
   end
