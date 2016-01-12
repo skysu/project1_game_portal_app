@@ -1,7 +1,9 @@
 require 'ttt_logic'
-require 'ttt_win_checker'
+require 'ttt_min_max'
 
 class TttGame < ActiveRecord::Base
+  include TttLogic
+
   has_many :ttt_moves, dependent: :destroy
   has_and_belongs_to_many :users
 

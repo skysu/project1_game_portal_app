@@ -1,103 +1,72 @@
-class TttLogic
+require 'ttt_win_checker'
+
+module TttLogic
   
   DEFAULT_BOARD = [nil, nil, nil,
                    nil, nil, nil, 
                    nil, nil, nil]
 
-  def initialize(game, win_checker)
-    @game = game
-    @board = game.board
-    @win_checker = win_checker
-  end
+  # def initialize(game)
+  #   self = game
+  #   @win_checker = TttWinChecker.new
+  # end
 
   ################ FROM TTTGAME ################
 
   def turn(move)
-    unless game_finished?
-      if valid_move?(move)
-        update_board(move)
-        check_for_win(move)
+    unless self.finished?
+      unless valid_move?(move.square)
+        move.destroy
+        game.update(state: 'in_progress', message: "Move not valid. Pick again.")
+      else
+        self.ttt_moves << move
+        place_piece(move.square, move.player[:symbol])
+        if TttWinChecker.new.winner(move.player[:symbol], self.board)
+          case self.opponent
+            when 'user', 'ai'
+              self.update(winner_id: self.current_player[:id])
+              self.update(state: 'finished', message: "#{self.winner_user.username} Wins!")
+            when 'friend'
+              self.update(state: 'finished', message: "#{self.current_player[:symbol].to_s} Wins!")
+          end
+        elsif draw?
+          self.update(state: 'finished', is_draw: true, message: "Game is a draw")
+        else
+          self.update(current_player: switch(current_player))
+          self.update(state: 'in_progress', message: nil)
+        end
       end
     end
-    return @game
   end
 
   ################ METHODS ################
 
-  def game_finished?
-    @game.state == "finished"
+  def valid_move?(square)
+    (0..8).include?(square) && space_available?(square)
   end
 
-  def valid_move?(move)
-    if out_of_range?(move.square)
-      @game.update(state: 'in_progress', message: "Move not valid. Pick again.")
-      @game.ttt_moves.destroy(move)
-      return false
-    end
-    if space_filled?(move.square)
-      @game.update(state: 'in_progress', message: "Space #{move.square} already filled. Pick again")
-      @game.ttt_moves.destroy(move)
-      return false
-    end
-    return true
+  def space_available?(square)
+    self.board[square].nil?
   end
 
-  def update_board(move)
-    @board[move.square] = move.player[:symbol]
-    @game.board = @board
+  def place_piece(square, piece)
+    self.board[square] = piece
   end
 
-  def check_for_win(move)
-    if @win_checker.has_won?(move.player[:symbol], @board)
-      case @game.opponent
-        when 'user', 'ai'
-          @game.update(winner_id: @game.current_player[:id])
-          @game.update(state: 'finished', message: "#{@game.winner_user.username} Wins!")
-        when 'friend'
-          @game.update(state: 'finished', message: "#{@game.current_player[:symbol].to_s} Wins!")
-        # else
-          # @game.update(winner_id: @game.current_player[:id])
-          # @game.update(state: 'finished', message: "#{@game.winner_user.username} Wins!")
-      end
-    elsif board_full?
-      @game.update(state: 'finished', is_draw: true, message: "Game is a draw")
-    else
-      update_current_player
-      @game.update(state: 'in_progress', message: nil)
-    end
+  def draw?
+    available_spaces.empty?
   end
 
-  def update_current_player
-    @game.current_player = case @game.current_player
-                             when @game.player1 then @game.player2
-                             when @game.player2 then @game.player1
-                           end
-    # @game.current_player = [@game.player1, @game.player2].reject { |player| player == @game.current_player }.first
-
-    @game.save
+  def available_spaces
+    available = []
+    self.board.each_index do |i|
+      available << i if self.board[i].nil?
+    end
+    available
   end
 
-  # def reset
-  #   @board = DEFUALT_BOARD
-  #   @turn = 0
-  #   @pieces.rotate!
-  #   display_board()
-  # end
+  def switch(player)
+    player == self.player1 ? self.player2 : self.player1
+  end
 
-  ################ PRIVATE METHODS ################
-
-  private
-
-    def out_of_range?(square)
-      square > 8 || square < 0
-    end
-
-    def space_filled?(square)
-      @board[square]
-    end
-
-    def board_full?
-      @board.all?
-    end
-  
 end

@@ -6,13 +6,13 @@ class TttWinChecker
   WINNING_LINES = HORIZONTAL_LINES + VERTICAL_LINES + DIAGONAL_LINES
 
 
+  def winner(symbol, board)
+    has_won?(symbol, board) ? symbol : false
+  end
+
   def has_won?(symbol, board)
     indices = map_symbol_indices(symbol, board)
     winning_line?(indices)
-  end
-
-  def winner(symbol, board)
-    has_won?(symbol, board) ? symbol : false
   end
 
   private
