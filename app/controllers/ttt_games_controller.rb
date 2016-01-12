@@ -23,11 +23,6 @@ class TttGamesController < ApplicationController
     @ttt_game.save
 
     @ttt_game.users << User.find(@ttt_game.player1[:id])
-
-    # case @ttt_game.mode
-    #   when 'user'
-    #   when 'ai'
-    #   when 'friend'
     @ttt_game.users << User.find(@ttt_game.player2[:id])
 
     @ttt_game.set_players_symbols

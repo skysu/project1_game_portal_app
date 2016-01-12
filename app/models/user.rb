@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
 
   scope :players, -> { where(role: 'player') }
   scope :all_except, -> (user) { where.not(id: user) }
-  scope :rubot, -> { find_by(name: 'RUBOT', role: 'ai') }
-  scope :player2, -> { find_by(name: 'Player 2', role: 'default_player') }
+  scope :rubot, -> { find_by(username: 'RUBOT', role: 'ai') }
+  scope :player2, -> { find_by(username: 'Player 2', role: 'default_player') }
 
   after_initialize :set_default_role
 
