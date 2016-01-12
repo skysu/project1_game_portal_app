@@ -2,6 +2,7 @@ require 'ttt_logic'
 
 class TttGamesController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :load_ttt_game, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -14,13 +15,10 @@ class TttGamesController < ApplicationController
   end
 
   def create
-    # pry.byebug
     # @ttt_game = TttGame.create(ttt_game_params.merge({ player2: { id: ttt_game_params[:player2].to_i, symbol: nil } }))
     @ttt_game = TttGame.new
+    @ttt_game.player1[:id] = current_user.id
     @ttt_game.player2[:id] = ttt_game_params[:player2].to_i
-    @ttt_game.player1[:id] = User.find_by_name('Sky').id
-    # @ttt_game.player1[:id] = current_user.id
-    # @ttt_game.player2 = ttt_game_params[:player2]
     @ttt_game.opponent = ttt_game_params[:opponent]
     @ttt_game.save
 
@@ -34,7 +32,6 @@ class TttGamesController < ApplicationController
 
     @ttt_game.set_players_symbols
     @ttt_game.set_first_player
-    # redirect to games page?
 
     if user_is_current_player?
       redirect_to edit_ttt_game_path(@ttt_game) and return
@@ -65,9 +62,6 @@ class TttGamesController < ApplicationController
     @ttt_move = @ttt_game.ttt_moves.create(player: @ttt_game.current_player,
                                            square: params[:square])
     @ttt_game = @ttt_logic.turn(@ttt_move)
-    # pry.byebug
-
-
 
     case @ttt_game.state
       when 'in_progress'
@@ -98,13 +92,8 @@ class TttGamesController < ApplicationController
     @ttt_game = TttGame.find(params[:id])
   end
 
-  # def accept_ttt_game
-  #   @ttt_game.is_accepted = true
-  # end
-
   def user_is_current_player?
-    true
-    # @ttt_game.current_player[:id] == current_user.id
+    @ttt_game.current_player[:id] == current_user.id
   end
 
 end
