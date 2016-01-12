@@ -6,7 +6,9 @@ class TttGamesController < ApplicationController
   before_action :load_ttt_game, only: [:show, :edit, :update, :destroy]
 
   def index
-    @ttt_games = TttGame.all
+    # @ttt_games = TttGame.all
+    @in_progress_ttt_games = current_user.ttt_games.where(state: 'in_progress')
+    @finished_ttt_games = current_user.ttt_games.where(state: 'finished')
   end
 
   def new

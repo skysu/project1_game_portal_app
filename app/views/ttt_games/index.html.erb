@@ -2,18 +2,22 @@
 
 <h2>TttGame#Index</h2>
 
+<h3>In Progress Games</h3>
 <ol>
-  <% @ttt_games.each do |ttt_game| %>
+  <% @in_progress_ttt_games.each do |ttt_game| %>
     <li>
-      <% case ttt_game.state %>
-        <% when 'finished' %>
-          <%= link_to "Show Game #{ttt_game.id}", ttt_game_path(ttt_game) %>
-        <% when 'error', 'next' %>
-          <%= link_to "Continue Game #{ttt_game.id}", edit_ttt_game_path(ttt_game) %>
-        <% else %>
-          <%= link_to "Continue Game #{ttt_game.id}", edit_ttt_game_path(ttt_game) %>
-      <% end %>
-      <%= ttt_game.state %>
+      <%= link_to "Continue Game #{ttt_game.id}", edit_ttt_game_path(ttt_game) %>
+      <p><%= ttt_game.player1_user.username %> vs <%= ttt_game.player2_user.username %></p>
+      <%= link_to "Delete", ttt_game_path(ttt_game), method: :delete %>
+    </li>
+  <% end %>
+</ol>
+
+<h3>Finished Games</h3>
+<ol>
+  <% @finished_ttt_games.each do |ttt_game| %>
+    <li>
+      <%= link_to "Show Game #{ttt_game.id}", ttt_game_path(ttt_game) %>
       <p><%= ttt_game.player1_user.username %> vs <%= ttt_game.player2_user.username %></p>
       <%= link_to "Delete", ttt_game_path(ttt_game), method: :delete %>
     </li>
