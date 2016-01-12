@@ -8,7 +8,7 @@ class TttWinChecker
 
   def has_won?(symbol, board)
     indices = map_symbol_indices(symbol, board)
-    winning_line?(symbol, indices)
+    winning_line?(indices)
   end
 
 
@@ -22,7 +22,7 @@ class TttWinChecker
     symbol_indices
   end
 
-  def winning_line?(symbol, indices)
+  def winning_line?(indices)
     WINNING_LINES.each do |line|
       return true if indices & line == line
     end

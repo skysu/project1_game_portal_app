@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :ttt_games
 
   validates :username, uniqueness: true,
-                       length: { minimum: 3 }
+                           length: { minimum: 3 },
+                           format: { with: /\A[a-zA-Z0-9]+\Z/ }
 
   scope :players, -> { where(role: 'player') }
   scope :all_except, -> (user) { where.not(id: user) }
