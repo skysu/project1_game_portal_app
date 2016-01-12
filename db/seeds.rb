@@ -6,5 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-rubot = User.create(name: 'RUBOT', email:'rubot@email.example', password: 'password', created_at: Time.now, updated_at: Time.now, role: 'ai')
-player2 = User.create(name: 'Player 2', email:'player2@email.example', password: 'password', created_at: Time.now, updated_at: Time.now, role: 'default_player')
+rubot = User.create(username: 'RUBOT', email:'rubot@email.example', password: 'password', created_at: Time.now, updated_at: Time.now, role: 'ai')
+player2 = User.create(username: 'Player 2', email:'player2@email.example', password: 'password', created_at: Time.now, updated_at: Time.now, role: 'default_player')
+player3 = User.create(username: 'Player 3', email:'player3@email.example', password: 'password', created_at: Time.now, updated_at: Time.now, role: 'default_player')
+player4 = User.create(username: 'Player 4', email:'player4@email.example', password: 'password', created_at: Time.now, updated_at: Time.now, role: 'default_player')
