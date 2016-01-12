@@ -56,9 +56,15 @@ class TttGamesController < ApplicationController
     unless user_is_current_player?
       redirect_to edit_ttt_game_path(@ttt_game) and return
     end
+
     @ttt_logic = TttLogic.new(@ttt_game, TttWinChecker.new)
-    @ttt_move = @ttt_game.ttt_moves.create(player: @ttt_game.current_player,
-                                           square: params[:square])
+
+    if @ttt_game.ai_playing?
+    else
+      @ttt_move = @ttt_game.ttt_moves.create(player: @ttt_game.current_player,
+                                             square: params[:square])
+    end
+
     @ttt_game = @ttt_logic.turn(@ttt_move)
 
     case @ttt_game.state

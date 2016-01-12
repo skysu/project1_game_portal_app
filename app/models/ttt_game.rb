@@ -45,7 +45,7 @@ class TttGame < ActiveRecord::Base
   end
 
   OPPONENTS.each do |opponent|
-    define_method("#{opponent}?") do
+    define_method("#{opponent}_playing?") do
       self.opponent == opponent
     end
 
