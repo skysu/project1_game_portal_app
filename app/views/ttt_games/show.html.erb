@@ -1,27 +1,11 @@
 <h2>TttGame#show</h2>
 
-<ul>
-  <li><%= @ttt_game.player1_user.name %> vs <%= @ttt_game.player2_user.name %></li>
+<p><%= @ttt_game.player1_user.name %> <%= @ttt_game.player1[:symbol] %></p>
+<p><%= @ttt_game.player2_user.name %> <%= @ttt_game.player2[:symbol] %></p>
+<p>Current Player: <%= @ttt_game.current_player_user.name %> <%= @ttt_game.current_player[:symbol] %></p>
+<p>State: <%= @ttt_game.state %></p>
 
-  <% if @ttt_game.state %>
-    <li>State: <%= @ttt_game.state %></li>
-  <% else %>
-    <li>State: Ready</li>
-  <% end %>
-
-  <% if @ttt_game.winner_id %>
-    <li>Winner: <%= @ttt_game.winner_user.name %></li>
-  <% end %>
-
-  <% if @ttt_game.is_draw %>
-    <li>Draw</li>
-  <% end %>
-
-  <% if @ttt_game.message %>
-    <li><%= @ttt_game.message %></li>
-  <% end %>
-
-  <li>Last played: <%= distance_of_time_in_words_to_now(@ttt_game.updated_at) %></li>
+<%= render "waiting_board" %>
 
   <% if @ttt_game.finished? %>
     <%= form_for @ttt_game do |f| %>
@@ -34,4 +18,3 @@
       </div>
     <% end %>
   <% end %>
-</ul>
