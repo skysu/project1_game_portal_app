@@ -50,12 +50,12 @@ class TttLogic
       case @game.opponent
         when 'user', 'ai'
           @game.update(winner_id: @game.current_player[:id])
-          @game.update(state: 'finished', message: "#{@game.winner_user.name} Wins!")
+          @game.update(state: 'finished', message: "#{@game.winner_user.username} Wins!")
         when 'friend'
           @game.update(state: 'finished', message: "#{@game.current_player[:symbol].to_s} Wins!")
         # else
           # @game.update(winner_id: @game.current_player[:id])
-          # @game.update(state: 'finished', message: "#{@game.winner_user.name} Wins!")
+          # @game.update(state: 'finished', message: "#{@game.winner_user.username} Wins!")
       end
     elsif board_full?
       @game.update(state: 'finished', is_draw: true, message: "Game is a draw")

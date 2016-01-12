@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :ttt_games
 
+  validates :username, uniqueness: true,
+                       length: { minimun: 3 }
+
   scope :players, -> { where(role: 'player') }
   scope :all_except, -> (user) { where.not(id: user) }
   scope :rubot, -> { find_by(name: 'RUBOT', role: 'ai') }
