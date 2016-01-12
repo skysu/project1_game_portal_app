@@ -19,6 +19,7 @@ class TttGame < ActiveRecord::Base
   scope :opponent_friend, -> { where(opponent: 'friend') }
   scope :opponent_ai, -> { where(opponent: 'ai') }
 
+
   # validate :limit_users, on: :create
 
   # def limit_users

@@ -1,6 +1,8 @@
 class TttLogic
   
-  DEFAULT_BOARD = [nil, nil, nil, nil, nil, nil, nil, nil, nil]
+  DEFAULT_BOARD = [nil, nil, nil,
+                   nil, nil, nil, 
+                   nil, nil, nil]
 
   def initialize(game, win_checker)
     @game = game
@@ -12,7 +14,7 @@ class TttLogic
 
   def turn(move)
     unless game_finished?
-      if place_piece?(move)
+      if valid_move?(move)
         update_board(move)
         check_for_win(move)
       end
@@ -26,7 +28,7 @@ class TttLogic
     @game.state == "finished"
   end
 
-  def place_piece?(move)
+  def valid_move?(move)
     if out_of_range?(move.square)
       @game.update(state: 'in_progress', message: "Move not valid. Pick again.")
       @game.ttt_moves.destroy(move)
