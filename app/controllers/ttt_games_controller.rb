@@ -11,7 +11,7 @@ class TttGamesController < ApplicationController
 
   def new
     @ttt_game = TttGame.new
-    @users = User.players
+    @users = User.players.all_except(current_user)
   end
 
   def create
