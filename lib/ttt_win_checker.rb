@@ -11,6 +11,9 @@ class TttWinChecker
     winning_line?(indices)
   end
 
+  def winner(symbol, board)
+    has_won?(symbol, board) ? symbol : false
+  end
 
   private
 

@@ -1,4 +1,5 @@
 require 'ttt_logic'
+require 'ttt_min_max'
 
 class TttGamesController < ApplicationController
 
@@ -40,6 +41,17 @@ class TttGamesController < ApplicationController
 
   def show
     unless @ttt_game.finished?
+      if @ttt_game.ai_playing?
+        @ttt_logic = TttLogic.new(@ttt_game, TttWinChecker.new)
+        wc = TttWinChecker.new
+        ai = TttMinMax.new(@ttt_game.player2[:symbol], wc)
+        board = @ttt_game.board
+        square = ai.move(board)
+        @ttt_move = @ttt_game.ttt_moves.create(player: @ttt_game.current_player,
+                                                 square: square)
+
+        @ttt_game = @ttt_logic.turn(@ttt_move)
+      end
       if user_is_current_player?
         redirect_to edit_ttt_game_path(@ttt_game) and return
       end
@@ -59,13 +71,22 @@ class TttGamesController < ApplicationController
 
     @ttt_logic = TttLogic.new(@ttt_game, TttWinChecker.new)
 
-    if @ttt_game.ai_playing?
-    else
-      @ttt_move = @ttt_game.ttt_moves.create(player: @ttt_game.current_player,
+
+    @ttt_move = @ttt_game.ttt_moves.create(player: @ttt_game.current_player,
                                              square: params[:square])
-    end
 
     @ttt_game = @ttt_logic.turn(@ttt_move)
+
+    if @ttt_game.ai_playing?
+      wc = TttWinChecker.new
+      ai = TttMinMax.new(@ttt_game.player2[:symbol], wc)
+      board = @ttt_game.board
+      square = ai.move(board)
+      @ttt_move = @ttt_game.ttt_moves.create(player: @ttt_game.current_player,
+                                               square: square)
+
+      @ttt_game = @ttt_logic.turn(@ttt_move)
+    end
 
     case @ttt_game.state
       when 'in_progress'
