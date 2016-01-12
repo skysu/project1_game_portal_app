@@ -12,6 +12,13 @@ class TttGame < ActiveRecord::Base
 
   after_initialize :set_state
 
+  scope :in_progress, -> { where(state: 'in_progress') }
+  scope :finished, -> { where(state: 'finished') }
+  scope :scorable, -> { where(opponent: ['user', 'ai']) }
+  scope :opponent_user, -> { where(opponent: 'user') }
+  scope :opponent_friend, -> { where(opponent: 'friend') }
+  scope :opponent_ai, -> { where(opponent: 'ai') }
+
   # validate :limit_users, on: :create
 
   # def limit_users

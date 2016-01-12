@@ -7,8 +7,9 @@ class TttGamesController < ApplicationController
 
   def index
     # @ttt_games = TttGame.all
-    @in_progress_ttt_games = current_user.ttt_games.where(state: 'in_progress')
-    @finished_ttt_games = current_user.ttt_games.where(state: 'finished')
+    @in_progress_ttt_games = current_user.ttt_games.scorable.in_progress
+    # @finished_ttt_games = current_user.ttt_games.where(state: 'finished')
+    @finished_ttt_games = current_user.ttt_games.scorable.finished
   end
 
   def new
