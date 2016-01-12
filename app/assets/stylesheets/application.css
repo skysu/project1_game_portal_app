@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+ .ttt-board {
+  border: 1px solid #000;
+ }
+
+ .ttt-board td {
+  border: 1px solid #000;
+  width: 100px;
+  height: 100px;
+ }
