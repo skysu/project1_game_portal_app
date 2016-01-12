@@ -47,6 +47,10 @@ class TttGame < ActiveRecord::Base
     # end
   end
 
+  def first_player
+    self.ttt_moves.first.player
+  end
+
   def player1_user
     self.users.find(self.player1[:id])
   end
@@ -54,24 +58,10 @@ class TttGame < ActiveRecord::Base
   def player2_user
     if self.users.count < 2
       User.player2
-      # self.users.find_or_create_by(self.players[:id]) do |user|
-      #   user.name = "Player2"
-      # end
     else
       self.users.find(self.player2[:id])
     end
   end
-
-  # def player2_user
-  #   case self.mode
-  #     when user
-  #       self.users.find(self.player2[:id])
-  #     when ai
-  #       self.users.find(self.player2[:id])
-  #     when friend
-  #       self.users.find(self.player2[:id])
-  #     end
-  # end
 
   def current_player_user
     self.users.find(self.current_player[:id])
@@ -91,14 +81,6 @@ class TttGame < ActiveRecord::Base
   end
 
   def set_players_symbols
-    # symbols = [:o, :x].shuffle!
-    # players_symbols_hash = { self.player1_id => symbols.first,
-    #                     self.player2_id => symbols.last }
-    # self.update(players_symbols: players_symbols_hash)
-    # self.update(player1_symbol: symbols.first,
-    #             player2_symbol: symbols.last)
-
-
     symbols = [:o, :x].shuffle!
     self.player1[:symbol] = symbols.first
     self.player2[:symbol] = symbols.last
@@ -106,13 +88,12 @@ class TttGame < ActiveRecord::Base
   end
 
   def set_first_player
-    # first_player_id = [self.player1_id, self.player2_id].shuffle!
-    # first_player_symbol = symbol_for_player_id(first_player_id)
-    # self.update(current_player_id: first_player_id,
-    #         current_player_symbol: first_player_symbol)
-
     self.current_player = [self.player1, self.player2].sample
     self.save
+  end
+
+  def symbol_for_player(id)
+
   end
 
   private

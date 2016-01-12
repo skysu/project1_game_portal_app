@@ -10,15 +10,17 @@ class TttGamesController < ApplicationController
 
   def new
     @ttt_game = TttGame.new
-    @users = User.all
+    @users = User.players
   end
 
   def create
+    # pry.byebug
+    # @ttt_game = TttGame.create(ttt_game_params.merge({ player2: { id: ttt_game_params[:player2].to_i, symbol: nil } }))
     @ttt_game = TttGame.new
-    # @ttt_game.set_player1_id
-    @ttt_game.player1[:id] = User.find_by_name('Sky')
-    # @ttt_game.player1[:id] = current_user.id
     @ttt_game.player2[:id] = ttt_game_params[:player2].to_i
+    @ttt_game.player1[:id] = User.find_by_name('Sky').id
+    # @ttt_game.player1[:id] = current_user.id
+    # @ttt_game.player2 = ttt_game_params[:player2]
     @ttt_game.opponent = ttt_game_params[:opponent]
     @ttt_game.save
 
@@ -88,7 +90,8 @@ class TttGamesController < ApplicationController
 
   private
   def ttt_game_params
-    params.require(:ttt_game).permit(:player2, :opponent)
+    # params[:ttt_game][:player2] = { id: params[:ttt_game][:player2], symbol: nil }
+    params.require(:ttt_game).permit(:opponent, :player2)
   end
 
   def load_ttt_game

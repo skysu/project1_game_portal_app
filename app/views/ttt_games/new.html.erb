@@ -4,6 +4,8 @@
 <%= form_for @ttt_game do |f| %>
   <div class="form-group">
     <%= f.label :player2, "Select Player 2" %>
+    <%# options = options_for_select(@users.map { |user| [{ id: user.id, symbol: nil }, user.name] }) %>
+    <%# f.select :player2, @users.map { |user| [user.name, user.id] } %>
     <%= f.collection_select(:player2, @users, :id, :name, include_blank: 'Select Player 2') %>
   </div>
   <div class="form-group">

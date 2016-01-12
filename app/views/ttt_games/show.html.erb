@@ -22,4 +22,16 @@
   <% end %>
 
   <li>Last played: <%= distance_of_time_in_words_to_now(@ttt_game.updated_at) %></li>
+
+  <% if @ttt_game.finished? %>
+    <%= form_for @ttt_game do |f| %>
+      <%= f.hidden_field :player1, value: @ttt_game.player1 %>
+      <%= f.hidden_field :player2, value: @ttt_game.player2 %>
+      <%= f.hidden_field :opponent, value: 'user' %>
+      <%= f.hidden_field :current_player, value: @ttt_game.first_player %>
+      <div class="form-action">
+        <%= f.submit "New Game?" %>
+      </div>
+    <% end %>
+  <% end %>
 </ul>
