@@ -15,8 +15,8 @@
           <% end %>
         </div>
       <%# link_to "Continue Game #{ttt_game.id}", edit_ttt_game_path(ttt_game) %>
-      <%# link_to "Delete", ttt_game_path(ttt_game), method: :delete %>
     </div>
+    <%# link_to "Delete", ttt_game_path(ttt_game), method: :delete %>
     <% end %>
   <% end %>
 </div>
@@ -24,10 +24,22 @@
 <div class="list">
 <h2 class="list-header">Finished</h2>
   <% @finished_ttt_games.each do |ttt_game| %>
+    <%= link_to ttt_game_path(ttt_game) do %>
     <div class="list-item">
-      <%= link_to "Show Game #{ttt_game.id}", ttt_game_path(ttt_game) %>
-      <p><%= ttt_game.player1_user.username %> vs <%= ttt_game.player2_user.username %></p>
-      <%= link_to "Delete", ttt_game_path(ttt_game), method: :delete %>
+        <h3 class="list-title"><%= ttt_game.player1_user.username %> <small>vs</small> <%= ttt_game.player2_user.username %></h3>
+        <p class="list-subtitle">Finished: <%= distance_of_time_in_words_to_now(ttt_game.updated_at)%> ago</p>
+        <div class="list-message wordwrap">
+          <% if current_user.id == ttt_game.winner_id %>
+             <span class="your-turn">You Won!</span>
+          <% elsif ttt_game.is_draw %>
+            <span>Draw</span>
+          <% else %>
+            <span>You Lost</span>
+          <% end %>
+        </div>
+      <%# link_to "Continue Game #{ttt_game.id}", edit_ttt_game_path(ttt_game) %>
+      <%# link_to "Delete", ttt_game_path(ttt_game), method: :delete %>
     </div>
+    <% end %>
   <% end %>
 </div>

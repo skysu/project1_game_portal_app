@@ -15,7 +15,7 @@
 
 
 <header>
-  <nav class="navbar">
+  <nav class="navbar group">
     <div class="go-left">
       <div class="navbar-header">
         <span class="ruby">RubyGames</span>
@@ -25,7 +25,8 @@
       <ul class="navbar-nav">
         <li><%= link_to "Games", ttt_games_path %></li>
         <% if current_user %>
-          <li><%= current_user.username %></li>
+          <li>
+          <%= link_to current_user.username, edit_user_registration_path, class: "navbar-account" %></li>
           <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
         <%# elsif current_admin %>
           <%# current_admin.email %>

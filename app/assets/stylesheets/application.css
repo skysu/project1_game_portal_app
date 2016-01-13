@@ -64,16 +64,6 @@ input {
   color: #D62222;
  }
 
- .ttt-board {
-  border: 1px solid #000;
- }
-
- .ttt-board td {
-  border: 1px solid #000;
-  width: 100px;
-  height: 100px;
- }
-
 /*
   ========================================
   Navigation
@@ -235,7 +225,7 @@ form.new_ttt_game:first-child {
 }
 
 .list-item {
-  background-color: red;
+  background-color: #D62222;
   margin-bottom: 4px;
   padding: 1em;
   width: 90%;
@@ -250,6 +240,7 @@ form.new_ttt_game:first-child {
 .list-item:hover {
   margin: -2px 0 5px -2px;
   box-shadow: 2px 2px 2px black;
+  background-color: red;
 }
 
 .list-message {
@@ -284,6 +275,64 @@ form.new_ttt_game:first-child {
 
 /*
   ========================================
+  TTTGame Board
+  ========================================
+*/
+
+.ttt-game {
+  width: 400px;
+  background-color: yellow;
+  margin: 0 auto;
+}
+
+.ttt-message {
+  text-align: center;
+}
+
+.ttt-board {
+ /*border: 1px solid #000;*/
+ margin: 0 auto;
+}
+
+.ttt-board td {
+ border: 4px solid #000;
+ width: 100px;
+ height: 100px;
+}
+
+.ttt-square {
+  font-size: 4em;
+  text-align: center;
+  margin: -10px -10px 0 0;
+}
+
+.ttt-square a  {
+  visibility: hidden;
+  text-decoration: none;
+  padding: .38em;
+  cursor: pointer;
+}
+
+.ttt-square:hover a  {
+  visibility: visible;
+}
+
+.ttt-player {
+  background-color: yellow;
+  max-width: 400px;
+  display: inline-block;
+}
+
+.ttt-player .player1 {
+
+}
+
+.ttt-player .player2 {
+
+}
+
+/*
+  ========================================
   Tricks
   ========================================
 */
@@ -297,7 +346,17 @@ form.new_ttt_game:first-child {
    word-wrap: break-word;      /* IE */
 }
 
-
+.group:before,
+.group:after {
+    content: "";
+    display: table;
+} 
+.group:after {
+    clear: both;
+}
+.group {
+    zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+}
 
 
 
