@@ -8,15 +8,17 @@
 </head>
 <body>
 
+<% if notice || alert %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+<% end %>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
 
 <header>
   <nav class="navbar">
     <div class="go-left">
       <div class="navbar-header">
-        <span class="ruby">Ruby</span><span class="games">Games</span>
+        <span class="ruby">RubyGames</span>
       </div>
     </div>
     <div class="go-right">
