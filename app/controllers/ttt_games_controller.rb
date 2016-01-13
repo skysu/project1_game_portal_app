@@ -27,7 +27,8 @@ class TttGamesController < ApplicationController
     @ttt_game.users << User.find(@ttt_game.player2[:id])
 
     @ttt_game.set_players_symbols
-    @ttt_game.set_first_player
+    @ttt_game.set_initial_current_player
+    @ttt_game.set_current_turn_message
 
     if user_is_current_player?
       redirect_to edit_ttt_game_path(@ttt_game) and return

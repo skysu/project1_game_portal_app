@@ -1,15 +1,10 @@
-<p>Current Player: 
-  <% if @ttt_game.friend_playing? && @ttt_game.current_player_is_friend? %>
-    Friend
-  <% else %>
-    <%= @ttt_game.current_player_user.username %>
-  <% end %>
-  <%= @ttt_game.current_player[:symbol] %></p>
-<p>State: <%= @ttt_game.state %></p>
+<div class="ttt-game">
+  <div class="ttt-message">
+    <h3><%= @ttt_game.message %></h3>
+  </div>
 
-<p><%= @ttt_game.message %></p>
-
-
+  <%= render "board" %>
+</div>
 
 <div class="ttt-player player1 go-left">
   <p><%= @ttt_game.player1_user.username %></p>
@@ -24,9 +19,3 @@
   <% end %>
   <p><%= @ttt_game.player2[:symbol] %></p>
 </div>
-
-<div class="ttt-message">
-  <p><%= @ttt_game.message %></p>
-</div>
-
-<%= render "board" %>

@@ -33,7 +33,8 @@ module TttLogic
           self.update(state: 'finished', is_draw: true, message: "Game is a draw")
         else
           self.update(current_player: switch(current_player))
-          self.update(state: 'in_progress', message: nil)
+          self.set_current_turn_message
+          self.update(state: 'in_progress')
         end
       end
     end

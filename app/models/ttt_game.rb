@@ -101,9 +101,23 @@ class TttGame < ActiveRecord::Base
     self.save
   end
 
-  def set_first_player
+  def set_initial_current_player
     self.current_player = [self.player1, self.player2].sample
     self.save
+  end
+
+  def set_current_turn_message
+    message = case self.opponent
+      when 'user', 'ai'
+        "#{self.current_player_user.username}'s Turn"
+      when 'friend'
+        if self.current_player[:symbol] == self.player2[:symbol]
+          "Friend's Turn"
+        else 
+          "#{self.current_player_user.username}'s Turn"
+        end
+    end
+    self.update(message: message)
   end
 
   def symbol_for_player(id)
