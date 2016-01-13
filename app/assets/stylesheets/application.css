@@ -53,6 +53,7 @@ input {
  body {
   font-size: 18px;
   font-family: "PF Arma Five";
+  background-color: oldlace;
  }
 
  .ruby {
@@ -183,6 +184,7 @@ form.new_ttt_game:first-child {
   Devise
   ========================================
 */
+
 .notice,
 .alert {
   color: #fff;
@@ -194,7 +196,6 @@ form.new_ttt_game:first-child {
   border: 4px solid black;
   padding: 0 1em;
 }
-
 
 .devise {
   color: #fff;
@@ -218,17 +219,83 @@ form.new_ttt_game:first-child {
   width: 1em;
 }
 
-
 .devise .actions {
   margin: 1em 0;
 }
 
+/*
+  ========================================
+  Lists
+  ========================================
+*/
 
+.list {
+  width: 600px;
+  margin: 0 auto;
+}
 
+.list-item {
+  background-color: red;
+  margin-bottom: 4px;
+  padding: 1em;
+  width: 90%;
+  position: relative;
+}
 
+.list a {
+  text-decoration: none;
+  color: #000;
+}
 
+.list-item:hover {
+  margin: -2px 0 5px -2px;
+  box-shadow: 2px 2px 2px black;
+}
 
+.list-message {
+  position: absolute;
+  right: 0;
+  top: -30px;
+  width: 110px;
+  -ms-transform: rotate(20deg); /* IE 9 */
+      -webkit-transform: rotate(20deg); /* Safari */
+      transform: rotate(20deg);
+}
 
+.list-title {
+  margin: 0;
+}
+
+.list-subtitle {
+  font-size: .8em;
+  line-height: .8em;
+  margin: 0;
+  padding: 0;
+}
+
+.list-message .your-turn {
+  color: #fff;
+}
+
+.list-message .opponents-turn {
+  font-size: .8em;
+  line-height: .8em;
+}
+
+/*
+  ========================================
+  Tricks
+  ========================================
+*/
+
+/* Source: http://snipplr.com/view/10979/css-cross-browser-word-wrap */
+.wordwrap { 
+   white-space: pre-wrap;      /* CSS3 */   
+   white-space: -moz-pre-wrap; /* Firefox */    
+   white-space: -pre-wrap;     /* Opera <7 */   
+   white-space: -o-pre-wrap;   /* Opera 7 */    
+   word-wrap: break-word;      /* IE */
+}
 
 
 
