@@ -29,7 +29,7 @@
 <%= form_for @ttt_game do |f| %>
   <h2 class="form-header">Play Rubot!</h2>
   <div class="form-group">
-    <%= f.hidden_field :player2, value: 15 %>
+    <%= f.hidden_field :player2, value: User.find_by(username:'RUBOT',role:'ai').id %>
     <%= f.hidden_field :opponent, value: 'ai' %>
   </div>
   <div class="form-action">

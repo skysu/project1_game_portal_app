@@ -67,7 +67,11 @@ class TttGame < ActiveRecord::Base
   end
 
   def player1_user
-    self.users.find(self.player1[:id])
+    if self.users.exists?(self.player1[:id])
+      self.users.find(self.player1[:id])
+    else
+      User.player1
+    end
   end
 
   def player2_user

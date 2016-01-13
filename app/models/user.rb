@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  mount_uploader :avatar, AvatarUploader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -14,7 +15,8 @@ class User < ActiveRecord::Base
   scope :players, -> { where(role: 'player') }
   scope :all_except, -> (user) { where.not(id: user) }
   scope :rubot, -> { find_by(username: 'RUBOT', role: 'ai') }
-  scope :player2, -> { find_by(username: 'Player 2', role: 'default_player') }
+  scope :player1, -> { find_by(username: 'Player1', role: 'default_player') }
+  scope :player2, -> { find_by(username: 'Player2', role: 'default_player') }
 
   after_initialize :set_default_role
 
