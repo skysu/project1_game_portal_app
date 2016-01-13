@@ -14,6 +14,35 @@
  *= require_self
  */
 
+ /*
+   ========================================
+   Style
+   ========================================
+ */
+
+@font-face {
+  font-family: 'PF Arma Five';
+  src: url('fonts/pf_arma_five.ttf')  format('truetype');
+}
+
+@font-face{
+  font-family:"Binary Soldiers";
+  src:url("http://www.myfontfree.com/data/43/b/binary_soldiers/BinarySoldiers.ttf");
+}
+
+ body {
+  font-size: 18px;
+  font-family: "PF Arma Five";
+ }
+
+ .ruby {
+  color: #D62222;
+ }
+
+ .games {
+  color: #D62222;
+ }
+
  .ttt-board {
   border: 1px solid #000;
  }
@@ -23,3 +52,127 @@
   width: 100px;
   height: 100px;
  }
+
+/*
+  ========================================
+  Navigation
+  ========================================
+*/
+
+.go-left {
+  float: left;
+}
+
+.go-right {
+  float: right;
+}
+
+.navbar {
+  background-color: #961818;
+  height: 4em;
+}
+
+.navbar ul,
+.navbar div {
+  display: inline-block;
+}
+
+.navbar-header {
+  font-size: 50px;
+}
+
+.navbar-nav {
+  background-color: blue;
+}
+
+.navbar-nav li {
+  display: inline-block;
+  margin-right: 1em;
+}
+
+.navbar-nav li a {
+  color: #fff;
+  padding: 1.5em;
+  text-decoration: none;
+}
+
+/*
+  ========================================
+  Form
+  ========================================
+*/
+form.new_ttt_game {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,d62222+40,d62222+100 */
+  background: #ffffff; /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover,  #ffffff 0%, #d62222 40%, #d62222 100%); /* FF3.6-15 */
+  background: -webkit-radial-gradient(center, ellipse cover,  #ffffff 0%,#d62222 40%,#d62222 100%); /* Chrome10-25,Safari5.1-6 */
+  background: radial-gradient(ellipse at center,  #ffffff 0%,#d62222 40%,#d62222 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d62222',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+
+
+
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+  margin-top: -100px;
+}
+
+form.new_ttt_game:first-child {
+}
+
+.form-header {
+  text-align: center;
+  padding-top: 150px;
+}
+
+.form-group {
+  width: 156px;
+  margin: 0 auto;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.form-group select {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   width: inherit;
+   padding: .2em;
+   padding-left: .7em;
+   cursor: pointer;
+}
+
+.form-group:hover select {
+  background-color: gray;
+}
+
+.form-action {
+  width: 156px;
+  margin: 0 auto;
+}
+
+.form-action input {
+  border: 4px solid #961818;
+  background: none;
+}
+
+.form-action:hover input {
+  background: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

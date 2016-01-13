@@ -8,27 +8,34 @@
 </head>
 <body>
 
+
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
-<div class="login">
-  <% if current_user %>
-    <%= current_user.email %>
-    <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
-  <%# elsif current_admin %>
-    <%# current_admin.email %>
-    <%# link_to "Log Out", destroy_admin_session_path, method: :delete %>
-  <% else %>
-    <%= link_to "Log In", new_user_session_path %>
-    <%= link_to "Sign Up", new_user_registration_path %>
-  <% end %>
-</div>
-
-<nav class="nav">
-  <ul>
-    <li><%= link_to "TicTacToe Games", ttt_games_path %></li>
-  </ul>
-</nav>
+<header>
+  <nav class="navbar">
+    <div class="go-left">
+      <div class="navbar-header">
+        <span class="ruby">Ruby</span><span class="games">Games</span>
+      </div>
+    </div>
+    <div class="go-right">
+      <ul class="navbar-nav">
+        <li><%= link_to "Games", ttt_games_path %></li>
+        <% if current_user %>
+          <li><%= current_user.username %></li>
+          <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+        <%# elsif current_admin %>
+          <%# current_admin.email %>
+          <%# link_to "Log Out", destroy_admin_session_path, method: :delete %>
+        <% else %>
+          <li><%= link_to "Log In", new_user_session_path %></li>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</header>
 
 <%= yield %>
 

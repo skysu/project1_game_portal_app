@@ -1,12 +1,3 @@
-<h2>TttGame#Edit</h2>
-
-<p><%= @ttt_game.player1_user.username %> <%= @ttt_game.player1[:symbol] %></p>
-<p><% if @ttt_game.friend_playing? %>
-    Friend
-  <% else %>
-    <%= @ttt_game.player2_user.username %>
-  <% end %>
-<%= @ttt_game.player2[:symbol] %></p>
 <p>Current Player: 
   <% if @ttt_game.friend_playing? && @ttt_game.current_player_is_friend? %>
     Friend
@@ -17,5 +8,25 @@
 <p>State: <%= @ttt_game.state %></p>
 
 <p><%= @ttt_game.message %></p>
+
+
+
+<div class="ttt-player player1 go-left">
+  <p><%= @ttt_game.player1_user.username %></p>
+  <p><%= @ttt_game.player1[:symbol] %></p>
+</div>
+
+<div class="ttt-player player2 go-right">
+  <% if @ttt_game.friend_playing? %>
+    <p><%= @ttt_game.player1_user.username %><small>'s</small> Friend</p>
+  <% else %>
+    <p><%= @ttt_game.player2_user.username %></p>
+  <% end %>
+  <p><%= @ttt_game.player2[:symbol] %></p>
+</div>
+
+<div class="ttt-message">
+  <p><%= @ttt_game.message %></p>
+</div>
 
 <%= render "board" %>

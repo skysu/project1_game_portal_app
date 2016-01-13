@@ -1,12 +1,12 @@
 <h2>TttGame#New</h2>
 
-<h3>Play Another User</h3>
 <%= form_for @ttt_game do |f| %>
+  <h3 class="form-header">Play Another User</h3>
   <div class="form-group">
-    <%= f.label :player2, "Select Player 2" %>
+    <%= f.label :player2, "Player 2:" %>
     <%# options = options_for_select(@users.map { |user| [{ id: user.id, symbol: nil }, user.name] }) %>
     <%# f.select :player2, @users.map { |user| [user.name, user.id] } %>
-    <%= f.collection_select(:player2, @users, :id, :username, include_blank: 'Select Player 2') %>
+    <%= f.collection_select(:player2, @users, :id, :username, include_blank: 'Select') %>
   </div>
   <div class="form-group">
     <%= f.hidden_field :opponent, value: 'user' %>
@@ -16,12 +16,12 @@
     <%# f.select(:opponent, options_for_select([['Friend', 'friend'], ['Ru-bot', 'ai']])) %>
   </div>
   <div class="form-action">
-    <%= f.submit %>
+    <%= f.submit "Challenge User" %>
   </div>
 <% end %>
 
-<h3>Play a Friend Sitting Next to You</h3>
 <%= form_for @ttt_game do |f| %>
+  <h3 class="form-header">Play a Friend<br>(Sitting Next to You)</h3>
   <div class="form-group">
     <%= f.hidden_field :player2, value: current_user.id %>
     <%= f.hidden_field :opponent, value: 'friend' %>
@@ -31,13 +31,13 @@
   </div>
 <% end %>
 
-<h3>Play Ru-bot!</h3>
 <%= form_for @ttt_game do |f| %>
+  <h3 class="form-header">Play Rubot!</h3>
   <div class="form-group">
     <%= f.hidden_field :player2, value: 15 %>
     <%= f.hidden_field :opponent, value: 'ai' %>
   </div>
   <div class="form-action">
-    <%= f.submit "Challenge Ru-bot" %>
+    <%= f.submit "Challenge Rubot" %>
   </div>
 <% end %>
