@@ -20,6 +20,7 @@ class TttGame < ActiveRecord::Base
   scope :opponent_user, -> { where(opponent: 'user') }
   scope :opponent_friend, -> { where(opponent: 'friend') }
   scope :opponent_ai, -> { where(opponent: 'ai') }
+  scope :recent_first, -> { order(updated_at: :desc) }
 
 
   # validate :limit_users, on: :create
