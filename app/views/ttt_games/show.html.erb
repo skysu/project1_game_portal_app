@@ -6,6 +6,8 @@
         </script>
 <% end %>
 
+
+
 <div class="ttt-game">
   <div class="ttt-message">
     <h3><%= @ttt_game.message %></h3>
@@ -13,7 +15,8 @@
 
   <%= render "waiting_board" %>
   <% if @ttt_game.finished? %>
-    <%= link_to "New Game?", new_ttt_game_path %>
+  <br>
+    <%= link_to "New Game?", new_ttt_game_path, class: "btn-new-game" %>
   <% end %>
 </div>
 

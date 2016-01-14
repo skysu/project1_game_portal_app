@@ -98,12 +98,12 @@ input {
 
 .navbar-nav li {
   display: inline-block;
-  margin-right: 1em;
+  margin-right: 2.5em;
 }
 
 .navbar-nav li a {
   color: #fff;
-  padding: 1.5em;
+  /*padding: 1.5em;*/
   text-decoration: none;
 }
 
@@ -151,7 +151,8 @@ form.new_ttt_game:first-child {
 }
 
 .form-group:hover select {
-  background-color: gray;
+  color: #F02626;
+  background-color: rgba(255,255,255,0.95);
 }
 
 .form-action {
@@ -166,7 +167,8 @@ form.new_ttt_game:first-child {
 }
 
 .form-action:hover input {
-  background: #fff;
+  color: #F02626;
+  background: rgba(255,255,255,0.9);
 }
 
 /*
@@ -209,12 +211,14 @@ form.new_ttt_game:first-child {
   width: 1em;
 }
 
-.devise input[type=file] {
-
+.devise .actions input{
+  margin: 1em 0;
+  color: red;
+  background-color: #961818;
 }
 
-.devise .actions {
-  margin: 1em 0;
+.devise .actions input:hover{
+  background-color: rgba(255,255,255,0.95);
 }
 
 
@@ -311,7 +315,7 @@ form.new_ttt_game:first-child {
 
 .ttt-game {
   width: 400px;
-  background-color: yellow;
+  /*background-color: yellow;*/
   margin: 0 auto;
 }
 
@@ -347,8 +351,14 @@ form.new_ttt_game:first-child {
   visibility: visible;
 }
 
+.ttt-players {
+  margin-top: -335px;
+  margin-left: 100px;
+}
+
 .ttt-player {
-  background-color: yellow;
+  /*background-color: yellow;*/
+  margin-left: 10px;
   max-width: 400px;
   display: inline-block;
 }
@@ -359,6 +369,58 @@ form.new_ttt_game:first-child {
 
 .ttt-player .player2 {
 
+}
+
+/*
+  ========================================
+  Tricks
+  ========================================
+*/
+
+.btn {
+
+}
+
+.btn-get-started {
+  display: block;
+  text-decoration: none;
+  color: #F02626;
+/*  background-color: #fff;*/
+  padding: 0 .2em;
+  border: 6px solid #961818;
+  font-size: 2em;
+  line-height: 2em;
+  text-align: center;
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 150px;
+}
+
+.list-header {
+  display: inline-block;
+}
+
+.btn-new-game {
+    display: inline-block;
+    text-decoration: none;
+    color: #F02626;
+  /*  background-color: #fff;*/
+    border: 6px solid #961818;
+    line-height: 2em;
+    text-align: center;
+    width: 300px;
+    margin-left: 68px;
+    margin-bottom: 25px;
+}
+
+a.btn-new-game {
+  color: #F02626;
+}
+
+.btn-get-started:hover,
+.btn-new-game:hover {
+  background-color: rgba(255,255,255,0.8);
+  border: 6px solid #F02626;
 }
 
 /*

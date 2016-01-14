@@ -1,7 +1,10 @@
-<%= render "nav" %>
 
+<% if @in_progress_ttt_games.any? || @finished_ttt_games.any? %>
+
+<% if @in_progress_ttt_games.any? %>
 <div class="list">
 <h2 class="list-header">In Progress</h2>
+<%= link_to "New TicTacToe Game", new_ttt_game_path, class: "btn btn-new-game" %>
   <% @in_progress_ttt_games.each do |ttt_game| %>
     <%= link_to edit_ttt_game_path(ttt_game) do %>
     <div class="list-item">
@@ -16,13 +19,16 @@
         </div>
       <%# link_to "Continue Game #{ttt_game.id}", edit_ttt_game_path(ttt_game) %>
     </div>
-    <%# link_to "Delete", ttt_game_path(ttt_game), method: :delete %>
+    <%= link_to "Delete", ttt_game_path(ttt_game), method: :delete %>
     <% end %>
   <% end %>
 </div>
+<% end %>
 
+<% if @finished_ttt_games.any? %>
 <div class="list">
 <h2 class="list-header">Finished</h2>
+<%= link_to "New TicTacToe Game", new_ttt_game_path, class: "btn btn-new-game" %>
   <% @finished_ttt_games.each do |ttt_game| %>
     <%= link_to ttt_game_path(ttt_game) do %>
     <div class="list-item">
@@ -43,3 +49,11 @@
     <% end %>
   <% end %>
 </div>
+<% end %>
+
+<% else %>
+
+
+<%= link_to "Get Started", new_ttt_game_path, class: 'btn btn-get-started' %>
+
+<% end %>

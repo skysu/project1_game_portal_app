@@ -1,3 +1,5 @@
+<div class="ttt-players">
+
 <div class="ttt-player player1 go-left group">
   <p><%= @ttt_game.player1_user.username %></p>
   <p><%= @ttt_game.player1[:symbol] %></p>
@@ -11,4 +13,7 @@
     <p><%= @ttt_game.player2_user.username %></p>
   <% end %>
   <p><%= @ttt_game.player2[:symbol] %></p>
+  <%= image_tag @ttt_game.player2_user.avatar.thumb %>
+</div>
+
 </div>

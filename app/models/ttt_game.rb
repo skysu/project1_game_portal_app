@@ -75,10 +75,10 @@ class TttGame < ActiveRecord::Base
   end
 
   def player2_user
-    if self.users.count < 2
-      User.player2
-    else
+    if self.users.exists?(self.player2[:id])
       self.users.find(self.player2[:id])
+    else
+      User.player2
     end
   end
 

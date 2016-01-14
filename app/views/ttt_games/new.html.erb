@@ -1,7 +1,8 @@
 <%= form_for @ttt_game do |f| %>
   <h2 class="form-header">Play Another User</h2>
   <div class="form-group">
-    <%= f.label :player2, "Player 2:" %><%= f.collection_select(:player2, @users, :id, :username, include_blank: 'Select') %>
+    <%= f.label :player2, "Player 2:" %>
+    <%= f.collection_select(:player2, @users, :id, :username, include_blank: 'Select') %>
   </div>
   <div class="form-group">
     <%= f.hidden_field :opponent, value: 'user' %>

@@ -15,9 +15,12 @@
   }
 }*/
 
-@media screen and (min-width: 480px) {
-    body {
-        background-color: lightgreen;
+@media screen and (max-width: 990px) {
+
+    .ttt-players {
+      float: none !important;
+      margin-top: 0 !important;
+      margin-left: 50px !important;
     }
 }
 
