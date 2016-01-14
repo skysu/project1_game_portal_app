@@ -24,3 +24,29 @@
     }
 }
 
+@media screen and (max-width: 710px) {
+
+    .btn-new-game-list {
+      top: 47px !important;
+    }
+
+    .list-wrapper {
+      margin-top: 0px !important;
+      padding-top: 20px;
+    }
+}
+
+@media screen and (max-width: 581px) {
+
+    .btn-new-game-list {
+      top: 70px !important;
+    }
+
+    .list-wrapper {
+      width: 100% !important;
+    }
+
+    .list {
+      width: 100% !important;
+    }
+}

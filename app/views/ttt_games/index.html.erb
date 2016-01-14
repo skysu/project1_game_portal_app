@@ -1,10 +1,13 @@
 
 <% if @in_progress_ttt_games.any? || @finished_ttt_games.any? %>
 
+<div class="list-wrapper">
+<%= link_to "New TicTacToe Game", new_ttt_game_path, class: "btn btn-new-game btn-new-game-list" %>
+
 <% if @in_progress_ttt_games.any? %>
 <div class="list">
 <h2 class="list-header">In Progress</h2>
-<%= link_to "New TicTacToe Game", new_ttt_game_path, class: "btn btn-new-game" %>
+
   <% @in_progress_ttt_games.each do |ttt_game| %>
     <%= link_to edit_ttt_game_path(ttt_game) do %>
     <div class="list-item">
@@ -25,10 +28,11 @@
 </div>
 <% end %>
 
+
 <% if @finished_ttt_games.any? %>
 <div class="list">
 <h2 class="list-header">Finished</h2>
-<%= link_to "New TicTacToe Game", new_ttt_game_path, class: "btn btn-new-game" %>
+
   <% @finished_ttt_games.each do |ttt_game| %>
     <%= link_to ttt_game_path(ttt_game) do %>
     <div class="list-item">
@@ -50,6 +54,8 @@
   <% end %>
 </div>
 <% end %>
+
+</div>
 
 <% else %>
 

@@ -253,6 +253,12 @@ form.new_ttt_game:first-child {
   ========================================
 */
 
+.list-wrapper {
+  width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
 .list {
   width: 600px;
   margin: 0 auto;
@@ -400,17 +406,21 @@ form.new_ttt_game:first-child {
   display: inline-block;
 }
 
+.btn-new-game-list {
+  position: absolute;
+  top: 15px;
+  right: 0;
+  z-index: 1;
+}
+
 .btn-new-game {
-    display: inline-block;
     text-decoration: none;
     color: #F02626;
-  /*  background-color: #fff;*/
+    background-color: #fff;
     border: 6px solid #961818;
     line-height: 2em;
     text-align: center;
     width: 300px;
-    margin-left: 68px;
-    margin-bottom: 25px;
 }
 
 a.btn-new-game {
