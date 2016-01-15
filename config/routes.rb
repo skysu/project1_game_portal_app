@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :ttt_games
   resources :games
   resources :users_accounts, controller:  'users',
-                                   only: [:show]
+                                   only: [:index, :show]
 
   devise_for :users, controllers: { registrations: 'registrations' } do
     get 'users/:id' => 'registrations#show', as: user
