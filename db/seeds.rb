@@ -13,8 +13,8 @@ player3 = User.create(username: 'Player3', email:'player3@email.example', passwo
 player4 = User.create(username: 'Player4', email:'player4@email.example', password: 'password', created_at: Time.now, updated_at: Time.now, role: 'default_player')
 
 
-ttt = Game.find_or_create_by(name: 'Tic Tac Toe', table_name: 'ttt_games', description: 'Also known as noughts and crosses.')
+ttt = Game.find_or_create_by(name: 'Tic-Tac-Toe', table_name: 'ttt_games', description: 'Also known as noughts and crosses.')
 ttt_leaderboard = Leaderboard.create(game_id: ttt.id, game_name: ttt.name)
 
-mttt = Game.find_or_create_by(name: 'Movable Tic Tac Toe', table_name: 'mttt_games', description: 'Tic tac toe where each player only gets three pieces to play, then has to move them.')
+mttt = Game.find_or_create_by(name: 'Movable Tic-Tac-Toe', table_name: 'mttt_games', description: 'Tic-tac-toe where each player only gets three pieces to play, then has to move them.')
 mttt_leaderboard = Leaderboard.create(game_id: mttt.id, game_name: mttt.name)
