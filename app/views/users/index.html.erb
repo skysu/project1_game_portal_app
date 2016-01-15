@@ -2,6 +2,6 @@
 
 <% @users.each do |user| %>
   <div class="user">
-    <h3><%= link_to user.username, users_account_path(user) %></h3>
+    <h3><%= link_to user.username, player_path(user) %></h3>
   </div>
 <% end %>

@@ -2,12 +2,14 @@ Rails.application.routes.draw do
 
   resources :ttt_games
   resources :games
-  resources :users_accounts, controller:  'users',
+
+  resources :players, controller:  'users',
                                    only: [:index, :show]
 
-  devise_for :users, controllers: { registrations: 'registrations' } do
-    get 'users/:id' => 'registrations#show', as: user
-  end
+  devise_for :users, controllers: { registrations: 'registrations' } 
+  # do
+  #   get 'users/:id' => 'registrations#show', as: user
+  # end
 
   root 'ttt_games#index'
   # The priority is based upon order of creation: first created -> highest priority.
