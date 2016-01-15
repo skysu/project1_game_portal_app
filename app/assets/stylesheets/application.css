@@ -54,6 +54,7 @@ input {
   font-size: 18px;
   font-family: "PF Arma Five";
   background-color: oldlace;
+  background-color: #F4F0F5;
  }
 
  .ruby {
@@ -80,6 +81,7 @@ input {
 
 .navbar {
   background-color: #961818;
+  /*background-color: #8C1C13;*/
   height: 4em;
 }
 
@@ -107,8 +109,9 @@ input {
   text-decoration: none;
 }
 
-.navbar-nav li a:hover {
+.navbar-nav li:hover a {
   cursor: pointer;
+  color: #FF6B6B;
 }
 
 /*
@@ -284,7 +287,7 @@ form.new_ttt_game:first-child {
 .list-item:hover {
   margin: -2px 0px 5px -10px;
   box-shadow: 2px 2px 2px black;
-  background-color: red;
+  background-color: #FF6B6B;
 }
 
 .list-message {
