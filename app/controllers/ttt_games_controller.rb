@@ -83,6 +83,40 @@ class TttGamesController < ApplicationController
           redirect_to ttt_game_path(@ttt_game) and return
         end
       when 'finished'
+        unless @ttt_game.friend_playing?
+          case @ttt_game.winner_id
+            when @ttt_game.player1_user.id
+
+              player1_ttt_stats = @ttt_game.player1_user.game_stats.find_or_create_by(game_name: 'TicTacToe')
+              player1_ttt_stats.wins += 1
+              player1_ttt_stats.save
+
+              player2_ttt_stats = @ttt_game.player2_user.game_stats.find_or_create_by(game_name: 'TicTacToe')
+              player2_ttt_stats.losses -= 1
+              player2_ttt_stats.save
+
+            when @ttt_game.player2_user.id
+
+              player2_ttt_stats = @ttt_game.player2_user.game_stats.find_or_create_by(game_name: 'TicTacToe')
+              player2_ttt_stats.wins += 1
+              player2_ttt_stats.save
+
+              player1_ttt_stats = @ttt_game.player1_user.game_stats.find_or_create_by(game_name: 'TicTacToe')
+              player1_ttt_stats.losses -= 1
+              player1_ttt_stats.save
+
+            else
+
+              player1_ttt_stats = @ttt_game.player1_user.game_stats.find_or_create_by(game_name: 'TicTacToe')
+              player1_ttt_stats.draws += 1
+              player1_ttt_stats.save
+
+              player2_ttt_stats = @ttt_game.player2_user.game_stats.find_or_create_by(game_name: 'TicTacToe')
+              player2_ttt_stats.draws += 1
+              player2_ttt_stats.save
+
+          end
+        end
         redirect_to ttt_game_path(@ttt_game) and return
       else
         redirect_to edit_ttt_game_path(@ttt_game) and return

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  game_id: 
+  game_name: MyString
+  wins: 1
+  losses: 1
+  draws: 1
+  total: 1
+
+two:
+  user_id: 
+  game_id: 
+  game_name: MyString
+  wins: 1
+  losses: 1
+  draws: 1
+  total: 1
