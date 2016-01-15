@@ -83,7 +83,7 @@ class TttGamesController < ApplicationController
           redirect_to ttt_game_path(@ttt_game) and return
         end
       when 'finished'
-        GameStat.update_game_stat(@ttt_game, 'Tic Tac Toe')
+        GameStat.update_game_stat(@ttt_game, 'Tic-Tac-Toe')
         redirect_to ttt_game_path(@ttt_game) and return
       else
         redirect_to edit_ttt_game_path(@ttt_game) and return
