@@ -107,6 +107,10 @@ input {
   text-decoration: none;
 }
 
+.navbar-nav li a:hover {
+  cursor: pointer;
+}
+
 /*
   ========================================
   Form
@@ -414,6 +418,7 @@ form.new_ttt_game:first-child {
 }
 
 .btn-new-game {
+    display: block;
     text-decoration: none;
     color: #F02626;
     background-color: #fff;

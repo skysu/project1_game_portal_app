@@ -62,9 +62,11 @@ class TttGame < ActiveRecord::Base
     self.current_player[:id] == self.player2[:id]
   end
 
-  def first_player
-    self.ttt_moves.first.player
-  end
+  # def first_player
+  #   self.ttt_moves.first.player
+  # end
+
+  
 
   def player1_user
     if self.users.exists?(self.player1[:id])
@@ -89,6 +91,8 @@ class TttGame < ActiveRecord::Base
   def winner_user
     self.users.find(self.winner_id) if self.winner_id
   end
+
+
 
   def set_state
     self.state ||= 'in_progress'
