@@ -7,3 +7,25 @@
 <br>
 
 <%= image_tag @user.avatar %>
+
+<table class="user-stats">
+  <tr>
+    <th colspan="5"><%= @user.username %>'s Stats</th>
+  <tr>
+  <tr>
+    <th>Game</th>
+    <th>Wins</th>
+    <th>Losses</th>
+    <th>Draws</th>
+    <th>Total</th>
+  </tr>
+<% @user.game_stats.each do |stat| %>
+  <tr>
+    <th><%= stat.game_name %></th>
+    <td><%= stat.wins %></td>
+    <td><%= stat.loses %></td>
+    <td><%= stat.draws %></td>
+    <td><%= stat.total %></td>
+  </tr>
+<% end %>
+</table>

@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :game_stats
   has_and_belongs_to_many :ttt_games
 
   validates :username, presence: true,
