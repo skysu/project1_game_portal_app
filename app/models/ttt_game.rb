@@ -16,10 +16,12 @@ class TttGame < ActiveRecord::Base
 
   scope :in_progress, -> { where(state: 'in_progress') }
   scope :finished, -> { where(state: 'finished') }
+
   scope :scorable, -> { where(opponent: ['user', 'ai']) }
   scope :opponent_user, -> { where(opponent: 'user') }
   scope :opponent_friend, -> { where(opponent: 'friend') }
   scope :opponent_ai, -> { where(opponent: 'ai') }
+  
   scope :recent_first, -> { order(updated_at: :desc) }
 
 

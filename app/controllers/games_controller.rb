@@ -7,4 +7,12 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
   end
 
+  def leaderboard
+    @game = Game.find(params[:id])
+  end
+
+  def leaderboards
+    @games = Game.all.order(name: :asc)
+  end
+
 end

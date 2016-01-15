@@ -25,4 +25,12 @@ class User < ActiveRecord::Base
     self.role ||= 'player'
   end
 
+  ROLES = %w(player default_player ai)
+
+  ROLES.each do |role|
+    define_method("#{role}?") do
+      self.role == role
+    end
+  end
+
 end

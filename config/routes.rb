@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
   resources :ttt_games
-  resources :games
+  resources :games do
+    get 'leaderboard', on: :member
+    # resources :leaderboards, only: [:show]
+  end
+
+  get 'leaderboards', to: 'games#leaderboards'
 
   resources :players, controller:  'users',
                                    only: [:index, :show]
