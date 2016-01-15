@@ -1,0 +1,5 @@
+<h2><%= @game.name %></h2>
+
+<%= link_to "Play #{@game.name}", { controller: @game.table_name, action: 'new'}, method: :get %>
+
+<p><%= @game.description %></p>
