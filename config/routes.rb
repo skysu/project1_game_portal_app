@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   resources :ttt_games
+  resources :games
+
   devise_for :users, controllers: { registrations: 'registrations' }
 
   root 'ttt_games#index'
