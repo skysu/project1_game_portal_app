@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :ttt_games
+  resources :mttt_games
   resources :games do
     get 'leaderboard', on: :member
     # resources :leaderboards, only: [:show]
