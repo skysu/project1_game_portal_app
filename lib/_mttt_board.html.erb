@@ -1,0 +1,19 @@
+
+
+<table class="ttt-board">
+  <% 3.times do |i| %>
+    <tr>
+      <% 3.times do |j| %>
+        <td>
+          <div class="ttt-square">
+            <% if @mttt_game.board[i][j] %>
+              <%= @mttt_game.board[i][j] %>
+            <% else %>
+              <%= link_to @mttt_game.current_player[:symbol], { controller: 'mttt_games', action: 'update', square_i: i, square_j: j }, method: :put %>
+            <% end %>
+          </div>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

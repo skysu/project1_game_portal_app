@@ -1,0 +1,25 @@
+<%# if @mttt_game.current_player[:pieces] <= 0 %>
+
+<table class="ttt-board">
+  <% 3.times do |i| %>
+    <tr>
+      <% 3.times do |j| %>
+        <td>
+          <div class="ttt-square">
+            <% case @mttt_game.board[i][j] %>
+              <% when nil %>
+              <% when @mttt_game.current_player[:symbol] %>
+                <% if @valid_squares_to_pick_up.include?([i,j]) %>
+                  <%= link_to @mttt_game.current_player[:symbol], { controller: 'mttt_games', action: 'update', square_i: i, square_j: j }, method: :put %>
+                <% else %>
+                  <%= @mttt_game.board[i][j] %>
+                <% end %>
+              <% else %>
+                <%= @mttt_game.board[i][j] %>
+            <% end %>
+          </div>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

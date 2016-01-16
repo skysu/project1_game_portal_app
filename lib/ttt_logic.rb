@@ -17,7 +17,7 @@ module TttLogic
     unless self.finished?
       unless valid_move?(move.square)
         move.destroy
-        game.update(state: 'in_progress', message: "Move not valid. Pick again.")
+        self.update(state: 'in_progress', message: "Move not valid. Pick again.")
       else
         self.ttt_moves << move
         place_piece(move.square, move.player[:symbol])
