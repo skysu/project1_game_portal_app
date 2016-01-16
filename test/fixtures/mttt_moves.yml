@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player: MyString
+  square_i: 1
+  square_j: 1
+  is_picking_up: false
+  is_replacing_piece: false
+
+two:
+  player: MyString
+  square_i: 1
+  square_j: 1
+  is_picking_up: false
+  is_replacing_piece: false

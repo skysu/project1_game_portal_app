@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :game_stats
   has_and_belongs_to_many :ttt_games
+  has_and_belongs_to_many :mttt_games
 
   validates :username, presence: true,
                      uniqueness: true,

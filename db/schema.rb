@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160115143835) do
+ActiveRecord::Schema.define(version: 20160116185624) do
 
   create_table "game_stats", force: :cascade do |t|
     t.integer  "user_id"
@@ -44,6 +44,40 @@ ActiveRecord::Schema.define(version: 20160115143835) do
   end
 
   add_index "leaderboards", ["game_id"], name: "index_leaderboards_on_game_id"
+
+  create_table "mttt_games", force: :cascade do |t|
+    t.string   "player1",        default: "---\n:id: \n:symbol: \n:pieces: 3\n"
+    t.string   "player2",        default: "---\n:id: \n:symbol: \n:pieces: 3\n"
+    t.string   "current_player"
+    t.string   "board",          default: "---\n- - \n  - \n  - \n- - \n  - \n  - \n- - \n  - \n  - \n"
+    t.boolean  "is_picking_up",  default: false
+    t.boolean  "is_replacing",   default: false
+    t.integer  "winner_id"
+    t.boolean  "is_draw",        default: false
+    t.string   "state"
+    t.string   "message"
+    t.string   "opponent"
+    t.datetime "created_at",                                                                             null: false
+    t.datetime "updated_at",                                                                             null: false
+  end
+
+  create_table "mttt_games_users", id: false, force: :cascade do |t|
+    t.integer "user_id",      null: false
+    t.integer "mttt_game_id", null: false
+  end
+
+  create_table "mttt_moves", force: :cascade do |t|
+    t.string   "player"
+    t.integer  "square_i"
+    t.integer  "square_j"
+    t.boolean  "is_picking_up", default: false
+    t.boolean  "is_replacing",  default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "mttt_game_id"
+  end
+
+  add_index "mttt_moves", ["mttt_game_id"], name: "index_mttt_moves_on_mttt_game_id"
 
   create_table "ttt_games", force: :cascade do |t|
     t.string   "player1",        default: "---\n:id: \n:symbol: \n"

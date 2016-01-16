@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player1: MyString
+  player2: MyString
+  current_player: MyString
+  board: MyString
+  is_replacing_piece: false
+  winner_id: 1
+  is_draw: false
+  state: MyString
+  message: MyString
+  opponent: MyString
+
+two:
+  player1: MyString
+  player2: MyString
+  current_player: MyString
+  board: MyString
+  is_replacing_piece: false
+  winner_id: 1
+  is_draw: false
+  state: MyString
+  message: MyString
+  opponent: MyString
