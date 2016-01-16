@@ -1,4 +1,6 @@
-class MtttLogic
+require 'mttt_win_checker'
+
+module MtttLogic
 
   ################ FROM TTTGAME ################
 
@@ -19,7 +21,7 @@ class MtttLogic
           self.current_player[:pieces] -= 1
           self.save
           update_players_pieces
-          if MtttWinChecker.new.winner(move.player[:symbol], self.board)
+          if MtttWinChecker.new.has_won?(move.player[:symbol], self.board)
             case self.opponent
               when 'user', 'ai'
                 self.update(winner_id: self.current_player[:id])
@@ -36,7 +38,7 @@ class MtttLogic
 
         when 'normal'
           place_piece(move.square, move.player[:symbol])
-          if MtttWinChecker.new.winner(move.player[:symbol], self.board)
+          if MtttWinChecker.new.has_won?(move.player[:symbol], self.board)
             case self.opponent
               when 'user', 'ai'
                 self.update(winner_id: self.current_player[:id])
@@ -53,7 +55,7 @@ class MtttLogic
             self.update(current_player: switch(current_player))
 
             if self.current_player[:pieces] <= 0
-              self.update(is_picking_up: true)
+              self.update(move_state: 'picking_up')
             else
               self.set_current_turn_message
               self.update(state: 'in_progress')
@@ -66,7 +68,7 @@ class MtttLogic
   ################ METHODS ################
 
   def update_players_pieces
-    if self.current_player[:id] == self.player1[:id]
+    if self.current_player[:symbol] == self.player1[:symbol]
       self.update(player1: self.current_player)
     else
       self.update(player2: self.current_player)
@@ -95,7 +97,7 @@ class MtttLogic
 
   def available_spaces
     available = []
-    self.board.each_index do |i|
+    self.board.flatten.each_index do |i|
       available << i if self.board[i].nil?
     end
     available
@@ -125,7 +127,7 @@ class MtttLogic
     board.each_with_index do |row, y|
       row.each_with_index do |square, x|
         if board[y][x] == symbol
-          squares << [y,x] if valid_square?([y,x], board)
+          squares << [y,x] if valid_square_to_pick_up?([y,x], board)
         end
       end
     end

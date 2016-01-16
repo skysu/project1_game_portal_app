@@ -1,4 +1,8 @@
+require 'mttt_logic'
+
 class MtttGame < ActiveRecord::Base
+  include MtttLogic
+
   has_many :mttt_moves, dependent: :destroy
   has_and_belongs_to_many :users
 
@@ -26,7 +30,7 @@ class MtttGame < ActiveRecord::Base
   end
 
   OPPONENTS.each do |opponent|
-    define_method("#{opponent}?") do
+    define_method("#{opponent}_playing?") do
       self.opponent == opponent
     end
   end

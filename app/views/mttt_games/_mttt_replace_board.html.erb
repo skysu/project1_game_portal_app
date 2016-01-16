@@ -1,4 +1,4 @@
-<%# if @mttt_game.replace_piece? %>
+
 
 <table class="ttt-board">
   <% 3.times do |i| %>
@@ -8,7 +8,7 @@
           <div class="ttt-square">
             <% case @mttt_game.board[i][j] %>
               <% when nil %>
-                <% if @valid_squares_to_replace.include?([i,j]) %>
+                <% if @mttt_game.valid_squares_to_replace(@mttt_game.mttt_moves.last.square, @mttt_game.board).include?([i,j]) %>
                   <%= link_to @mttt_game.current_player[:symbol], { controller: 'mttt_games', action: 'update', square_i: i, square_j: j }, method: :put %>
                 <% end %>
               <% else %>

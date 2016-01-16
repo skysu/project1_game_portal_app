@@ -60,7 +60,7 @@ class MtttGamesController < ApplicationController
     end
 
     move = MtttMove.create(player: @mttt_game.current_player,
-                          square: [params[:square_i], params[:square_j]])
+                          square: [params[:square_i].to_i, params[:square_j].to_i])
     @mttt_game.turn(move)
 
     # if @ttt_game.ai_playing?
@@ -71,8 +71,21 @@ class MtttGamesController < ApplicationController
     #   @ttt_game.turn(move)
     # end
 
+    
+
     case @mttt_game.state
       when 'in_progress'
+
+
+        # case @mttt_game.move_state
+        #   when 'picking_up'
+
+        #     @valid_squares_to_pick_up = @mttt_game.valid_squares_to_pick_up(move.player[:symbol], @mttt_game.board)
+        #     binding.pry
+        #   when 'replacing'
+        #     @valid_squares_to_replace = @mttt_game.valid_squares_to_replace(move.square, @mttt_game.board)
+        # end
+
         if user_is_current_player?
           redirect_to edit_mttt_game_path(@mttt_game) and return
         else
