@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116185624) do
+ActiveRecord::Schema.define(version: 20160116195940) do
 
   create_table "game_stats", force: :cascade do |t|
     t.integer  "user_id"
@@ -50,8 +50,6 @@ ActiveRecord::Schema.define(version: 20160116185624) do
     t.string   "player2",        default: "---\n:id: \n:symbol: \n:pieces: 3\n"
     t.string   "current_player"
     t.string   "board",          default: "---\n- - \n  - \n  - \n- - \n  - \n  - \n- - \n  - \n  - \n"
-    t.boolean  "is_picking_up",  default: false
-    t.boolean  "is_replacing",   default: false
     t.integer  "winner_id"
     t.boolean  "is_draw",        default: false
     t.string   "state"
@@ -59,6 +57,7 @@ ActiveRecord::Schema.define(version: 20160116185624) do
     t.string   "opponent"
     t.datetime "created_at",                                                                             null: false
     t.datetime "updated_at",                                                                             null: false
+    t.string   "move_state"
   end
 
   create_table "mttt_games_users", id: false, force: :cascade do |t|

@@ -4,31 +4,43 @@ class MtttLogic
 
   def turn(move)
     unless self.finished?
-      if self.current_player[:pieces] <= 0
-        self.update(state: 'in_progress', message: "Move not valid. Pick again.")
-      end
-        unless valid_move?(move.square)
-          move.destroy
-          self.update(state: 'in_progress', message: "Move not valid. Pick again.")
-        else
-          self.ttt_moves << move
-          place_piece(move.square, move.player[:symbol])
-          if TttWinChecker.new.winner(move.player[:symbol], self.board)
-            case self.opponent
-              when 'user', 'ai'
-                self.update(winner_id: self.current_player[:id])
-                self.update(state: 'finished', message: "#{self.winner_user.username} Wins!")
-              when 'friend'
-                self.update(state: 'finished', message: "#{self.current_player[:symbol].to_s} Wins!")
-            end
-          elsif draw?
-            self.update(state: 'finished', is_draw: true, message: "Game is a draw")
-          else
-            self.update(current_player: switch(current_player))
-            self.set_current_turn_message
-            self.update(state: 'in_progress')
-          end
+      if self.is_picking_up
+        self.current_player[:pieces] += 1
+        # self.update_players_pieces
+        self.save
+
+        self.is_picking_up == false
+        self.is_replacing == true
+        self.update(state: 'in_progress', message: "#{self.winner_user.username} Wins!")
+      elsif self.is_re
+
+      else
+
+      self.ttt_moves << move
+      place_piece(move.square, move.player[:symbol])
+      if TttWinChecker.new.winner(move.player[:symbol], self.board)
+        case self.opponent
+          when 'user', 'ai'
+            self.update(winner_id: self.current_player[:id])
+            self.update(state: 'finished', message: "#{self.winner_user.username} Wins!")
+          when 'friend'
+            self.update(state: 'finished', message: "#{self.current_player[:symbol].to_s} Wins!")
         end
+      elsif draw?
+        self.update(state: 'finished', is_draw: true, message: "Game is a draw")
+      else
+        self.current_player[:pieces] -= 1
+        # self.update_players_pieces
+        self.save
+        self.update(current_player: switch(current_player))
+
+        if self.current_player[:pieces] <= 0
+          self.update(is_picking_up: true)
+        else
+          self.set_current_turn_message
+          self.update(state: 'in_progress')
+        end
+      end
     end
   end
 

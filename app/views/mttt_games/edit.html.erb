@@ -1,1 +1,18 @@
 <h2>Edit MtttGame</h2>
+
+<div class="ttt-game">
+  <div class="ttt-message">
+    <h3><%= @mttt_game.message %></h3>
+  </div>
+
+  <% if @mttt_game.is_picking_up %>
+    <%= render "mttt_pick_up_board" %>
+  <% elsif @mttt_game.is_replacing %>
+    <%= render "mttt_replace_board" %>
+  <% else %>
+    <%= render "mttt_board" %>
+  <% end %>
+
+</div>
+
+<%# render "players" %>
