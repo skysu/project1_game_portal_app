@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116195940) do
+ActiveRecord::Schema.define(version: 20160116203239) do
 
   create_table "game_stats", force: :cascade do |t|
     t.integer  "user_id"
@@ -67,13 +67,12 @@ ActiveRecord::Schema.define(version: 20160116195940) do
 
   create_table "mttt_moves", force: :cascade do |t|
     t.string   "player"
-    t.integer  "square_i"
-    t.integer  "square_j"
     t.boolean  "is_picking_up", default: false
     t.boolean  "is_replacing",  default: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.integer  "mttt_game_id"
+    t.string   "square"
   end
 
   add_index "mttt_moves", ["mttt_game_id"], name: "index_mttt_moves_on_mttt_game_id"

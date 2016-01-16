@@ -5,9 +5,9 @@
     <h3><%= @mttt_game.message %></h3>
   </div>
 
-  <% if @mttt_game.is_picking_up %>
+  <% if @mttt_game.picking_up? %>
     <%= render "mttt_pick_up_board" %>
-  <% elsif @mttt_game.is_replacing %>
+  <% elsif @mttt_game.replacing? %>
     <%= render "mttt_replace_board" %>
   <% else %>
     <%= render "mttt_board" %>

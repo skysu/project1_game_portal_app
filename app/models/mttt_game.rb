@@ -7,14 +7,21 @@ class MtttGame < ActiveRecord::Base
   serialize :player2, Hash
   serialize :current_player, Hash
 
-  after_initialize :set_state
+  after_initialize :set_state, :set_move_state
 
   STATES = %w(in_progess finished)
+  MOVE_STATES = %w(normal picking_up replacing)
   OPPONENTS = %w(user friend ai)
 
   STATES.each do |state|
     define_method("#{state}?") do
       self.state == state
+    end
+  end
+
+  MOVE_STATES.each do |move_state|
+    define_method("#{move_state}?") do
+      self.move_state == move_state
     end
   end
 
@@ -26,6 +33,10 @@ class MtttGame < ActiveRecord::Base
 
   def set_state
     self.state ||= 'in_progress'
+  end
+
+  def set_move_state
+    self.move_state ||= 'normal'
   end
 
   def set_players_symbols

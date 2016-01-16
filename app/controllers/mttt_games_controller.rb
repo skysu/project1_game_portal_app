@@ -60,8 +60,7 @@ class MtttGamesController < ApplicationController
     end
 
     move = MtttMove.create(player: @mttt_game.current_player,
-                          square_i: params[:square_i],
-                          square_j: params[:square_j])
+                          square: [params[:square_i], params[:square_j]])
     @mttt_game.turn(move)
 
     # if @ttt_game.ai_playing?
