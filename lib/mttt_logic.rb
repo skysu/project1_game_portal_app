@@ -13,14 +13,14 @@ module MtttLogic
           pick_up_piece(move.square)
           self.current_player[:pieces] += 1
           self.save
-          update_players_pieces
+          update_player_with_current_player
           self.update(move_state: 'replacing', message: "#{self.current_player_user.username}, choose a square to replace your piece")
 
         when 'replacing'
           place_piece(move.square, move.player[:symbol])
           self.current_player[:pieces] -= 1
           self.save
-          update_players_pieces
+          update_player_with_current_player
           if MtttWinChecker.new.has_won?(move.player[:symbol], self.board)
             case self.opponent
               when 'user', 'ai'
@@ -51,7 +51,7 @@ module MtttLogic
           else
             self.current_player[:pieces] -= 1
             self.save
-            update_players_pieces
+            update_player_with_current_player
             self.update(current_player: switch(current_player))
 
             if self.current_player[:pieces] <= 0
@@ -67,7 +67,7 @@ module MtttLogic
 
   ################ METHODS ################
 
-  def update_players_pieces
+  def update_player_with_current_player
     if self.current_player[:symbol] == self.player1[:symbol]
       self.update(player1: self.current_player)
     else
