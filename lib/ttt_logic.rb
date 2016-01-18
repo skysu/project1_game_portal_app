@@ -25,16 +25,14 @@ module TttLogic
           case self.opponent
             when 'user', 'ai'
               self.update(winner_id: self.current_player[:id])
-              self.update(state: 'finished', message: "#{self.winner_user.username} Wins!")
             when 'friend'
-              self.update(state: 'finished', message: "#{self.current_player[:symbol].to_s} Wins!")
           end
+          self.update(state: 'finished', message: "#{current_player_display_name} Wins!")
         elsif draw?
           self.update(state: 'finished', is_draw: true, message: "Game is a draw")
         else
           self.update(current_player: switch(current_player))
-          self.set_current_turn_message
-          self.update(state: 'in_progress')
+          self.update(state: 'in_progress', message: "#{current_player_display_name}'s Turn")
         end
       end
     end
@@ -68,6 +66,15 @@ module TttLogic
 
   def switch(player)
     player == self.player1 ? self.player2 : self.player1
+  end
+
+  def current_player_display_name
+    case self.opponent
+      when 'user', 'ai'
+        self.current_player_user.username
+      when 'friend'
+        self.current_player[:symbol].to_s
+    end
   end
 
 end

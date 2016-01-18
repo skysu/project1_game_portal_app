@@ -11,16 +11,10 @@ module MtttLogic
 
         when 'picking_up'
           pick_up_piece(move.square)
-          self.current_player[:pieces] += 1
-          self.save
-          update_player_with_current_player
           self.update(move_state: 'replacing', message: "#{current_player_display_name}, choose a square to replace your piece")
 
         when 'replacing'
           place_piece(move.square, move.player[:symbol])
-          self.current_player[:pieces] -= 1
-          self.save
-          update_player_with_current_player
           if MtttWinChecker.new.has_won?(move.player[:symbol], self.board)
             case self.opponent
               when 'user', 'ai'
@@ -47,9 +41,6 @@ module MtttLogic
           elsif draw?
             self.update(state: 'finished', is_draw: true, message: "Game is a draw")
           else
-            self.current_player[:pieces] -= 1
-            self.save
-            update_player_with_current_player
             self.update(current_player: switch(current_player))
 
             if self.current_player[:pieces] <= 0
@@ -89,9 +80,9 @@ module MtttLogic
   #   self.update(move_state: state, message: message)
   # end
 
-  def valid_move?(square)
-    (0..8).include?(square) && space_available?(square)
-  end
+  # def valid_move?(square)
+  #   (0..8).include?(square) && space_available?(square)
+  # end
 
   def space_available?(square)
     self.board[square[0]][square[1]].nil?
@@ -99,10 +90,16 @@ module MtttLogic
 
   def place_piece(square, piece)
     self.board[square[0]][square[1]] = piece
+    self.current_player[:pieces] -= 1
+    self.save
+    update_player_with_current_player
   end
 
   def pick_up_piece(square)
     self.board[square[0]][square[1]] = nil
+    self.current_player[:pieces] += 1
+    self.save
+    update_player_with_current_player
   end
 
   def draw?
