@@ -55,15 +55,6 @@ module MtttLogic
 
   ################ METHODS ################
 
-  def current_player_display_name
-    case self.opponent
-      when 'user', 'ai'
-        self.current_player_user.username
-      when 'friend'
-        self.current_player[:symbol].to_s
-    end
-  end
-
   def update_player_with_current_player
     if self.current_player[:symbol] == self.player1[:symbol]
       self.update(player1: self.current_player)

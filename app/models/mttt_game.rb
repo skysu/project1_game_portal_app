@@ -77,6 +77,10 @@ class MtttGame < ActiveRecord::Base
     end
   end
 
+  def player1_display_name
+    player1_user.username
+  end
+
   def player2_user
     if self.users.exists?(self.player2[:id])
       self.users.find(self.player2[:id])
@@ -85,8 +89,26 @@ class MtttGame < ActiveRecord::Base
     end
   end
 
+  def player2_display_name
+    case self.opponent
+      when 'user', 'ai'
+        player2_user.username
+      when 'friend'
+        "#{player1_display_name}'s Friend"
+    end
+  end
+
   def current_player_user
     self.users.find(self.current_player[:id])
+  end
+
+  def current_player_display_name
+    case self.opponent
+      when 'user', 'ai'
+        self.current_player_user.username
+      when 'friend'
+        self.current_player[:symbol].to_s
+    end
   end
 
   def winner_user

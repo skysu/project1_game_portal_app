@@ -15,6 +15,22 @@
     <%= render "mttt_board" %>
   <% end %>
 
+  <div>
+    <h3><%= @mttt_game.player1_display_name %></h3>
+    <p>symbol: <%= @mttt_game.player1[:symbol] %></p>
+    <h4><% @mttt_game.player1[:pieces].times do %>
+      <span><%= @mttt_game.player1[:symbol] %></span>
+    <% end %></h4>
+  </div>
+
+  <div>
+    <h3><%= @mttt_game.player2_display_name %></h3>
+    <p>symbol: <%= @mttt_game.player2[:symbol] %></p>
+    <h4><% @mttt_game.player2[:pieces].times do %>
+      <span><%= @mttt_game.player2[:symbol] %></span>
+    <% end %></h4>
+  </div>
+
 </div>
 
 <%# render "players" %>

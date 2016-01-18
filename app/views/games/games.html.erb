@@ -1,4 +1,11 @@
-<h2>GAmes</h2>
+<h2>Your Games</h2>
+
+<%= form_tag(games_player_path, method: :get) do %>
+  <%= collection_select(:game ,:name, Game.all, :table_name, :name, prompt: 'View Games')%>
+  <%= submit_tag %>
+<% end %>
+
+
 
 <% if @in_progress_games.any? %>
 <div class="list">
