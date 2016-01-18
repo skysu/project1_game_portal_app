@@ -7,6 +7,9 @@ class MtttWinChecker
                       # Diagonal Lines
                       [0, 4, 8], [2, 4, 6] ]
 
+    def winner(symbol, board)
+      has_won?(symbol, board) ? symbol : false
+    end
 
     def has_won?(symbol, board)
       indices = map_symbol_indices(symbol, board)
