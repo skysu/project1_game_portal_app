@@ -1,9 +1,11 @@
 class MtttWinChecker
 
-    HORIZONTAL_LINES = [ [0, 1, 2], [3, 4, 5], [6, 7, 8] ]
-    VERTICAL_LINES = [ [0, 3, 6], [1, 4, 7], [2, 5, 8] ]
-    DIAGONAL_LINES = [ [0, 4, 8], [2, 4, 6] ]
-    WINNING_LINES = HORIZONTAL_LINES + VERTICAL_LINES + DIAGONAL_LINES
+    WINNING_LINES = [ # Horizontal Lines
+                      [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                      #Vertical Lines
+                      [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                      # Diagonal Lines
+                      [0, 4, 8], [2, 4, 6] ]
 
 
     def has_won?(symbol, board)
