@@ -14,7 +14,7 @@ module MtttLogic
           self.current_player[:pieces] += 1
           self.save
           update_player_with_current_player
-          self.update(move_state: 'replacing', message: "#{self.current_player_user.username}, choose a square to replace your piece")
+          self.update(move_state: 'replacing', message: "#{current_player_display_name}, choose a square to replace your piece")
 
         when 'replacing'
           place_piece(move.square, move.player[:symbol])
@@ -25,15 +25,14 @@ module MtttLogic
             case self.opponent
               when 'user', 'ai'
                 self.update(winner_id: self.current_player[:id])
-                self.update(state: 'finished', message: "#{self.winner_user.username} Wins!")
               when 'friend'
-                self.update(state: 'finished', message: "#{self.current_player[:symbol].to_s} Wins!")
             end
+            self.update(state: 'finished', message: "#{current_player_display_name} Wins!")
           elsif draw?
             self.update(state: 'finished', is_draw: true, message: "Game is a draw")
           else
             self.update(current_player: switch(current_player))
-            self.update(move_state: 'picking_up', message: "#{self.current_player_user.username}, choose a piece to pick up")
+            self.update(move_state: 'picking_up', message: "#{current_player_display_name}, choose a piece to pick up")
           end
 
         when 'normal'
@@ -42,10 +41,9 @@ module MtttLogic
             case self.opponent
               when 'user', 'ai'
                 self.update(winner_id: self.current_player[:id])
-                self.update(state: 'finished', message: "#{self.winner_user.username} Wins!")
               when 'friend'
-                self.update(state: 'finished', message: "#{self.current_player[:symbol].to_s} Wins!")
             end
+            self.update(state: 'finished', message: "#{current_player_display_name} Wins!")
           elsif draw?
             self.update(state: 'finished', is_draw: true, message: "Game is a draw")
           else
@@ -55,10 +53,9 @@ module MtttLogic
             self.update(current_player: switch(current_player))
 
             if self.current_player[:pieces] <= 0
-              self.update(move_state: 'picking_up')
+              self.update(move_state: 'picking_up', message: "#{current_player_display_name}, choose a piece to pick up")
             else
-              self.set_current_turn_message
-              self.update(state: 'in_progress')
+              self.update(state: 'in_progress', message: "#{current_player_display_name}'s Turn")
             end
           end
       end
@@ -67,6 +64,15 @@ module MtttLogic
 
   ################ METHODS ################
 
+  def current_player_display_name
+    case self.opponent
+      when 'user', 'ai'
+        self.current_player_user.username
+      when 'friend'
+        self.current_player[:symbol].to_s
+    end
+  end
+
   def update_player_with_current_player
     if self.current_player[:symbol] == self.player1[:symbol]
       self.update(player1: self.current_player)
@@ -74,6 +80,14 @@ module MtttLogic
       self.update(player2: self.current_player)
     end
   end
+
+  # def update_state(state, message=self.message, is_draw=false)
+  #   self.update(state: state, message: message, is_draw: is_draw)
+  # end
+
+  # def update_move_state(move_state, message=self.message)
+  #   self.update(move_state: state, message: message)
+  # end
 
   def valid_move?(square)
     (0..8).include?(square) && space_available?(square)

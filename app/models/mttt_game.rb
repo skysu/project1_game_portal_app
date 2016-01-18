@@ -56,17 +56,7 @@ class MtttGame < ActiveRecord::Base
   end
 
   def set_current_turn_message
-    message = case self.opponent
-      when 'user', 'ai'
-        "#{self.current_player_user.username}'s Turn"
-      when 'friend'
-        if self.current_player[:symbol] == self.player2[:symbol]
-          "Friend's Turn"
-        else 
-          "#{self.current_player_user.username}'s Turn"
-        end
-    end
-    self.update(message: message)
+    self.update(message: "#{self.current_player_display_name}'s Turn")
   end
 
   def player1_user
