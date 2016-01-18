@@ -43,10 +43,12 @@
         <h3 class="list-title"><%= game.player1_user.username %> <small>vs</small> <%= game.player2_user.username %></h3>
         <p class="list-subtitle">Last played: <%= distance_of_time_in_words_to_now(game.updated_at)%> ago</p>
         <div class="list-message wordwrap">
-          <% if current_user.id == game.current_player[:id] %>
-             <span class="your-turn">Your Turn!</span>
+          <% if current_user.id == game.winner_id %>
+             <span class="your-turn">You Won!</span>
+          <% elsif game.is_draw %>
+            <span>Draw</span>
           <% else %>
-            <span class="opponents-turn"><%= game.message %></span>
+            <span>You Lost</span>
           <% end %>
         </div>
       <%# link_to "Continue Game #{ttt_game.id}", edit_ttt_game_path(ttt_game) %>

@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
                          format: { with: /\A[a-zA-Z0-9]+\Z/ }
 
   scope :players, -> { where(role: 'player') }
+  scope :of_role, -> (role) { where(role: role) }
   scope :all_except, -> (user) { where.not(id: user) }
   scope :rubot, -> { find_by(username: 'RUBOT', role: 'ai') }
   scope :player1, -> { find_by(username: 'Player1', role: 'default_player') }

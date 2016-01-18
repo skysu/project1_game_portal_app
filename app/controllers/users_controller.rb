@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all.order(:username)
+    @users = User.of_role(['player', 'ai']).order(:username)
   end
 
   def show
