@@ -1,0 +1,51 @@
+<h2>GAmes</h2>
+
+<% if @in_progress_games.any? %>
+<div class="list">
+<h2 class="list-header">In Progress</h2>
+
+  <% @in_progress_games.each do |game| %>
+    <%= link_to controller: game.class.name.tableize, action: 'edit', id: game, method: :get do %>
+    <div class="list-item">
+        <h4 class="list-title"><%= Game.find_by_table_name(game.class.name.tableize).name %></h4>
+        <h3 class="list-title"><%= game.player1_user.username %> <small>vs</small> <%= game.player2_user.username %></h3>
+        <p class="list-subtitle">Last played: <%= distance_of_time_in_words_to_now(game.updated_at)%> ago</p>
+        <div class="list-message wordwrap">
+          <% if current_user.id == game.current_player[:id] %>
+             <span class="your-turn">Your Turn!</span>
+          <% else %>
+            <span class="opponents-turn"><%= game.message %></span>
+          <% end %>
+        </div>
+      <%# link_to "Continue Game #{ttt_game.id}", edit_ttt_game_path(ttt_game) %>
+    </div>
+    <%# link_to "Delete", ttt_game_path(ttt_game), method: :delete %>
+    <% end %>
+  <% end %>
+</div>
+<% end %>
+
+<% if @in_progress_games.any? %>
+<div class="list">
+<h2 class="list-header">Finished</h2>
+
+  <% @finished_games.each do |game| %>
+    <%= link_to controller: game.class.name.tableize, action: 'show', id: game, method: :get do %>
+    <div class="list-item">
+        <h4 class="list-title"><%= Game.find_by_table_name(game.class.name.tableize).name %></h4>
+        <h3 class="list-title"><%= game.player1_user.username %> <small>vs</small> <%= game.player2_user.username %></h3>
+        <p class="list-subtitle">Last played: <%= distance_of_time_in_words_to_now(game.updated_at)%> ago</p>
+        <div class="list-message wordwrap">
+          <% if current_user.id == game.current_player[:id] %>
+             <span class="your-turn">Your Turn!</span>
+          <% else %>
+            <span class="opponents-turn"><%= game.message %></span>
+          <% end %>
+        </div>
+      <%# link_to "Continue Game #{ttt_game.id}", edit_ttt_game_path(ttt_game) %>
+    </div>
+    <%# link_to "Delete", ttt_game_path(ttt_game), method: :delete %>
+    <% end %>
+  <% end %>
+</div>
+<% end %>

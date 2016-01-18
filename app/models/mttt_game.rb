@@ -13,6 +13,16 @@ class MtttGame < ActiveRecord::Base
 
   after_initialize :set_state, :set_move_state
 
+  scope :in_progress, -> { where(state: 'in_progress') }
+  scope :finished, -> { where(state: 'finished') }
+
+  scope :scorable, -> { where(opponent: ['user', 'ai']) }
+  scope :opponent_user, -> { where(opponent: 'user') }
+  scope :opponent_friend, -> { where(opponent: 'friend') }
+  scope :opponent_ai, -> { where(opponent: 'ai') }
+  
+  scope :recent_first, -> { order(updated_at: :desc) }
+
   STATES = %w(in_progess finished)
   MOVE_STATES = %w(normal picking_up replacing)
   OPPONENTS = %w(user friend ai)

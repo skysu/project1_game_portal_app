@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   get 'leaderboards', to: 'games#leaderboards'
 
   resources :players, controller:  'users',
-                                   only: [:index, :show]
+                            only: [:index, :show] do
+    get 'games', on: :member, controller: 'games'
+  end
 
   devise_for :users, controllers: { registrations: 'registrations' } 
   # do
