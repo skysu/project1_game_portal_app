@@ -125,5 +125,45 @@ class MtttGame < ActiveRecord::Base
     self.users.find(self.winner_id) if self.winner_id
   end
 
+  def which_player_edit_view
+    if self.mttt_moves.any?
+      if current_player[:symbol] == player1[:symbol]
+        self.replacing? ? "view-player1-static" : "view-player1"
+      else
+        self.replacing? ? "view-player2-static" : "view-player2"
+      end
+    else
+      if current_player[:symbol] == player1[:symbol]
+        "view-player1-static"
+      else
+        "view-player2-static"
+      end
+    end
+  end
+
+  def which_player_show_view
+    if self.finished?
+      if self.is_draw
+        if current_player[:symbol] == player1[:symbol]
+          "view-player1-draw"
+        else
+          "view-player2-draw"
+        end
+      elsif current_player[:symbol] == player1[:symbol]
+        "view-player1-static"
+      elsif self.ai_playing?
+        "view-player2"
+      else
+        "view-player2-static"
+      end
+    else
+      if current_player[:symbol] == player1[:symbol]
+        self.replacing? ? "view-player1-static" : "view-player1"
+      else
+        self.replacing? ? "view-player2-static" : "view-player2"
+      end
+    end
+  end
+
 
 end

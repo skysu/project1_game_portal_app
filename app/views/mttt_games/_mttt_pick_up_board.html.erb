@@ -11,7 +11,7 @@
               <% when @mttt_game.current_player[:symbol] %>
                 <%# if @valid_squares_to_pick_up.include?([i,j]) %>
                 <% if @mttt_game.valid_squares_to_pick_up(@mttt_game.current_player[:symbol], @mttt_game.board).include?([i,j]) %>
-                  <%= link_to @mttt_game.current_player[:symbol], { controller: 'mttt_games', action: 'update', square_i: i, square_j: j }, method: :put %>
+                  <%= link_to @mttt_game.current_player[:symbol], { controller: 'mttt_games', action: 'update', square_i: i, square_j: j }, method: :put, class: "piece-picking-up" %>
                 <% else %>
                   <%= @mttt_game.board[i][j] %>
                 <% end %>

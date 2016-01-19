@@ -9,7 +9,7 @@
             <% case @mttt_game.board[i][j] %>
               <% when nil %>
                 <% if @mttt_game.valid_squares_to_replace(@mttt_game.mttt_moves.last.square, @mttt_game.board).include?([i,j]) %>
-                  <%= link_to @mttt_game.current_player[:symbol], { controller: 'mttt_games', action: 'update', square_i: i, square_j: j }, method: :put %>
+                  <%= link_to @mttt_game.current_player[:symbol], { controller: 'mttt_games', action: 'update', square_i: i, square_j: j }, method: :put, class: "piece-replacing" %>
                 <% end %>
               <% else %>
                 <%= @mttt_game.board[i][j] %>

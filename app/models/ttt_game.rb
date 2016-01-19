@@ -125,22 +125,26 @@ class TttGame < ActiveRecord::Base
   end
 
   def which_player_show_view
-    unless self.finished?
-      if current_player[:symbol] == player1[:symbol]
-        "view-player1"
-      else
-        "view-player2"
+    if self.ttt_moves.any?
+      case opponent
+        when 'user', 'friend'
+          if current_player[:symbol] == player1[:symbol]
+            "view-player2"
+          else
+            "view-player1"
+          end
+        when 'ai'
+          "view-player2-static"
       end
     else
       if current_player[:symbol] == player1[:symbol]
-        "view-player1-static"
-      elsif self.ai_playing?
-        "view-player2"
-      else
         "view-player2-static"
+      else
+        "view-player1-static"
       end
     end
   end
+
 
 
   def set_state

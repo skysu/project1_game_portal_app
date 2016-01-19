@@ -510,10 +510,22 @@ a.btn-new-game {
   100% { background-position: 0% 50% }
 }
 
+/* Red to Even */
+@keyframes gradientShift-player1-draw {
+  0% { background-position: 0% 50% }
+  100% { background-position: 50% 50% }
+}
+
 /* Red to Blue */
 @keyframes gradientShift-player2 {
   0% { background-position: 0% 50% }
   100% { background-position: 100% 50% }
+}
+
+/* Blue to Even */
+@keyframes gradientShift-player2-draw {
+  0% { background-position: 100% 50% }
+  100% { background-position: 50% 50% }
 }
 
 
@@ -572,6 +584,71 @@ a.btn-new-game {
   background-size: 200% 200%;
   background-position: 100% 50%;
 }
+
+#view-player1-draw {
+  background: red; /* For browsers that do not support gradients */
+  background: linear-gradient(90deg, red, blue);
+  background-size: 200% 200%;
+  background-position: 0%;
+
+  animation: gradientShift-player1-draw 1s ease-in 1;
+
+  /*background: linear-gradient(90deg, red 55%, blue); /* Standard syntax */*/
+  /*background: linear-gradient(90deg, red, blue 45%); /* Standard syntax */
+
+  -webkit-animation-fill-mode:forwards;   /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1) */
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+  animation-duration:1s;
+}
+
+#view-player2-draw {
+  background: red; /* For browsers that do not support gradients */
+  background: linear-gradient(90deg, red, blue);
+  background-size: 200% 200%;
+  background-position: 0%;
+
+  animation: gradientShift-player2-draw 1s ease-in 1;
+
+  /*background: linear-gradient(90deg, red 55%, blue); /* Standard syntax */*/
+  /*background: linear-gradient(90deg, red, blue 45%); /* Standard syntax */
+
+  -webkit-animation-fill-mode:forwards;   /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1) */
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+  animation-duration:1s;
+}
+
+a.piece-picking-up {
+  visibility: visible;
+  color: #fff;
+  -webkit-text-fill-color: rgba(255,255,255,0.4); /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: #fff;
+}
+
+a.piece-picking-up:hover {
+  color: #fff;
+  -webkit-text-fill-color: rgba(255,255,255,0.2); /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: rgba(255,255,255,0.2);
+}
+
+a.piece-replacing {
+  visibility: visible;
+  color: #fff;
+  -webkit-text-fill-color: rgba(255,255,255,0.2); /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: rgba(255,255,255,0.2);
+}
+
+a.piece-replacing:hover {
+  color: #fff;
+  -webkit-text-fill-color: rgba(255,255,255,0.8); /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: rgba(255,255,255,0.8);
+}
+
 
 
 
