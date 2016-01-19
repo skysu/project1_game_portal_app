@@ -103,6 +103,27 @@ class TttGame < ActiveRecord::Base
     self.users.find(self.winner_id) if self.winner_id
   end
 
+  def which_player_view
+    if self.ttt_moves.any?
+      case opponent
+        when 'user', 'friend'
+          if current_player[:symbol] == player1[:symbol]
+            "view-player1"
+          else
+            "view-player2"
+          end
+        when 'ai'
+          "view-player1-static"
+      end
+    else
+      if current_player[:symbol] == player1[:symbol]
+        "view-player1-static"
+      else
+        "view-player2-static"
+      end
+    end
+  end
+
 
 
   def set_state

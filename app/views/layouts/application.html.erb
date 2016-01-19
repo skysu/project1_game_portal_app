@@ -16,7 +16,6 @@
 
 <header>
   <nav class="navbar group">
-
     <div class="go-left">
       <div class="navbar-header">
         <span class="ruby">RubyGames</span>
@@ -29,9 +28,9 @@
           <div class="dropdown">
             <%= link_to current_user.username, player_path(current_user.id), class: "navbar-account dropbtn" %>
             <div class="dropdown-content">
+              <%= link_to "View Account", player_path(current_user.id) %>
+              <%= link_to "Edit Account", edit_user_registration_path(current_user) %>
               <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
             </div>
           </div>
         <% else %>
@@ -54,6 +53,7 @@
    
   </nav>
 </header>
+
 
 <%= yield %>
 

@@ -408,6 +408,10 @@ form.new_ttt_game:first-child {
   text-decoration: none;
   padding: .38em;
   cursor: pointer;
+  color: #fff;
+  -webkit-text-fill-color: rgba(255,255,255,0.2); /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: #fff;
 }
 
 .ttt-square:hover a  {
@@ -497,18 +501,77 @@ a.btn-new-game {
   ========================================
 */
 
-.game-board {
-  /*
-  background: red; /* For browsers that do not support gradients */
-  /*background: -webkit-linear-gradient(70deg, red 60%, blue); /* For Safari 5.1 to 6.0 */
-  /*background: -o-linear-gradient(70deg, red 60%, blue); /* For Opera 11.1 to 12.0 */
-  /*background: -moz-linear-gradient(70deg, red 60%, blue); /* For Firefox 3.6 to 15 */
 
-  margin-top: -22px;
-  background: linear-gradient(90deg, red 55%, blue); /* Standard syntax */
-  /*background: linear-gradient(90deg, red, blue 45%); /* Standard syntax */
-  
+
+
+/* Blue to Red */
+@keyframes gradientShift-player1 {
+  0% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
 }
+
+/* Red to Blue */
+@keyframes gradientShift-player2 {
+  0% { background-position: 0% 50% }
+  100% { background-position: 100% 50% }
+}
+
+
+.game-view {
+  margin-top: -22px;
+}
+
+#view-player1 {
+  background: red; /* For browsers that do not support gradients */
+  background: linear-gradient(90deg, red, blue);
+  background-size: 200% 200%;
+  background-position: 0%;
+
+  animation: gradientShift-player1 1s ease-in 1;
+
+
+  /*background: linear-gradient(90deg, red 55%, blue); /* Standard syntax */*/
+  /*background: linear-gradient(90deg, red, blue 45%); /* Standard syntax */
+
+  -webkit-animation-fill-mode:forwards;   /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1) */
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+  animation-duration:1s;
+}
+
+#view-player1-static {
+  background: red; /* For browsers that do not support gradients */
+  background: linear-gradient(90deg, red, blue);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+}
+
+#view-player2 {
+
+  background: red; /* For browsers that do not support gradients */
+  background: linear-gradient(90deg, red, blue);
+  background-size: 200% 200%;
+  background-position: 0%;
+
+  animation: gradientShift-player2 1s ease-in 1;
+
+
+  /*background: linear-gradient(90deg, red 55%, blue); /* Standard syntax */*/
+  /*background: linear-gradient(90deg, red, blue 45%); /* Standard syntax */
+
+  -webkit-animation-fill-mode:forwards;   /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1) */
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+  animation-duration:1s;
+}
+
+#view-player2-static {
+  background: blue; /* For browsers that do not support gradients */
+  background: linear-gradient(90deg, red, blue);
+  background-size: 200% 200%;
+  background-position: 100% 50%;
+}
+
 
 
 
