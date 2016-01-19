@@ -110,7 +110,7 @@ input {
 
 .navbar-nav li a, .dropbtn {
   color: #fff;
-  padding: .5em 1.5em;
+  padding: .5em 1em;
   text-align: center;
   text-decoration: none;
 }
@@ -385,10 +385,22 @@ form.new_ttt_game:first-child {
   width: 400px;
   /*background-color: yellow;*/
   margin: 0 auto;
+  color: #fff;
+}
+
+.ttt-message {
+  /*height: 4em;*/
+  /*overflow: hidden;*/
+  /*background-color: yellow;*/
+  /*border: 2px solid yellow;*/
 }
 
 .ttt-message {
   text-align: center;
+  font-size: 1.5em;
+  line-height: 1em;
+  margin: 0;
+  padding-bottom: 1em;
 }
 
 .ttt-board {
@@ -536,7 +548,6 @@ a.btn-new-game {
 
 
 .game-view {
-  margin-top: -22px;
   height: 100vh;
 }
 

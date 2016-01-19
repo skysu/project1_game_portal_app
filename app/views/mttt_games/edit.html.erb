@@ -1,11 +1,9 @@
 <section class="game-view" id=<%= @mttt_game.which_player_edit_view %>>
 
-<h2>Edit MtttGame</h2>
-
 <div class="ttt-game">
-  <div class="ttt-message">
-    <h3><%= @mttt_game.message %></h3>
-  </div>
+
+    <h3 class="ttt-message"><%= @mttt_game.message %></h3>
+
 
   <% if @mttt_game.picking_up? %>
     <%# render partial: "mttt_pick_up_board", locals: { @valid_squares_to_pick_up => @valid_squares_to_pick_up } %>
