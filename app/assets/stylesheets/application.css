@@ -519,6 +519,7 @@ a.btn-new-game {
 
 .game-view {
   margin-top: -22px;
+  height: 100vh;
 }
 
 #view-player1 {
