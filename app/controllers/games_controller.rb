@@ -16,7 +16,6 @@ class GamesController < ApplicationController
   end
 
   def games
-    # binding.pry
     user = current_user
     
     @in_progress_games, @finished_games = case params[:game]
@@ -28,7 +27,6 @@ class GamesController < ApplicationController
     else
       [(user.ttt_games.in_progress_index + user.mttt_games.in_progress_index).sort_by(&:updated_at).reverse, (user.ttt_games.finished_index + user.mttt_games.finished_index).sort_by(&:updated_at).reverse]
     end
-
   end
 
 end

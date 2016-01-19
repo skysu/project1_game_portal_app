@@ -16,33 +16,42 @@
 
 <header>
   <nav class="navbar group">
+
     <div class="go-left">
       <div class="navbar-header">
         <span class="ruby">RubyGames</span>
       </div>
     </div>
+
     <div class="go-right">
       <ul class="navbar-nav">
-        <li><%= link_to "Games", games_path %></li>
-        <li><%= link_to "Leaderboards", leaderboards_path %></li>
         <% if current_user %>
-          <li><%= link_to "My_Games", games_player_path(current_user) %></li>
-          <!-- <li>
-          <%# link_to current_user.username, edit_user_registration_path, class: "navbar-account" %>
-          </li> -->
-          <li>
-          <%= link_to current_user.username, player_path(current_user.id), class: "navbar-account" %>
-          </li>
-          <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
-        <%# elsif current_admin %>
-          <%# current_admin.email %>
-          <%# link_to "Log Out", destroy_admin_session_path, method: :delete %>
+          <div class="dropdown">
+            <%= link_to current_user.username, player_path(current_user.id), class: "navbar-account dropbtn" %>
+            <div class="dropdown-content">
+              <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+          </div>
         <% else %>
           <li><%= link_to "Log In", new_user_session_path %></li>
           <li><%= link_to "Sign Up", new_user_registration_path %></li>
         <% end %>
       </ul>
     </div>
+
+    <div class="go-right">
+      <ul class="navbar-nav">
+        <li><%= link_to "Games", games_path %></li>
+        <li><%= link_to "Leaderboards", leaderboards_path %></li>
+        <% if current_user %>
+          <li><%= link_to "My_Games", games_player_path(current_user) %></li>
+        <% end %>
+      </ul>
+    </div>
+
+   
   </nav>
 </header>
 
