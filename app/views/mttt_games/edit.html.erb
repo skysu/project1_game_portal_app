@@ -2,7 +2,7 @@
 
 <div class="ttt-game">
 
-    <h3 class="ttt-message"><%= @mttt_game.message %></h3>
+    <h3 class="ttt-message"><%= simple_format(@mttt_game.message) %></h3>
 
 
   <% if @mttt_game.picking_up? %>
