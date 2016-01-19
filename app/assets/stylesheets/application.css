@@ -34,6 +34,12 @@ input {
   auto-complete: none;
 }
 
+.wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
  /*
    ========================================
    Style
@@ -649,7 +655,35 @@ a.piece-replacing:hover {
   -webkit-text-stroke-color: rgba(255,255,255,0.8);
 }
 
+/*
+  ========================================
+  Leaderboard
+  ========================================
+*/
 
+#leaderboard-user {
+  width: 20px;
+  height: 10px;
+  border: 2px solid black;
+  overflow: hidden;
+}
+
+.game-leaderboard th {
+  width: 100px;
+}
+
+.game-leaderboard td {
+  width: 80px;
+  text-align: right;
+}
+
+.game-leaderboard th:first-child {
+  text-align: left;
+}
+
+.game-leaderboard tr:nth-child(even) {
+  background-color: rgba(255,255,255,0.9);
+}
 
 
 

@@ -3,7 +3,7 @@
     <th colspan="5"><%= link_to "#{game.name} Leaderboard", leaderboard_game_path(game) %></th>
   <tr>
   <tr>
-    <th>User</th>
+    <th></th>
     <th>Wins</th>
     <th>Losses</th>
     <th>Draws</th>
@@ -13,7 +13,7 @@
 <% game.game_stats.order(wins: :desc).each do |stat| %>
   <% unless stat.user.default_player? %>
     <tr>
-      <th><%= rank %> <%= stat.user.username %></th>
+      <th id="leaderboard-user"><%= rank %> <%= stat.user.username %></th>
       <td><%= stat.wins %></td>
       <td><%= stat.losses %></td>
       <td><%= stat.draws %></td>
