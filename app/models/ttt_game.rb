@@ -24,6 +24,15 @@ class TttGame < ActiveRecord::Base
   
   scope :recent_first, -> { order(updated_at: :desc) }
 
+ class << self
+  def in_progress_index
+    in_progress.scorable.recent_first
+  end
+
+  def finished_index
+    finished.scorable.recent_first
+  end
+ end
 
   # validate :limit_users, on: :create
 

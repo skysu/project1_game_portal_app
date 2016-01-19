@@ -23,6 +23,16 @@ class MtttGame < ActiveRecord::Base
   
   scope :recent_first, -> { order(updated_at: :desc) }
 
+  class << self
+   def in_progress_index
+     in_progress.scorable.recent_first
+   end
+
+   def finished_index
+     finished.scorable.recent_first
+   end
+  end
+
   STATES = %w(in_progess finished)
   MOVE_STATES = %w(normal picking_up replacing)
   OPPONENTS = %w(user friend ai)
