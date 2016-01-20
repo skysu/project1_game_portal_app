@@ -1,9 +1,19 @@
-<h2>My Games</h2>
+<div class="section-header">
 
+<h1 class="section-heading">My_Games </h1>
+
+<div class="section-options">
 <%= form_tag(games_player_path, method: :get) do %>
-  <%= collection_select(:game ,:game_name, Game.all, :table_name, :name, prompt: 'View Games')%>
-  <%= submit_tag "View Games"%>
+  <div class="form-group form-options-group">
+    <%= collection_select(:game, :table_name, Game.all, :table_name, :name, include_blank: 'All Games', selected: @selected)%>
+  </div>
+  <div class="form-action form-options-action">
+    <%= submit_tag "View"%>
+  </div>
 <% end %>
+</div>
+
+</div>
 
 
 

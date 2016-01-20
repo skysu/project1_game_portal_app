@@ -23,7 +23,10 @@
     <div class="go-right">
       <% if current_user %>
         <div class="dropdown">
-          <%= link_to current_user.username, player_path(current_user.id), class: "navbar-account dropbtn" %>
+          <%= link_to player_path(current_user.id), class: "navbar-account dropbtn" do %>
+            <span><%= current_user.username %></span>
+            <%= image_tag(current_user.avatar.thumb) %>
+          <% end %>
           <div class="dropdown-content">
             <%= link_to "View Account", player_path(current_user.id) %>
             <%= link_to "Edit Account", edit_user_registration_path(current_user) %>

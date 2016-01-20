@@ -15,13 +15,21 @@
   }
 }*/
 
-@media screen and (max-width: 990px) {
 
-    .ttt-players {
-      float: none !important;
-      margin-top: 0 !important;
-      margin-left: 50px !important;
-    }
+@media only screen and (max-width: 990px) {
+  .navbar {
+    background-color: green;
+  }
+
+  .dropbtn {
+    color: transparent;
+  }
+
+  .dropbtn img {
+    width: 3rem;
+    height: 3rem;
+    /*display: none;*/
+  }
 }
 
 @media screen and (max-width: 710px) {

@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+ @import url("responsive.css");
+
  /*
    ========================================
    Layout
@@ -128,6 +131,7 @@ input {
   font-size: 2.8em;
   margin: 0;
   margin-bottom: .6em;
+  padding-left: 1rem;
   line-height: .5;
   color: #F02626;
 }
@@ -146,10 +150,21 @@ input {
   min-width: 88px;
 }
 
+.dropbtn span {
+  vertical-align: top;
+  padding-right: .4rem;
+}
+
+.dropbtn img {
+  width: 3rem;
+  height: 3rem;
+  margin-top: -.6rem;
+}
+
 .navbar-nav li a, .dropbtn {
   display: block;
   color: #fff;
-  padding: .2em 1em;
+  padding: .2rem 1rem;
   text-align: center;
   text-decoration: none;
 }
@@ -212,7 +227,8 @@ input {
   Form
   ========================================
 */
-form.new_ttt_game {
+form.new_ttt_game,
+form.new_mttt_game {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,d62222+40,d62222+100 */
   background-color: #F02626;
   width: 400px;
@@ -269,6 +285,63 @@ form.new_ttt_game:first-child {
 .form-action:hover input {
   color: #F02626;
   background: rgba(255,255,255,0.9);
+}
+
+.form-options-group,
+.form-options-action {
+  display: inline-block;
+  margin: 0;
+}
+
+.form-options-group {
+  width: 13rem;
+}
+
+.form-options-action {
+  width: 6rem;
+}
+
+.form-options-group select {
+  color: #F02626;
+  padding-left: 0.5rem
+}
+
+.form-options-action input {
+  color: #fff;
+  width: 6rem;
+  background-color: #F02626 !important;
+  border: 2px solid #F02626;
+  border-radius: 5px;
+  background: none;
+}
+
+.form-options-action input:hover {
+  color: #fff;
+  background-color: #961818 !important;
+  border: 2px solid #961818;
+}
+
+/*
+  ========================================
+  Section Header
+  ========================================
+*/
+
+.section-header {
+  color: #F02626;
+  width: 600px;
+  margin: 0 auto;
+}
+
+.section-heading {
+  display: inline-block;
+  vertical-align: baseline;
+  padding-right: 1.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.section-options {
+  display: inline-block;
 }
 
 /*
@@ -512,8 +585,36 @@ form.new_ttt_game:first-child {
 */
 
 .btn {
-
+  display: block;
+  line-height: 2em;
+  text-align: center;
+  text-decoration: none;
+  width: 18rem;
 }
+
+.btn-on-white {
+  color: #F02626;
+  background-color: #fff;
+  border: 6px solid #F02626;
+}
+
+.btn-on-white:hover {
+  color: #fff;
+  background-color: #F02626; 
+}
+
+.btn-on-white:active {
+  color: #961818;
+  background-color: #fff;
+  border-color: #961818;
+}
+
+.btn-on-red {
+  color: #F02626;
+  background-color: #fff;
+  border: 6px solid #F02626;
+}
+
 
 .btn-get-started {
   display: block;
@@ -858,5 +959,26 @@ a.piece-replacing:hover {
 }
 
 
+@media only screen and (max-width: 560px) {
 
+  .dropbtn span {
+    display: none;
+  }
+
+  .dropbtn img {
+  }
+
+  .dropbtn, .dropdown {
+    width: 4rem;
+  }
+
+  .section-options {
+    display: block;
+  }
+
+  .navbar-nav li a {
+    padding-left: .9rem;
+    padding-right: .8rem;
+  }
+}
 

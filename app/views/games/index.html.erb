@@ -5,7 +5,7 @@
 
   <div class="game">
     <h3><%= link_to game.name, game_path(game) %></h3>
-    <%= link_to "Play #{game.name}", { controller: game.table_name, action: 'new'}, method: :get, class: "btn-new-game" %>
+    <%= link_to "Play #{game.name}", { controller: game.table_name, action: 'new'}, method: :get, class: "btn btn-on-white" %>
   </div>
 
 <% end %>
