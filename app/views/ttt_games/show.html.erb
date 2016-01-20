@@ -7,10 +7,14 @@
         </script>
 <% end %>
 
-<section class="game-view" id=<%= @ttt_game.which_player_show_view %>>
+<div class="game-view" id=<%= "#{@ttt_game.which_player_show_view}" %>>
 <div class="ttt-game">
   <div class="ttt-message">
-    <h3><%= @ttt_game.message %></h3>
+    <% unless @ttt_game.finished? %>
+      <p><%= @ttt_game.current_player_display_name %>'s Turn</p>
+    <% else %>
+      <%= simple_format(@ttt_game.message) %>
+    <% end %>
   </div>
 
   <%= render "waiting_board" %>
@@ -22,7 +26,7 @@
 
 <%= render "players" %>
 
-</section>
+</div>
 
 
 

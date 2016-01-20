@@ -12,7 +12,13 @@ module MtttLogic
       when 'picking_up'
         pick_up_piece(move.square)
         add_to_current_player_pieces(1)
-        self.update(move_state: 'replacing', message: "#{current_player_display_name},\nchoose a square to replace your piece")
+        message = if self.friend_playing?
+                    "#{current_player_display_name}, choose a square\nto replace your piece"
+                  else
+                    "Choose a square\nto replace your piece"
+                  end
+
+        self.update(move_state: 'replacing', message: message)
 
       when 'replacing'
         place_piece(move.square, move.player[:symbol])
@@ -28,7 +34,12 @@ module MtttLogic
           self.update(state: 'finished', is_draw: true, message: "Game is a draw")
         else
           self.update(current_player: switch(current_player))
-          self.update(move_state: 'picking_up', message: "#{current_player_display_name},\nchoose a piece to pick up")
+          message = if self.friend_playing?
+                      "#{current_player_display_name},\nchoose a piece to pick up"
+                    else
+                      "Choose a piece to pick up"
+                    end
+          self.update(move_state: 'picking_up', message: message)
         end
 
       when 'normal'
@@ -47,7 +58,12 @@ module MtttLogic
           self.update(current_player: switch(current_player))
 
           if self.current_player[:pieces] <= 0
-            self.update(move_state: 'picking_up', message: "#{current_player_display_name},\nchoose a piece to pick up")
+            message = if self.friend_playing?
+                        "#{current_player_display_name},\nchoose a piece to pick up"
+                      else
+                        "Choose a piece to pick up"
+                      end
+            self.update(move_state: 'picking_up', message: message)
           else
             self.update(state: 'in_progress', message: "#{current_player_display_name}'s Turn")
           end

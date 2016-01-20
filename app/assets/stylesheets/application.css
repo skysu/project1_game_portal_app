@@ -37,7 +37,7 @@ input {
 .wrapper {
   max-width: 900px;
   margin: 0 auto;
-  position: relative;
+  /*position: relative;*/
 }
 
  /*
@@ -77,6 +77,33 @@ input {
   ========================================
 */
 
+.flexbox {
+  display: -webkit-box;
+  display: -moz-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.box1 {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  flex-grow: 2;
+}
+
+.box2 {
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  box-flex: 0;
+}
+
+.box3 {
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  box-flex: 0;
+}
+
 .go-left {
   float: left;
 }
@@ -88,29 +115,41 @@ input {
 .navbar {
   background-color: #961818;
   /*background-color: #8C1C13;*/
-  height: 4em;
+  /*height: 4em;*/
+  padding-top: 1em;
 }
 
 .navbar ul {
   list-style-type: none;
-  display: inline-block;
+  /*display: inline-block;*/
 }
 
 .navbar-header {
-  font-size: 50px;
+  font-size: 2.8em;
+  margin: 0;
+  margin-bottom: .6em;
+  line-height: .5;
+  color: #F02626;
 }
 
 .navbar-nav {
   background-color: blue;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-nav li, .dropbtn {
   display: inline-block;
 }
 
+.dropbtn {
+  min-width: 88px;
+}
+
 .navbar-nav li a, .dropbtn {
+  display: block;
   color: #fff;
-  padding: .5em 1em;
+  padding: .2em 1em;
   text-align: center;
   text-decoration: none;
 }
@@ -396,11 +435,19 @@ form.new_ttt_game:first-child {
 }
 
 .ttt-message {
+  height: 4em;
+  padding: 1em 0;
+}
+
+.ttt-message p {
   text-align: center;
   font-size: 1.5em;
   line-height: 1em;
   margin: 0;
-  padding-bottom: 1em;
+/*  padding-top: 1em;
+  padding-bottom: 1em;*/
+  /*height: 2em;*/
+  /*padding-bottom: 1em;*/
 }
 
 .ttt-board {
@@ -455,6 +502,8 @@ form.new_ttt_game:first-child {
 .ttt-player .player2 {
 
 }
+
+
 
 /*
   ========================================
@@ -524,26 +573,44 @@ a.btn-new-game {
 
 /* Blue to Red */
 @keyframes gradientShift-player1 {
-  0% { background-position: 100% 50% }
-  100% { background-position: 0% 50% }
+  0% { background-position: 80% 50% }
+  100% { background-position: 20% 50% }
 }
 
 /* Red to Even */
 @keyframes gradientShift-player1-draw {
-  0% { background-position: 0% 50% }
+  0% { background-position: 20% 50% }
   100% { background-position: 50% 50% }
+}
+
+/* Red to More Red */
+@keyframes gradientShift-player1-win {
+  0% { background-position: 20% 50% }
+  100% { background-position: 0% 50% }
 }
 
 /* Red to Blue */
 @keyframes gradientShift-player2 {
-  0% { background-position: 0% 50% }
-  100% { background-position: 100% 50% }
+  0% { background-position: 20% 50% }
+  100% { background-position: 80% 50% }
 }
 
 /* Blue to Even */
 @keyframes gradientShift-player2-draw {
-  0% { background-position: 100% 50% }
+  0% { background-position: 80% 50% }
   100% { background-position: 50% 50% }
+}
+
+/* Blue to More Blue */
+@keyframes gradientShift-player2-win {
+  0% { background-position: 80% 50% }
+  100% { background-position: 100% 50% }
+}
+
+/* Red to More Blue */
+@keyframes gradientShift-player2-ai-win {
+  0% { background-position: 20% 50% }
+  100% { background-position: 100% 50% }
 }
 
 
@@ -554,7 +621,7 @@ a.btn-new-game {
 #view-player1 {
   background: red; /* For browsers that do not support gradients */
   background: linear-gradient(90deg, red, blue);
-  background-size: 200% 200%;
+  background-size: 240% 240%;
   background-position: 0%;
 
   animation: gradientShift-player1 1s ease-in 1;
@@ -572,15 +639,33 @@ a.btn-new-game {
 #view-player1-static {
   background: red; /* For browsers that do not support gradients */
   background: linear-gradient(90deg, red, blue);
-  background-size: 200% 200%;
-  background-position: 0% 50%;
+  background-size: 240% 240%;
+  background-position: 20% 50%;
+}
+
+#view-player1-win {
+  background: red; /* For browsers that do not support gradients */
+  background: linear-gradient(90deg, red, blue);
+  background-size: 240% 240%;
+  background-position: 0%;
+
+  animation: gradientShift-player1-win 0.5s ease-in 1;
+
+
+  /*background: linear-gradient(90deg, red 55%, blue); /* Standard syntax */*/
+  /*background: linear-gradient(90deg, red, blue 45%); /* Standard syntax */
+
+  -webkit-animation-fill-mode:forwards;   /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1) */
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+  animation-duration:1s;
 }
 
 #view-player2 {
 
   background: red; /* For browsers that do not support gradients */
   background: linear-gradient(90deg, red, blue);
-  background-size: 200% 200%;
+  background-size: 240% 240%;
   background-position: 0%;
 
   animation: gradientShift-player2 1s ease-in 1;
@@ -598,17 +683,55 @@ a.btn-new-game {
 #view-player2-static {
   background: blue; /* For browsers that do not support gradients */
   background: linear-gradient(90deg, red, blue);
-  background-size: 200% 200%;
-  background-position: 100% 50%;
+  background-size: 240% 240%;
+  background-position: 80% 50%;
+}
+
+#view-player2-win {
+
+  background: red; /* For browsers that do not support gradients */
+  background: linear-gradient(90deg, red, blue);
+  background-size: 240% 240%;
+  background-position: 0%;
+
+  animation: gradientShift-player2-win 0.5s ease-in 1;
+
+
+  /*background: linear-gradient(90deg, red 55%, blue); /* Standard syntax */*/
+  /*background: linear-gradient(90deg, red, blue 45%); /* Standard syntax */
+
+  -webkit-animation-fill-mode:forwards;   /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1) */
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+  animation-duration:1s;
+}
+
+#view-player2-ai-win {
+
+  background: red; /* For browsers that do not support gradients */
+  background: linear-gradient(90deg, red, blue);
+  background-size: 240% 240%;
+  background-position: 0%;
+
+  animation: gradientShift-player2-ai-win 0.6s ease-in 1;
+
+
+  /*background: linear-gradient(90deg, red 55%, blue); /* Standard syntax */*/
+  /*background: linear-gradient(90deg, red, blue 45%); /* Standard syntax */
+
+  -webkit-animation-fill-mode:forwards;   /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1) */
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+  animation-duration:1s;
 }
 
 #view-player1-draw {
   background: red; /* For browsers that do not support gradients */
   background: linear-gradient(90deg, red, blue);
-  background-size: 200% 200%;
+  background-size: 240% 240%;
   background-position: 0%;
 
-  animation: gradientShift-player1-draw 1s ease-in 1;
+  animation: gradientShift-player1-draw 0.5s ease-in 1;
 
   /*background: linear-gradient(90deg, red 55%, blue); /* Standard syntax */*/
   /*background: linear-gradient(90deg, red, blue 45%); /* Standard syntax */
@@ -622,10 +745,10 @@ a.btn-new-game {
 #view-player2-draw {
   background: red; /* For browsers that do not support gradients */
   background: linear-gradient(90deg, red, blue);
-  background-size: 200% 200%;
+  background-size: 240% 240%;
   background-position: 0%;
 
-  animation: gradientShift-player2-draw 1s ease-in 1;
+  animation: gradientShift-player2-draw 0.5s ease-in 1;
 
   /*background: linear-gradient(90deg, red 55%, blue); /* Standard syntax */*/
   /*background: linear-gradient(90deg, red, blue 45%); /* Standard syntax */
@@ -681,11 +804,12 @@ a.piece-replacing:hover {
 
 .game-leaderboard th {
   width: 100px;
+  text-align: center;
 }
 
 .game-leaderboard td {
   width: 80px;
-  text-align: right;
+  text-align: center;
 }
 
 .game-leaderboard th:first-child {
@@ -711,6 +835,14 @@ a.piece-replacing:hover {
    white-space: -pre-wrap;     /* Opera <7 */   
    white-space: -o-pre-wrap;   /* Opera 7 */    
    word-wrap: break-word;      /* IE */
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
 
 .group:before,

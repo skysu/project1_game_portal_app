@@ -125,22 +125,30 @@ class TttGame < ActiveRecord::Base
   end
 
   def which_player_show_view
-    if self.ttt_moves.any?
-      case opponent
-        when 'user', 'friend'
+    if self.finished?
+      if self.is_draw
+        case self.opponent
+        when 'user' 'friend'
           if current_player[:symbol] == player1[:symbol]
-            "view-player2"
+            "view-player1-draw"
           else
-            "view-player1"
+            "view-player2-draw"
           end
         when 'ai'
-          "view-player2-static"
+          "view-player1-draw"
+        end
+      elsif current_player[:symbol] == player1[:symbol]
+        "view-player1-win"
+      elsif self.ai_playing?
+        "view-player2-ai-win"
+      else
+        "view-player2-win"
       end
     else
       if current_player[:symbol] == player1[:symbol]
-        "view-player2-static"
-      else
         "view-player1-static"
+      else
+        "view-player2-static"
       end
     end
   end
@@ -169,17 +177,7 @@ class TttGame < ActiveRecord::Base
   end
 
   def set_current_turn_message
-    message = case self.opponent
-      when 'user', 'ai'
-        "#{self.current_player_user.username}'s Turn"
-      when 'friend'
-        if self.current_player[:symbol] == self.player2[:symbol]
-          "Friend's Turn"
-        else 
-          "#{self.current_player_user.username}'s Turn"
-        end
-    end
-    self.update(message: message)
+    self.update(message: "#{self.current_player_display_name}'s Turn")
   end
 
   def symbol_for_player(id)

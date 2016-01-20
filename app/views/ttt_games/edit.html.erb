@@ -1,12 +1,17 @@
-<section class="game-view" id=<%= "#{@ttt_game.which_player_edit_view}" %>>
+<div class="game-view" id=<%= "#{@ttt_game.which_player_edit_view}" %>>
 
 <div class="ttt-game">
   <div class="ttt-message">
-    <h3><%= @ttt_game.message %></h3>
+    <% case @ttt_game.opponent %>
+    <% when 'user', 'ai' %>
+      <p>Your Turn</p>
+    <% when 'friend' %>
+      <%= simple_format(@ttt_game.message) %>
+    <% end %>
   </div>
   <%= render "board" %>
 </div>
 
 <%= render "players" %>
 
-</section>
+</div>

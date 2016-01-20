@@ -16,29 +16,26 @@
 
 <header>
   <nav class="navbar group">
-    <div class="wrapper">
     <div class="go-left">
-      <div class="navbar-header">
-        <span class="ruby">RubyGames</span>
-      </div>
+      <h1 class="navbar-header">RubyGames</h1>
     </div>
 
     <div class="go-right">
-      <ul class="navbar-nav">
-        <% if current_user %>
-          <div class="dropdown">
-            <%= link_to current_user.username, player_path(current_user.id), class: "navbar-account dropbtn" %>
-            <div class="dropdown-content">
-              <%= link_to "View Account", player_path(current_user.id) %>
-              <%= link_to "Edit Account", edit_user_registration_path(current_user) %>
-              <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
-            </div>
+      <% if current_user %>
+        <div class="dropdown">
+          <%= link_to current_user.username, player_path(current_user.id), class: "navbar-account dropbtn" %>
+          <div class="dropdown-content">
+            <%= link_to "View Account", player_path(current_user.id) %>
+            <%= link_to "Edit Account", edit_user_registration_path(current_user) %>
+            <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
           </div>
-        <% else %>
+        </div>
+      <% else %>
+        <ul class="navbar-nav">
           <li><%= link_to "Log In", new_user_session_path %></li>
           <li><%= link_to "Sign Up", new_user_registration_path %></li>
-        <% end %>
-      </ul>
+        </ul>
+      <% end %>
     </div>
 
     <div class="go-right">
@@ -51,13 +48,13 @@
       </ul>
     </div>
 
-   </div>
+    
   </nav>
 </header>
 
-<div class="wrapper">
+
 <%= yield %>
-</div>
+
 
 </body>
 </html>

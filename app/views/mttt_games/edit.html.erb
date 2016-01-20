@@ -1,15 +1,22 @@
-<section class="game-view" id=<%= @mttt_game.which_player_edit_view %>>
-
+<div class="game-view" id=<%= "#{@mttt_game.which_player_edit_view}" %>>
 <div class="ttt-game">
-
-    <h3 class="ttt-message"><%= simple_format(@mttt_game.message) %></h3>
-
+  <div class="ttt-message">
+    <% case @mttt_game.opponent %>
+    <% when 'user', 'ai' %>
+      <% case @mttt_game.move_state %>
+      <% when 'normal' %>
+        <p>Your Turn</p>
+      <% when 'picking_up', 'replacing' %>
+        <%= simple_format(@mttt_game.message) %>
+      <% end %>
+    <% when 'friend' %>
+      <%= simple_format(@mttt_game.message) %>
+    <% end %>
+  </div>
 
   <% if @mttt_game.picking_up? %>
-    <%# render partial: "mttt_pick_up_board", locals: { @valid_squares_to_pick_up => @valid_squares_to_pick_up } %>
     <%= render "mttt_pick_up_board" %>
   <% elsif @mttt_game.replacing? %>
-    <%# render partial: "mttt_replace_board", locals: { @valid_squares_to_replace => @valid_squares_to_replace } %>
     <%= render "mttt_replace_board" %>
   <% else %>
     <%= render "mttt_board" %>
@@ -33,6 +40,6 @@
 
 </div>
 
-</section>
+</div>
 
 <%# render "players" %>

@@ -144,17 +144,22 @@ class MtttGame < ActiveRecord::Base
   def which_player_show_view
     if self.finished?
       if self.is_draw
-        if current_player[:symbol] == player1[:symbol]
+        case self.opponent
+        when 'user' 'friend'
+          if current_player[:symbol] == player1[:symbol]
+            "view-player1-draw"
+          else
+            "view-player2-draw"
+          end
+        when 'ai'
           "view-player1-draw"
-        else
-          "view-player2-draw"
         end
       elsif current_player[:symbol] == player1[:symbol]
-        "view-player1-static"
+        "view-player1-win"
       elsif self.ai_playing?
-        "view-player2"
+        "view-player2-ai-win"
       else
-        "view-player2-static"
+        "view-player2-win"
       end
     else
       if current_player[:symbol] == player1[:symbol]

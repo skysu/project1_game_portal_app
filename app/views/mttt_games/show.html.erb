@@ -1,12 +1,16 @@
-<section class="game-view" id=<%= @mttt_game.which_player_show_view %>>
+<div class="game-view" id=<%= "#{@mttt_game.which_player_show_view}" %>>
 
 <div class="ttt-game">
   <div class="ttt-message">
-    <h3><%= @mttt_game.message %></h3>
+    <% unless @mttt_game.finished? %>
+      <p><%= @mttt_game.current_player_display_name %>'s Turn</p>
+    <% else %>
+      <%= simple_format(@mttt_game.message) %>
+    <% end %>
   </div>
 
   <%= render "mttt_waiting_board" %>
 
 </div>
 
-</section>
+</div>
