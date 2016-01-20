@@ -1,31 +1,50 @@
-<h2>User</h2>
+<div class="user-profile user-group">
 
-<h2><%= @user.username %></h2>
-<% if current_user == @user %>
-  <%= link_to "Edit My Account", edit_user_registration_path(current_user) %>
-<% end %>
+<h2 class="user-name"><%= @user.username %></h2>
 <br>
 
-<%= image_tag @user.avatar %>
+<%= image_tag @user.avatar, class: "user-image" %>
+</div>
 
-<table class="user-stats">
-  <tr>
-    <th colspan="5"><%= @user.username %>'s Stats</th>
-  <tr>
-  <tr>
-    <th>Game</th>
-    <th>Wins</th>
-    <th>Losses</th>
-    <th>Draws</th>
-    <th>Total</th>
-  </tr>
-<% @user.game_stats.each do |stat| %>
-  <tr>
-    <th><%= stat.game_name %></th>
-    <td><%= stat.wins %></td>
-    <td><%= stat.losses %></td>
-    <td><%= stat.draws %></td>
-    <td><%= stat.total %></td>
-  </tr>
+<div class="user-group">
+<% if current_user == @user %>
+  <%= link_to "Edit My Account", edit_user_registration_path(current_user), class: "user-edit btn btn-on-white" %>
 <% end %>
+
+<p class="user-joined">Joined: <%= @user.created_at.strftime("%d %B, %Y") %></p>
+
+<table class="game-leaderboard">
+  <thead>
+    <tr>
+      <th colspan="6" class="leaderboard-game-name"><%= @user.username %>'s Stats</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th class="wins">Wins</th>
+      <th class="losses">Losses</th>
+      <th class="draws">Draws</th>
+      <th class="total">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @user.game_stats.each do |stat| %>
+    <tr>
+      <td></td>
+      <th id="leaderboard-user"><%= stat.game_name %></th>
+      <td><%= stat.wins %></td>
+      <td><%= stat.losses %></td>
+      <td><%= stat.draws %></td>
+      <td><%= stat.total %></td>
+    </tr>
+  <% end %>
+  </tbody>
 </table>
+
+</div>
+
+
+
+
+
+

@@ -227,6 +227,18 @@ input {
   Form
   ========================================
 */
+.new-game {
+  width: 400px;
+  text-align: center;
+  margin: 0 auto;
+  color: #F02626;
+  font-size: 1.1rem;
+}
+
+.new-game h1 {
+  margin-top: 1rem;
+}
+
 form.new_ttt_game,
 form.new_mttt_game {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,d62222+40,d62222+100 */
@@ -452,8 +464,9 @@ form.new_ttt_game:first-child {
 }
 
 .list-item:hover {
-  margin: -2px 0px 5px -10px;
+  margin: 0px 0px 4px -8px;
   box-shadow: 2px 2px 2px black;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   background-color: #FF6B6B;
 }
 
@@ -486,6 +499,23 @@ form.new_ttt_game:first-child {
   font-size: .8em;
   line-height: .8em;
 }
+/*
+  ========================================
+  Game Index
+  ========================================
+*/
+
+.game-name {
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  font-size: 2rem;
+}
+.game {
+  background: linear-gradient(90deg, red, blue);
+  width: 300px;
+  height: 300px;
+}
 
 /*
   ========================================
@@ -501,15 +531,9 @@ form.new_ttt_game:first-child {
 }
 
 .ttt-message {
-  /*height: 4em;*/
-  /*overflow: hidden;*/
-  /*background-color: yellow;*/
-  /*border: 2px solid yellow;*/
-}
-
-.ttt-message {
   height: 4em;
   padding: 1em 0;
+  margin-bottom: 1rem;
 }
 
 .ttt-message p {
@@ -643,22 +667,12 @@ form.new_ttt_game:first-child {
 }
 
 .btn-new-game {
-    display: block;
-    text-decoration: none;
-    color: #F02626;
-    background-color: #fff;
-    border: 6px solid #961818;
-    line-height: 2em;
-    text-align: center;
-    width: 300px;
+  margin: 0 auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-a.btn-new-game {
-  color: #F02626;
-}
 
-.btn-get-started:hover,
-.btn-new-game:hover {
+.btn-get-started:hover {
   background-color: rgba(255,255,255,0.8);
   border: 6px solid #F02626;
 }
@@ -890,17 +904,45 @@ a.piece-replacing:hover {
   -webkit-text-stroke-color: rgba(255,255,255,0.8);
 }
 
+.piece-winning {
+  /*color: red;*/
+  text-shadow: #fff 0 0 10px, #fff 2px 2px 4px, #fff -1px -1px 2px;
+}
+
 /*
   ========================================
   Leaderboard
   ========================================
 */
 
+
+
 #leaderboard-user {
   width: 20px;
   height: 10px;
-  border: 2px solid black;
-  overflow: hidden;
+  /*border: 2px solid black;*/
+  white-space: nowrap;
+}
+
+.game-leaderboard {
+  margin: 1rem auto;
+}
+
+.leaderboard-game-name {
+  border-bottom: 2px solid #F02626;
+}
+
+.leaderboard-game-name a {
+  text-decoration: none;
+  text-align: left;
+  font-size: 1.8rem;
+  color: #F02626;
+}
+
+.leaderboard-game-name {
+  text-align: left;
+  font-size: 1.8rem;
+  color: #F02626;
 }
 
 .game-leaderboard th {
@@ -909,16 +951,74 @@ a.piece-replacing:hover {
 }
 
 .game-leaderboard td {
-  width: 80px;
+  width: 60px;
   text-align: center;
 }
 
-.game-leaderboard th:first-child {
+.game-leaderboard th:nth-of-type(1) {
+  text-align: right;
+  width: 2.5rem;
+  padding-right: 1rem;
+}
+
+.game-leaderboard th:nth-of-type(2) {
   text-align: left;
 }
 
-.game-leaderboard tr:nth-child(even) {
+.game-leaderboard tbody tr:nth-child(odd) {
   background-color: rgba(255,255,255,0.9);
+}
+
+.game-leaderboard tbody tr:nth-of-type(1) {
+  background-color: #F02626;
+  color: #fff;
+}
+
+/*
+  ========================================
+  User Profile
+  ========================================
+*/
+
+.user-group {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.user-profile {
+  max-height: 350px;
+  overflow: hidden;
+  position: relative;
+}
+
+.user-name {
+  color: #fff;
+  background-color: #F02626; 
+  padding: .3rem 2rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.user-edit {
+ float: left;
+}
+
+.user-joined {
+  text-align: right;
+}
+
+.user-image {
+  position: relative;
+  z-index: -1;
+  margin-top: -3rem;
+  width: 100%;
+  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.3);
+}
+
+.user-stats {
+  width: 90%;
+  margin: 0 auto;
 }
 
 

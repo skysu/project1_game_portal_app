@@ -1,7 +1,9 @@
 require 'mttt_logic'
+require 'mttt_win_checker'
 
 class MtttGame < ActiveRecord::Base
   include MtttLogic
+  include MtttWinChecker
 
   has_many :mttt_moves, dependent: :destroy
   has_and_belongs_to_many :users

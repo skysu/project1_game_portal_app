@@ -4,7 +4,7 @@
 <% @games.each do |game| %>
 
   <div class="game">
-    <h3><%= link_to game.name, game_path(game) %></h3>
+    <%= link_to game.name, game_path(game), class: "game-name" %>
     <%= link_to "Play #{game.name}", { controller: game.table_name, action: 'new'}, method: :get, class: "btn btn-on-white" %>
   </div>
 

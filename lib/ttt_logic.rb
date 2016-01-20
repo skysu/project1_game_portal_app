@@ -21,7 +21,7 @@ module TttLogic
       else
         self.ttt_moves << move
         place_piece(move.square, move.player[:symbol])
-        if TttWinChecker.new.winner(move.player[:symbol], self.board)
+        if self.has_won?(move.player[:symbol], self.board)
           case self.opponent
             when 'user', 'ai'
               self.update(winner_id: self.current_player[:id])

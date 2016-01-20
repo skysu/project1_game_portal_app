@@ -5,11 +5,21 @@
     <% unless @mttt_game.finished? %>
       <p><%= @mttt_game.current_player_display_name %>'s Turn</p>
     <% else %>
-      <%= simple_format(@mttt_game.message) %>
+      <% if current_user[:id] == @mttt_game.winner_id %>
+        <p>You Win!</p>
+      <% else %>
+        <%= simple_format(@mttt_game.message) %>
+      <% end %>
     <% end %>
   </div>
 
-  <%= render "mttt_waiting_board" %>
+  <% unless @mttt_game.finished? %>
+    <%= render "mttt_waiting_board" %>
+  <% else %>
+    <%= render "mttt_winning_board" %>
+    <br>
+    <%= link_to "New Game?", new_mttt_game_path, class: "btn btn-on-white btn-new-game" %>
+  <% end %>
 
 </div>
 

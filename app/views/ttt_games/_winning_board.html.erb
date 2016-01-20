@@ -1,0 +1,19 @@
+<table class="ttt-board">
+  <% 9.times do |i| %>
+    <% if (i) % 3 == 0%>
+      <tr>
+    <% end %>
+        <td>
+          <div class="ttt-square">
+            <% if @winning_indices.include?(i) %>
+              <span class="piece-winning"><%= @ttt_game.board[i] %></span>
+            <% else %>
+              <%= @ttt_game.board[i] %>
+            <% end %>
+          </div>
+        </td>
+    <% if (i+1) % 3 == 0 %>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

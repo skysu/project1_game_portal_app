@@ -1,4 +1,4 @@
-class TttWinChecker
+module TttWinChecker
 
   WINNING_LINES = [ # Horizontal Lines
                     [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -7,6 +7,13 @@ class TttWinChecker
                     # Diagonal Lines
                     [0, 4, 8], [2, 4, 6] ]
 
+  def winning_indices(symbol, board)
+    indices = map_symbol_indices(symbol, board)
+    WINNING_LINES.each do |line|
+      return line if indices & line == line
+    end
+    return false
+  end
 
   def winner(symbol, board)
     has_won?(symbol, board) ? symbol : false

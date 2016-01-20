@@ -13,14 +13,20 @@
     <% unless @ttt_game.finished? %>
       <p><%= @ttt_game.current_player_display_name %>'s Turn</p>
     <% else %>
-      <%= simple_format(@ttt_game.message) %>
+      <% if current_user[:id] == @ttt_game.winner_id %>
+        <p>You Win!</p>
+      <% else %>
+        <%= simple_format(@ttt_game.message) %>
+      <% end %>
     <% end %>
   </div>
 
-  <%= render "waiting_board" %>
-  <% if @ttt_game.finished? %>
-  <br>
-    <%= link_to "New Game?", new_ttt_game_path, class: "btn-new-game" %>
+  <% unless @ttt_game.finished? %>
+    <%= render "waiting_board" %>
+  <% else %>
+    <%= render "winning_board" %>
+    <br>
+    <%= link_to "New Game?", new_ttt_game_path, class: "btn btn-on-white btn-new-game" %>
   <% end %>
 </div>
 

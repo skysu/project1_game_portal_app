@@ -1,4 +1,6 @@
-<h2>Leaderboards</h2>
+<div class="section-header">
+<h1 class="section-heading">Leaderboards</h1>
+</div>
 
 <% @games.each do |game| %>
   <%= render partial: 'leaderboard', locals: { game: game } %>

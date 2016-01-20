@@ -1,25 +1,31 @@
 <table class="game-leaderboard">
-  <tr>
-    <th colspan="5"><%= link_to "#{game.name} Leaderboard", leaderboard_game_path(game) %></th>
-  <tr>
-  <tr>
-    <th></th>
-    <th>Wins</th>
-    <th>Losses</th>
-    <th>Draws</th>
-    <th>Total</th>
-  </tr>
-<% rank = 1 %>
-<% game.game_stats.order(wins: :desc).each do |stat| %>
-  <% unless stat.user.default_player? %>
+  <thead>
     <tr>
-      <th id="leaderboard-user"><%= rank %> <%= stat.user.username %></th>
+      <th colspan="6" class="leaderboard-game-name"><%= link_to game.name, game_path(game) %></th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th class="wins">Wins</th>
+      <th class="losses">Losses</th>
+      <th class="draws">Draws</th>
+      <th class="total">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% rank = 1 %>
+  <% game.game_stats.order(wins: :desc).each do |stat| %>
+    <% unless stat.user.default_player? %>
+    <tr>
+      <th><%= rank %>.</th>
+      <th id="leaderboard-user"><%= stat.user.username %></th>
       <td><%= stat.wins %></td>
       <td><%= stat.losses %></td>
       <td><%= stat.draws %></td>
       <td><%= stat.total %></td>
     </tr>
     <% rank += 1 %>
+    <% end %>
   <% end %>
-<% end %>
+  </tbody>
 </table>

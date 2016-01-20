@@ -23,7 +23,7 @@ module MtttLogic
       when 'replacing'
         place_piece(move.square, move.player[:symbol])
         add_to_current_player_pieces(-1)
-        if MtttWinChecker.new.has_won?(move.player[:symbol], self.board)
+        if self.has_won?(move.player[:symbol], self.board)
           case self.opponent
             when 'user', 'ai'
               self.update(winner_id: self.current_player[:id])
@@ -45,7 +45,7 @@ module MtttLogic
       when 'normal'
         place_piece(move.square, move.player[:symbol])
         add_to_current_player_pieces(-1)
-        if MtttWinChecker.new.has_won?(move.player[:symbol], self.board)
+        if self.has_won?(move.player[:symbol], self.board)
           case self.opponent
             when 'user', 'ai'
               self.update(winner_id: self.current_player[:id])

@@ -45,6 +45,8 @@ class MtttGamesController < ApplicationController
       if user_is_current_player?
         redirect_to edit_mttt_game_path(@mttt_game) and return
       end
+    else
+      @winning_indices = @mttt_game.winning_indices(@mttt_game.current_player[:symbol], @mttt_game.board)
     end
   end
 
