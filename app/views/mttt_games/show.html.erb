@@ -13,13 +13,32 @@
     <% end %>
   </div>
 
-  <% unless @mttt_game.finished? %>
+  <% unless @mttt_game.finished? && !@mttt_game.is_draw %>
     <%= render "mttt_waiting_board" %>
   <% else %>
     <%= render "mttt_winning_board" %>
     <br>
     <%= link_to "New Game?", new_mttt_game_path, class: "btn btn-on-white btn-new-game" %>
   <% end %>
+
+  <table class="ttt-players">
+    <tr>
+      <th class="ttt-player1 ttt-symbol"><%= @mttt_game.player1[:symbol] %></th>
+      <th class="ttt-player2 ttt-symbol"><%= @mttt_game.player2[:symbol] %></th>
+    </tr>
+    <tr>
+      <td class="ttt-player1"><%= @mttt_game.player1_display_name %></td>
+      <td class="ttt-player2"><%= @mttt_game.player2_display_name %></td>
+    </tr>
+    <tr>
+      <td class="ttt-player1"><% @mttt_game.player1[:pieces].times do %>
+      <span><%= @mttt_game.player1[:symbol] %></span>
+    <% end %></td>
+      <td class="ttt-player2"><% @mttt_game.player2[:pieces].times do %>
+      <span><%= @mttt_game.player2[:symbol] %></span>
+    <% end %></td>
+    </tr>
+  </table>
 
 </div>
 

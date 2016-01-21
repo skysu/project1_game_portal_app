@@ -136,6 +136,11 @@ input {
   color: #F02626;
 }
 
+.navbar-header a {
+  text-decoration: none;
+  color: #F02626;
+}
+
 .navbar-nav {
   background-color: blue;
   margin: 0;
@@ -506,15 +511,48 @@ form.new_ttt_game:first-child {
 */
 
 .game-name {
+  display: inline-block;
   text-align: center;
   text-decoration: none;
   color: #fff;
   font-size: 2rem;
+  margin-bottom: .8rem;
 }
+
+div.game {
+    background: red; /* For browsers that do not support gradients */
+    background: linear-gradient(90deg, red, blue);
+    background-size: 240% 240%;
+    background-position: 0%;
+
+    animation: gradientShift-player1 1s ease 1;
+
+    -webkit-animation-fill-mode:forwards;
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+
+    /*animation-play-state: paused;*/
+}
+
+div.game:hover {
+  animation: gradientShift-player2 1s ease 1;
+
+  -webkit-animation-fill-mode:forwards;
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+}
+
 .game {
+  display: block;
   background: linear-gradient(90deg, red, blue);
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 1rem;
+  padding: 1.2rem;
+}
+
+.game-btn {
+  margin: 0 auto;
 }
 
 /*
@@ -581,15 +619,25 @@ form.new_ttt_game:first-child {
 }
 
 .ttt-players {
-  margin-top: -335px;
-  margin-left: 100px;
+  color: #fff;
+  width: 300px;
+  margin: 0 auto;
 }
 
-.ttt-player {
-  /*background-color: yellow;*/
-  margin-left: 10px;
-  max-width: 400px;
-  display: inline-block;
+.ttt-players td {
+  width: 50%;
+}
+
+.ttt-symbol {
+  font-size: 2em;
+}
+
+.ttt-player1 {
+  text-align: left;
+}
+
+.ttt-player2 {
+  text-align: right;
 }
 
 .ttt-player .player1 {
@@ -610,10 +658,19 @@ form.new_ttt_game:first-child {
 
 .btn {
   display: block;
-  line-height: 2em;
+  /*line-height: 2em;*/
+  padding: .2rem;
   text-align: center;
   text-decoration: none;
   width: 18rem;
+}
+
+.btn-get-started {
+  font-size: 2rem;
+  line-height: 2rem;
+  margin: 0 auto;
+  margin-top: 4rem;
+  padding-bottom: .5rem;
 }
 
 .btn-on-white {
@@ -639,22 +696,6 @@ form.new_ttt_game:first-child {
   border: 6px solid #F02626;
 }
 
-
-.btn-get-started {
-  display: block;
-  text-decoration: none;
-  color: #F02626;
-/*  background-color: #fff;*/
-  padding: 0 .2em;
-  border: 6px solid #961818;
-  font-size: 2em;
-  line-height: 2em;
-  text-align: center;
-  width: 300px;
-  margin: 0 auto;
-  margin-top: 150px;
-}
-
 .list-header {
   display: inline-block;
 }
@@ -669,12 +710,6 @@ form.new_ttt_game:first-child {
 .btn-new-game {
   margin: 0 auto;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-
-.btn-get-started:hover {
-  background-color: rgba(255,255,255,0.8);
-  border: 6px solid #F02626;
 }
 
 /*
@@ -741,14 +776,9 @@ form.new_ttt_game:first-child {
 
   animation: gradientShift-player1 1s ease-in 1;
 
-
-  /*background: linear-gradient(90deg, red 55%, blue); /* Standard syntax */*/
-  /*background: linear-gradient(90deg, red, blue 45%); /* Standard syntax */
-
-  -webkit-animation-fill-mode:forwards;   /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1) */
+  -webkit-animation-fill-mode:forwards;
   -moz-animation-fill-mode:forwards;
   animation-fill-mode:forwards;
-  animation-duration:1s;
 }
 
 #view-player1-static {
@@ -764,16 +794,11 @@ form.new_ttt_game:first-child {
   background-size: 240% 240%;
   background-position: 0%;
 
-  animation: gradientShift-player1-win 0.5s ease-in 1;
-
-
-  /*background: linear-gradient(90deg, red 55%, blue); /* Standard syntax */*/
-  /*background: linear-gradient(90deg, red, blue 45%); /* Standard syntax */
-
-  -webkit-animation-fill-mode:forwards;   /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1) */
+  -webkit-animation-fill-mode:forwards;
   -moz-animation-fill-mode:forwards;
   animation-fill-mode:forwards;
-  animation-duration:1s;
+
+  animation: gradientShift-player1-win 0.5s ease-out 1;
 }
 
 #view-player2 {
@@ -785,14 +810,9 @@ form.new_ttt_game:first-child {
 
   animation: gradientShift-player2 1s ease-in 1;
 
-
-  /*background: linear-gradient(90deg, red 55%, blue); /* Standard syntax */*/
-  /*background: linear-gradient(90deg, red, blue 45%); /* Standard syntax */
-
-  -webkit-animation-fill-mode:forwards;   /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1) */
+  -webkit-animation-fill-mode:forwards;
   -moz-animation-fill-mode:forwards;
   animation-fill-mode:forwards;
-  animation-duration:1s;
 }
 
 #view-player2-static {
@@ -809,16 +829,11 @@ form.new_ttt_game:first-child {
   background-size: 240% 240%;
   background-position: 0%;
 
-  animation: gradientShift-player2-win 0.5s ease-in 1;
+  animation: gradientShift-player2-win 0.5s ease-out 1;
 
-
-  /*background: linear-gradient(90deg, red 55%, blue); /* Standard syntax */*/
-  /*background: linear-gradient(90deg, red, blue 45%); /* Standard syntax */
-
-  -webkit-animation-fill-mode:forwards;   /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1) */
+  -webkit-animation-fill-mode:forwards;
   -moz-animation-fill-mode:forwards;
   animation-fill-mode:forwards;
-  animation-duration:1s;
 }
 
 #view-player2-ai-win {
@@ -830,14 +845,9 @@ form.new_ttt_game:first-child {
 
   animation: gradientShift-player2-ai-win 0.6s ease-in 1;
 
-
-  /*background: linear-gradient(90deg, red 55%, blue); /* Standard syntax */*/
-  /*background: linear-gradient(90deg, red, blue 45%); /* Standard syntax */
-
-  -webkit-animation-fill-mode:forwards;   /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1) */
+  -webkit-animation-fill-mode:forwards;
   -moz-animation-fill-mode:forwards;
   animation-fill-mode:forwards;
-  animation-duration:1s;
 }
 
 #view-player1-draw {
@@ -848,13 +858,9 @@ form.new_ttt_game:first-child {
 
   animation: gradientShift-player1-draw 0.5s ease-in 1;
 
-  /*background: linear-gradient(90deg, red 55%, blue); /* Standard syntax */*/
-  /*background: linear-gradient(90deg, red, blue 45%); /* Standard syntax */
-
-  -webkit-animation-fill-mode:forwards;   /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1) */
+  -webkit-animation-fill-mode:forwards;
   -moz-animation-fill-mode:forwards;
   animation-fill-mode:forwards;
-  animation-duration:1s;
 }
 
 #view-player2-draw {
@@ -865,13 +871,9 @@ form.new_ttt_game:first-child {
 
   animation: gradientShift-player2-draw 0.5s ease-in 1;
 
-  /*background: linear-gradient(90deg, red 55%, blue); /* Standard syntax */*/
-  /*background: linear-gradient(90deg, red, blue 45%); /* Standard syntax */
-
-  -webkit-animation-fill-mode:forwards;   /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1) */
+  -webkit-animation-fill-mode:forwards;
   -moz-animation-fill-mode:forwards;
   animation-fill-mode:forwards;
-  animation-duration:1s;
 }
 
 a.piece-picking-up {
@@ -989,6 +991,7 @@ a.piece-replacing:hover {
   max-height: 350px;
   overflow: hidden;
   position: relative;
+  z-index: -1;
 }
 
 .user-name {
@@ -1005,7 +1008,9 @@ a.piece-replacing:hover {
 }
 
 .user-joined {
+  color: #444;
   text-align: right;
+  margin: 0;
 }
 
 .user-image {
@@ -1060,6 +1065,18 @@ a.piece-replacing:hover {
 
 
 @media only screen and (max-width: 560px) {
+
+  .user-group {
+    width: 100%;
+  }
+
+  .user-image {
+    margin-top: -1.6rem;
+  }
+
+  .user-joined {
+    float: left;
+  }
 
   .dropbtn span {
     display: none;

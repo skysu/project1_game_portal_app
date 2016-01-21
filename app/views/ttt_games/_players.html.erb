@@ -1,19 +1,10 @@
-<div class="ttt-players">
-
-<div class="ttt-player player1 go-left group">
-  <p><%= @ttt_game.player1_user.username %></p>
-  <p><%= @ttt_game.player1[:symbol] %></p>
-  <%= image_tag @ttt_game.player1_user.avatar.thumb %>
-</div>
-
-<div class="ttt-player player2 go-left group">
-  <% if @ttt_game.friend_playing? %>
-    <p><%= @ttt_game.player1_user.username %><small>'s</small> Friend</p>
-  <% else %>
-    <p><%= @ttt_game.player2_user.username %></p>
-  <% end %>
-  <p><%= @ttt_game.player2[:symbol] %></p>
-  <%= image_tag @ttt_game.player2_user.avatar.thumb %>
-</div>
-
-</div>
+<table class="ttt-players">
+  <tr>
+    <th class="ttt-player1 ttt-symbol"><%= @ttt_game.player1[:symbol] %></th>
+    <th class="ttt-player2 ttt-symbol"><%= @ttt_game.player2[:symbol] %></th>
+  </tr>
+  <tr>
+    <td class="ttt-player1"><%= @ttt_game.player1_display_name %></td>
+    <td class="ttt-player2"><%= @ttt_game.player2_display_name %></td>
+  </tr>
+</table>

@@ -16,7 +16,7 @@
 </div>
 
 <% unless @in_progress_games.any? && @finished_games.any? %>
-  <%= link_to "Start Playing Games", new_ttt_game_path, class: 'btn btn-get-started' %>
+  <%= link_to "Start Playing Games", games_path, class: 'btn btn-on-white btn-get-started' %>
 <% end %>
 
 

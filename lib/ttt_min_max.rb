@@ -1,12 +1,12 @@
 require 'ttt_win_checker'
 
 class TttMinMax
+  include TttWinChecker
   attr_reader :best_choice
 
   def initialize(piece)
     @piece = piece
     @opponent = switch(piece)
-    @win_checker = TttWinChecker.new
   end
 
   def choose_square(board)
@@ -65,7 +65,7 @@ class TttMinMax
   end
 
   def winner?(piece, board)
-    @win_checker.winner(piece, board)
+    winner(piece, board)
   end
 
   def tie?(board)

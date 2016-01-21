@@ -22,21 +22,24 @@
     <%= render "mttt_board" %>
   <% end %>
 
-  <div>
-    <h3><%= @mttt_game.player1_display_name %></h3>
-    <p>symbol: <%= @mttt_game.player1[:symbol] %></p>
-    <h4><% @mttt_game.player1[:pieces].times do %>
+  <table class="ttt-players">
+    <tr>
+      <th class="ttt-player1 ttt-symbol"><%= @mttt_game.player1[:symbol] %></th>
+      <th class="ttt-player2 ttt-symbol"><%= @mttt_game.player2[:symbol] %></th>
+    </tr>
+    <tr>
+      <td class="ttt-player1"><%= @mttt_game.player1_display_name %></td>
+      <td class="ttt-player2"><%= @mttt_game.player2_display_name %></td>
+    </tr>
+    <tr>
+      <td class="ttt-player1"><% @mttt_game.player1[:pieces].times do %>
       <span><%= @mttt_game.player1[:symbol] %></span>
-    <% end %></h4>
-  </div>
-
-  <div>
-    <h3><%= @mttt_game.player2_display_name %></h3>
-    <p>symbol: <%= @mttt_game.player2[:symbol] %></p>
-    <h4><% @mttt_game.player2[:pieces].times do %>
+    <% end %></td>
+      <td class="ttt-player2"><% @mttt_game.player2[:pieces].times do %>
       <span><%= @mttt_game.player2[:symbol] %></span>
-    <% end %></h4>
-  </div>
+    <% end %></td>
+    </tr>
+  </table>
 
 </div>
 

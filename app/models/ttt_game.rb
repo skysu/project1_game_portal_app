@@ -89,6 +89,10 @@ class TttGame < ActiveRecord::Base
     end
   end
 
+  def player1_display_name
+    player1_user.username
+  end
+
   def player2_user
     if self.users.exists?(self.player2[:id])
       self.users.find(self.player2[:id])
@@ -97,8 +101,26 @@ class TttGame < ActiveRecord::Base
     end
   end
 
+  def player2_display_name
+    case self.opponent
+      when 'user', 'ai'
+        player2_user.username
+      when 'friend'
+        "#{player1_display_name}'s Friend"
+    end
+  end
+
   def current_player_user
     self.users.find(self.current_player[:id])
+  end
+
+  def current_player_display_name
+    case self.opponent
+      when 'user', 'ai'
+        self.current_player_user.username
+      when 'friend'
+        self.current_player[:symbol].to_s
+    end
   end
 
   def winner_user
@@ -130,11 +152,11 @@ class TttGame < ActiveRecord::Base
     if self.finished?
       if self.is_draw
         case self.opponent
-        when 'user' 'friend'
+        when 'user', 'friend'
           if current_player[:symbol] == player1[:symbol]
-            "view-player1-draw"
+            return "view-player1-draw"
           else
-            "view-player2-draw"
+            return "view-player2-draw"
           end
         when 'ai'
           "view-player1-draw"

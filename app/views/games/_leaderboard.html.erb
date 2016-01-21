@@ -18,7 +18,7 @@
     <% unless stat.user.default_player? %>
     <tr>
       <th><%= rank %>.</th>
-      <th id="leaderboard-user"><%= stat.user.username %></th>
+      <th id="leaderboard-user"><%= link_to stat.user.username, player_path(stat.user) %></th>
       <td><%= stat.wins %></td>
       <td><%= stat.losses %></td>
       <td><%= stat.draws %></td>
