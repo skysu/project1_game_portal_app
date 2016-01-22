@@ -13,7 +13,7 @@
     <% end %>
   </div>
 
-  <% unless @mttt_game.finished? && !@mttt_game.is_draw %>
+  <% unless @mttt_game.finished? %>
     <%= render "mttt_waiting_board" %>
   <% else %>
     <%= render "mttt_winning_board" %>

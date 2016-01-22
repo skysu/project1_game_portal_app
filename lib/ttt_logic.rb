@@ -1,5 +1,3 @@
-require 'ttt_win_checker'
-
 module TttLogic
   
   DEFAULT_BOARD = [nil, nil, nil,

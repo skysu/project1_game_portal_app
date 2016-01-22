@@ -1,5 +1,3 @@
-require 'mttt_win_checker'
-
 module MtttLogic
 
   ################ FROM TTTGAME ################

@@ -21,7 +21,7 @@
     <% end %>
   </div>
 
-  <% unless @ttt_game.finished? && !@ttt_game.is_draw  %>
+  <% unless @ttt_game.finished? %>
     <%= render "waiting_board" %>
   <% else %>
     <%= render "winning_board" %>

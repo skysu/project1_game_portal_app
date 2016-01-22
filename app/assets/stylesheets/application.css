@@ -489,6 +489,11 @@ form.new_ttt_game:first-child {
   margin: 0;
 }
 
+.list-game {
+  margin: 0;
+  color: #fff;
+}
+
 .list-subtitle {
   font-size: .8em;
   line-height: .8em;
